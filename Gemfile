@@ -10,7 +10,7 @@ gem 'sqlite3', '~> 1.3.6'
 gem 'thin'
 gem 'shotgun'
 
-group :test do
+group :development do
   gem 'pry'
   gem 'tux'
   gem 'rspec'
