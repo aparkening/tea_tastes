@@ -1,12 +1,14 @@
 # My Sinatra Project Development Process
 
 ## 1. Plan project, imagine interface
+
 Tea Tastes is a place to record impressions of teas. Features:
 - Authenticated users can log in to create, edit, and delete tea notes.
 - Notes can be linked to tea shops for another way to browse notes and for easy reordering.
 - Unauthenticated users can view tea notes by tea, user, and tea shop.
 
 ### Page Structure
+
 - All pages: user login and logout
 - Main page
 - Sign up
@@ -23,64 +25,77 @@ Tea Tastes is a place to record impressions of teas. Features:
 - Delete shop
 
 #### Main page (index.html)
+
 - Summarize product: words and image(s) for what project is and why you'd use it
 - Display login form or logout link
 - Display signup link
 
 #### Sign Up
+
 - Summarize signup benefits
 - Form 
 	- Required username and password
 	- Optional additional fields
 
 #### Authenticated User Home
+
 - Link to add note
 - List of user-specific notes
 	- Can sort by date and tea name
 - Short list of notes from others
 
 #### Create New Note
+
 - Form with error messages
 - Form includes fields for tea shop name and URL
 
 #### Display Note
+
 - Note content
 - Edit and delete links
 - Success message upon creation
 - Delete link
 
 #### Display User
+
 - Profile information
 - List of user notes
 
 #### Display Shop
+
 - Profile information, including URL
 - List of notes for teas from shop
 - Delete link if authenticated user and no related notes
 
 #### Edit Note
+
 - Pre-filled form
 - Delete link
 - Error and success messages
 
 #### Edit User Profile
+
 - Pre-filled form
 - Error and success messages
 
 #### Edit Shop
+
 - Pre-filled form
 - Error and success messages
 
 #### Delete Note
+
 - Only if note author
 
 #### Delete Shop
+
 - Only if authenticated user and no related notes
 
 
 ## 2. Outline project structure
 
 ### Object Structure
+
 - User has many notes
 - Shop has and belongs to many notes
 - Note belongs to user
@@ -144,6 +159,7 @@ Tea Tastes is a place to record impressions of teas. Features:
 
 
 ## 4. Stub remaining interface
+
 1. Hardcode to show display details
 2. Create Rspec tests
 3. Replace each section with dynamic code.
@@ -151,6 +167,7 @@ Tea Tastes is a place to record impressions of teas. Features:
 
 
 ## 5. Run program and tweak
+
 - Improve styling
 - Improve error handling and edge case responses
 - Refactor to consolidate duplicated work and separate concerns
@@ -158,6 +175,7 @@ Tea Tastes is a place to record impressions of teas. Features:
 
 
 ## 6. Update Readme and Code of Conduct
+
 Model Readme on pattern in https://gist.github.com/PurpleBooth/109311bb0361f32d87a2.
 
 
