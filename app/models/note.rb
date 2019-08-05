@@ -1,4 +1,3 @@
-require_relative 'concerns/slugifiable'
 class Note < ActiveRecord::Base
   extend Slugify::ClassMethods
   include Slugify::InstanceMethods

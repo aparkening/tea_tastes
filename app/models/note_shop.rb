@@ -1,6 +1,4 @@
-class Shop < ActiveRecord::Base
+class NoteShop < ActiveRecord::Base
   extend Slugify::ClassMethods
   include Slugify::InstanceMethods
-
-  has_and_belongs_to_many :notes
 end

@@ -106,7 +106,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
-  bcrypt (~> 3.1)
+  bcrypt
   capybara
   pry
   rack-flash3
