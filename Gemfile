@@ -9,6 +9,7 @@ gem 'require_all'
 gem 'sqlite3', '~> 1.3.6'
 gem 'thin'
 gem 'shotgun'
+gem "bcrypt"
 
 group :development do
   gem 'pry'
@@ -18,3 +19,4 @@ group :development do
   gem 'rack-test'
   # gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
 end
+
