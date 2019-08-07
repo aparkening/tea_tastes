@@ -164,6 +164,10 @@ Tea Tastes is a place to record impressions of teas. Features:
 
 ## 3. Start with application controller interface
 
+- Make configuration (views, sessions, etc.)
+- Create base route(s)
+- Make helper methods
+
 
 ## 4. Stub remaining interface
 
