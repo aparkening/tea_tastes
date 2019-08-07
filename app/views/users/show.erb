@@ -1,21 +1,21 @@
-<% if logged_in? %>
-  <h1>Your Notes</h1>
-  <p>Welcome, <%=current_user.name %> <span class="aside">(<a href="/logout">Log Out</a>)</span></p>
-  <p><a href="/notes/new">Create new note</a> any time!</p>
+<h1><%= @user.username %>'s Profile</h1>
 
-<% else %>
-  <h1><%= @user.username %>'s Notes</h1>
+<% if logged_in? %>
+  <p>Welcome, <%=current_user.name %>! <a href="/notes/new">Create new note</a> | <a href="/logout">Log Out</a></p>
 <%end %>
 
-<% @user.notes.each do |note| %>
-<article class="note">
-  <h1><%= note.title %></h1>
-  <p>
-    <%= note.content %><br/>
-    <span class="post_date">Posted <%= note.created_at.strftime("%B %d, %Y") %></span>
-  </p>
-</article>
-<% end %>
+<% if !@user.notes.empty? %>
+  <h2><%= @user.username %>'s Notes</h2>
+  <% @user.notes.each do |note| %>
+  <article class="note">
+    <h1><a href="/notes/<%= note.slug %>"><%= note.title %></a></h1>
+    <p>
+      <%= note.content %><br/>
+      <span class="post_date">Posted <%= note.created_at.strftime("%B %d, %Y") %></span>
+    </p>
+  </article>
+  <% end %>
+<%end %>
 
 <hr>
 <p>> <a href="/">Home</a></p>

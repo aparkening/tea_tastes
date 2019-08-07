@@ -1,0 +1,11 @@
+<h1>All Notes</h1>
+
+<% @notes.each do |note| %>
+<article class="note">
+  <h1><a href="/notes/<%= note.slug %>"><%= note.title %></a></h1>
+  <p>
+    <%= note.content %><br/>
+    <span class="post_date">Posted <%= note.created_at.strftime("%B %d, %Y") %></span>
+  </p>
+</article>
+<% end %>

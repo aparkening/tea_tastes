@@ -1,0 +1,14 @@
+<h1><%=@note.title%></h1>
+<p><%=@note.content%></p>
+
+<hr>
+<section>
+	<a href="/notes/<%=@note.slug%>/edit">Edit Note</a>
+	<form method="post" action="/notes/<%= @note.slug %>/delete">
+		<input id="hidden" type="hidden" name="_method" value="DELETE">
+		<input type="submit" value="Delete Note">
+	</form>
+</section>
+
+<hr>
+<p><a href="/users/<%=@note.user.slug%>">All Your Notes</a></p>
