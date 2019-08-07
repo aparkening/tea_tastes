@@ -52,6 +52,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redir_user_home
     else
+#---> Insert message for can't find user
       redirect '/login'
     end
   end
