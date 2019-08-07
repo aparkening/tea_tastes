@@ -113,6 +113,7 @@ Tea Tastes is a place to record impressions of teas. Features:
 │   │   └── users_controller.rb
 │   └── models:
 │   │   └── note.rb
+│   │   └── note_shop.rb
 │   │   └── shop.rb
 │   │   └── user.rb
 │   └── views:
