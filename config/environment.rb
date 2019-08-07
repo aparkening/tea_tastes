@@ -7,7 +7,7 @@ ActiveRecord::Base.establish_connection(
   :database => "db/#{ENV['SINATRA_ENV']}.sqlite"
 )
 
-# If development environment, grab secret key
+# If development environment, grab local secret key
 if ENV['SINATRA_ENV'] == 'development' 
   require './secrets.rb'
 end 
