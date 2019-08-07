@@ -15,11 +15,11 @@ class NotesController < ApplicationController
       flash[:type] = "error"
       redirect '/notes/new'
     else 
-
-      binding.pry
       @content = RedCloth.new(params[:content]).to_html
       note = current_user.notes.build(title: params[:title], content: @content)
       if note.save
+        flash[:message] = ["Success! Note created."]
+        flash[:type] = "success"
         redirect to "/notes/#{note.slug}"
       else
         if note.errors.any?
@@ -36,7 +36,6 @@ class NotesController < ApplicationController
   delete '/notes/:slug/delete' do
     redir_login # redirect if not authorized to take this action  
     @note = Note.find_by_slug(params[:slug])     
-  
     # Ensure only owner can delete
     if @note.user == current_user
       @note.destroy
@@ -50,14 +49,11 @@ class NotesController < ApplicationController
   #### Edit
   # Show edit form if user has permission
   get '/notes/:slug/edit' do 
-    # redir_login # redirect if not authorized to take this action  
-    @note = Note.find_by_slug(params[:slug])  
-    
+    redir_login # redirect if not authorized to take this action  
+    @note = Note.find_by_slug(params[:slug]) 
+
     # Ensure only owner can edit
     if @note.user == current_user
-      flash[:message] = ["Success! Note updated."]
-      flash[:type] = "success"
-      redirect "/notes/#{params[:slug]}/edit"
       erb :'/notes/edit'
     else 
       redirect '/login'
@@ -77,9 +73,12 @@ class NotesController < ApplicationController
 
       # Ensure only owner can edit
       if @note.user == current_user
-
         @content = RedCloth.new(params[:content]).to_html   
         @note.update(title: params[:title], content: @content)
+
+        flash[:message] = ["Success! Note updated."]
+        flash[:type] = "success"
+        
         redirect "/notes/#{params[:slug]}"
       else 
         redirect '/login'
@@ -95,10 +94,17 @@ class NotesController < ApplicationController
     erb :'notes/index'
   end
 
+  # Lazy Index, just in case
+  get '/notes/' do   
+    redirect '/notes'
+  end
+
+
   # Specific Note
   get '/notes/:slug' do
     @note = Note.find_by_slug(params[:slug])
     erb :'notes/show'
   end
+
 
 end
