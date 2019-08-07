@@ -1,6 +1,10 @@
 <h1>Sign up for Tea Tastes</h1>
 <% if flash.has?(:message) %>
-  <p class=<%= flash[:type] %>><%= flash[:message] %></p>
+  <ul class=<%= flash[:type] %>>
+    <% flash[:message].each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
 <% end %>
 
 <form action="/signup" method="POST">
