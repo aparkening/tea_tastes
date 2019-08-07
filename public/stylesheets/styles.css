@@ -6,3 +6,9 @@ body {
 label {
   min-width: 10rem;
 }
+
+.error {
+  padding: 5px;
+  background: pink;
+  border: 1px solid red;
+}

@@ -25,6 +25,10 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redir_user_home
     else
+      if user.errors.any?
+        flash[:message] = user.errors.full_messages
+        flash[:type] = "error"
+      end
       redirect '/signup'
     end
   end
@@ -52,7 +56,7 @@ class SessionsController < ApplicationController
     end
   end
 
-  
+
   #### Logout
   get '/logout' do
     session.clear if logged_in?
