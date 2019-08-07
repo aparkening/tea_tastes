@@ -1,1 +1,20 @@
-index
+<h1>Welcome to Tea Tastes</h1>
+<h2>The place to record your tea thoughts</h2>
+<% if logged_in? %>
+  <p>Welcome, <%=current_user.name %> <span class="aside">(<a href="/logout">Log Out</a>)</span></p>
+  <ul>
+    <li><a href="/users/<%=current_user.slug %>">Read your posts</a></li>
+    <li><a href="/tweets/new">Create new note</a></li>
+  </ul>
+<% else %>
+  <p>Do you remember that amazing tea you had 2 years ago? Or where to get it again? What about that tea that just didn't pan out, that you <em>don't</em> want to taste again?</p>
+  <p>Tea Tastes allows you to record those thoughts, link to specific teas and tea shops, and learn about other teas from the community.</p>
+  <p><a href="/signup">Sign up</a> or <a href="/login">log in</a> to get started.</p>
+<%end %>
+
+<h2>Recent notes from the community</h2>
+<ul class="notes">
+  <% @notes.each do |note| %>
+  <li><a href="/users/<%=note.slug %>"><%= note.title %></a></li>
+  <% end %>
+</ul>

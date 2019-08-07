@@ -15,6 +15,7 @@ class ApplicationController < Sinatra::Base
   #### Routes
   # Base page
   get '/' do
+    @notes = Note.all
     erb :index
   end
 
