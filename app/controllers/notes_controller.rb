@@ -99,7 +99,6 @@ class NotesController < ApplicationController
     redirect '/notes'
   end
 
-
   # Specific Note
   get '/notes/:slug' do
     @note = Note.find_by_slug(params[:slug])
