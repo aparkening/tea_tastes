@@ -4,7 +4,6 @@ module Slugify
     # Strip special characters and replace with "-"
     def slug 
       name.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
-      # name.parameterize
     end
   end
 

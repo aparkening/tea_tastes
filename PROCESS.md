@@ -116,6 +116,8 @@ Tea Tastes is a place to record impressions of teas. Features:
 │   │   └── note_shop.rb
 │   │   └── shop.rb
 │   │   └── user.rb
+│   │   └── concerns:
+│   │   │   └── slugify.rb
 │   └── views:
 │   │   └── index.erb
 │   │   └── layout.erb
@@ -134,10 +136,14 @@ Tea Tastes is a place to record impressions of teas. Features:
 │   │   │   └── edit.erb
 │   │   │   └── show.erb
 - config:
-│   └── environment.r b
+│   └── environment.rb
 - db:
 │   └── development.sqlite 
 │   └── migrate:
+│   │   └── create_users
+│   │   └── create_notes
+│   │   └── create_shops
+│   │   └── create_notes_shops
 │   └── seeds.rb
 │   └── schema.rb
 - public:
