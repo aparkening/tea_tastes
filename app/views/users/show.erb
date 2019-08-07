@@ -1,7 +1,7 @@
 <% if logged_in? %>
   <h1>Your Notes</h1>
   <p>Welcome, <%=current_user.name %> <span class="aside">(<a href="/logout">Log Out</a>)</span></p>
-  <p><a href="/tweets/new">Create new note</a> any time!</p>
+  <p><a href="/notes/new">Create new note</a> any time!</p>
 
 <% else %>
   <h1><%= @user.username %>'s Notes</h1>
