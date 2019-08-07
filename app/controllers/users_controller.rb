@@ -7,7 +7,4 @@ class UsersController < ApplicationController
     erb :'users/show'
   end
 
-
-
-
 end
