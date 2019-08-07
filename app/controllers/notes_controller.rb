@@ -1,14 +1,10 @@
 # Control notes pages
 class NotesController < ApplicationController
 
-  #### Display
-  get '/notes' do   
-    @notes = Note.all
-    erb :'notes/index'
-  end
 
 
-  #### New
+
+  #### Create
   # Display form
   get '/notes/new' do
     redir_login # redirect if not authorized to take this action      
@@ -33,13 +29,6 @@ class NotesController < ApplicationController
         redirect to "/notes/new"
       end      
     end
-  end
-
-
-  #### Display Note
-  get '/notes/:slug' do
-    @note = Note.find_by_slug(params[:slug])
-    erb :'notes/show'
   end
 
 
@@ -86,11 +75,25 @@ class NotesController < ApplicationController
       # Ensure only owner can edit
       if @note.user == current_user
         @note.update(title: params[:title], content: params[:content])
-        redirect "/notes/#{@tweet.id}"
+        redirect "/notes/#{params[:slug]}"
       else 
         redirect '/login'
       end   
     end
+  end
+
+  
+  #### Display
+  # Index
+  get '/notes' do   
+    @notes = Note.all
+    erb :'notes/index'
+  end
+
+  # Specific Note
+  get '/notes/:slug' do
+    @note = Note.find_by_slug(params[:slug])
+    erb :'notes/show'
   end
 
 end
