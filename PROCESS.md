@@ -149,7 +149,7 @@ Tea Tastes is a place to record impressions of teas. Features:
 - public:
 │   └── stylesheets:
 │   │   └── styles.css
-- rspec:
+- spec:
 │   └── model_spec.rb
 │   └── note_spec.rb
 │   └── shop_spec.rb
