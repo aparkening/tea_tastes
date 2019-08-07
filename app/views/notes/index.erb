@@ -5,7 +5,7 @@
   <h1><a href="/notes/<%= note.slug %>"><%= note.title %></a></h1>
   <p>
     <%= note.content %><br/>
-    <span class="post_date">Posted <%= note.created_at.strftime("%B %d, %Y") %></span>
+    <span class="post_date">Posted by <a href="/users/<%= note.user.slug %>"><%= note.user.username %></a> at <%= note.created_at.strftime("%B %d, %Y") %></span>
   </p>
 </article>
 <% end %>
