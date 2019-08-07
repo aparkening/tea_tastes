@@ -5,8 +5,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :notes
 
-  validates :username, presence: true
-  # validates :password, length: { minimum: 10 }
+  validates :username, presence: true, uniqueness: true
   validates :password, length: { minimum: 10 }, confirmation: true
   validates :password_confirmation, presence: true
 end
