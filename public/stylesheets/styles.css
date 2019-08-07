@@ -2,3 +2,7 @@ body {
   background-color: #efefef;
   padding: 5px;
 }
+
+label {
+  min-width: 10rem;
+}
