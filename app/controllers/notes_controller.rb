@@ -1,9 +1,6 @@
 # Control notes pages
 class NotesController < ApplicationController
 
-
-
-
   #### Create
   # Display form
   get '/notes/new' do
@@ -18,7 +15,10 @@ class NotesController < ApplicationController
       flash[:type] = "error"
       redirect '/notes/new'
     else 
-      note = current_user.notes.build(title: params[:title], content: params[:content])
+
+      binding.pry
+      @content = RedCloth.new(params[:content]).to_html
+      note = current_user.notes.build(title: params[:title], content: @content)
       if note.save
         redirect to "/notes/#{note.slug}"
       else
@@ -50,11 +50,14 @@ class NotesController < ApplicationController
   #### Edit
   # Show edit form if user has permission
   get '/notes/:slug/edit' do 
-    redir_login # redirect if not authorized to take this action  
+    # redir_login # redirect if not authorized to take this action  
     @note = Note.find_by_slug(params[:slug])  
     
     # Ensure only owner can edit
     if @note.user == current_user
+      flash[:message] = ["Success! Note updated."]
+      flash[:type] = "success"
+      redirect "/notes/#{params[:slug]}/edit"
       erb :'/notes/edit'
     else 
       redirect '/login'
@@ -74,7 +77,9 @@ class NotesController < ApplicationController
 
       # Ensure only owner can edit
       if @note.user == current_user
-        @note.update(title: params[:title], content: params[:content])
+
+        @content = RedCloth.new(params[:content]).to_html   
+        @note.update(title: params[:title], content: @content)
         redirect "/notes/#{params[:slug]}"
       else 
         redirect '/login'
@@ -82,7 +87,7 @@ class NotesController < ApplicationController
     end
   end
 
-  
+
   #### Display
   # Index
   get '/notes' do   

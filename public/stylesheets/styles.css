@@ -12,6 +12,11 @@ label {
   background: pink;
   border: 1px solid red;
 }
+.success {
+  padding: 5px;
+  background: rgb(141, 240, 141);
+  border: 1px solid green;
+}
 
 /* Articles */
 article {
