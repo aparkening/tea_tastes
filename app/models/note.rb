@@ -4,4 +4,9 @@ class Note < ActiveRecord::Base
 
   belongs_to :user
   has_and_belongs_to_many :shops
+
+  def slug_name
+    self.title
+  end
+
 end

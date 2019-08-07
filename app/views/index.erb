@@ -4,7 +4,7 @@
   <p>Welcome, <%=current_user.name %> <span class="aside">(<a href="/logout">Log Out</a>)</span></p>
   <ul>
     <li><a href="/users/<%=current_user.slug %>">Read your posts</a></li>
-    <li><a href="/tweets/new">Create new note</a></li>
+    <li><a href="/notes/new">Create new note</a></li>
   </ul>
 <% else %>
   <p>Do you remember that amazing tea you had 2 years ago? Or where to get it again? What about that tea that just didn't pan out, that you <em>don't</em> want to taste again?</p>
