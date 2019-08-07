@@ -7,7 +7,7 @@
   <h1><%= @user.username %>'s Notes</h1>
 <%end %>
 
-<% @user.notes.each_with_index do |note, index| %>
+<% @user.notes.each do |note| %>
 <article class="note">
   <h1><%= note.title %></h1>
   <p>
