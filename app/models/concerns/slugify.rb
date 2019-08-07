@@ -3,7 +3,7 @@ module Slugify
   module InstanceMethods
     # Strip special characters and replace with "-"
     def slug 
-      name.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
+      username.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
     end
   end
 

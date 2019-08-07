@@ -1,0 +1,21 @@
+<% if logged_in? %>
+  <h1>Your Notes</h1>
+  <p>Welcome, <%=current_user.name %> <span class="aside">(<a href="/logout">Log Out</a>)</span></p>
+  <p><a href="/tweets/new">Create new note</a> any time!</p>
+
+<% else %>
+  <h1><%= @user.username %>'s Notes</h1>
+<%end %>
+
+<% @user.notes.each_with_index do |note, index| %>
+<article class="note">
+  <h1><%= note.title %></h1>
+  <p>
+    <%= note.content %><br/>
+    <span class="post_date">Posted <%= note.created_at.strftime("%B %d, %Y") %></span>
+  </p>
+</article>
+<% end %>
+
+<hr>
+<p>> <a href="/">Home</a></p>

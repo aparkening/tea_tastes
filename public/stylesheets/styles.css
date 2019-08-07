@@ -3,12 +3,38 @@ body {
   padding: 5px;
 }
 
+/* Forms */
 label {
   min-width: 10rem;
 }
-
 .error {
   padding: 5px;
   background: pink;
   border: 1px solid red;
 }
+
+/* Articles */
+article {
+  background: white;
+  padding: 5px 5px 0;
+}
+article h1 {
+  font-size: 1.5em;
+}
+article .post_date {
+  font-size: .75em;
+  color: #999;
+}
+
+
+}
+
+<% @user.notes.each_with_index do |note, index| %>
+<article class="note">
+  <h1><%= note.title %></h1>
+  <p>
+    <%= note.content %><br/>>
+    <span class="post_date">Posted <%= note.created_at.strftime("%B %d, %Y") %></span>
+  </p>
+</article>
+<% end %>
