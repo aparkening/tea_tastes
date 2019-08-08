@@ -6,8 +6,19 @@
   </ul>
 <% end %>
 
-<h1><%=@note.title%></h1>
-<p><%=@note.content%></p>
+<section>
+  <h1><%=@note.title%></h1>
+  <p><%=@note.content%></p>
+
+  <% if !@note.shops.empty? %>
+  <h2>Find this tea at the following shops</h2>
+    <ul>
+    <% @note.shops.each do |shop| %>
+      <li><a href="/shops/<%= shop.slug %>"><%= shop.name %></a></li>
+    <% end %>
+    </ul>
+  <% end %>
+</section>
 
 <hr>
 <section>
