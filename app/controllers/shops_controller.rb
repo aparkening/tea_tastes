@@ -13,14 +13,14 @@ class ShopsController < ApplicationController
   patch '/shops/:slug' do  
     redir_login # redirect to login if not authorized to take this action  
 
-    if params[:name].empty?
-      flash[:message] = ["Fields are missing data. Please submit again."]
+    if params[:shop]["name"].empty?
+      flash[:message] = ["Name is missing. Please fill in Name and re-submit."]
       flash[:type] = "error"
       redirect "/shops/#{params[:slug]}/edit"
     else 
-      @shop = Shop.find_by_slug(params[:slug])  
-      @description = RedCloth.new(params[:description]).to_html   
-      @shop.update(name: params[:name], url: params[:url], description: @description)
+      shop = Shop.find_by_slug(params[:slug]) 
+      params[:shop]["description"] = RedCloth.new(params[:shop]["description"]).to_html if params[:shop]["description"]
+      shop.update(params[:shop])
 
       flash[:message] = ["Success! Shop updated."]
       flash[:type] = "success"
