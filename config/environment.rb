@@ -12,7 +12,8 @@ ActiveRecord::Base.establish_connection(
 if ENV['SINATRA_ENV'] == 'development' 
   require './secrets.rb'
 end 
-require './constants.rb'
 
+require './constants.rb'
+require './errors/post_site_error'
 require_all 'errors'
 require_all 'app'
