@@ -66,15 +66,26 @@ class NotesController < ApplicationController
 
   #### Delete Note
   delete '/notes/:slug/delete' do
-    redir_login # redirect to login if not authorized to take this action  
-    @note = Note.find_by_slug(params[:slug])     
-    # Ensure only owner can delete
-    if @note.user == current_user
-      @note.destroy
-      redir_user_home # Redirect to user home
-    else
-      redirect '/login'
-    end    
+    # Ensure user can take this action
+    authorize
+
+    note = Note.find_by_slug(params[:slug])     
+
+    # Ensure only owner can edit
+    authorize_user(note)
+
+    note.destroy
+    redir_user_home # Redirect to user home
+
+    # redir_login # redirect to login if not authorized to take this action  
+
+    # # Ensure only owner can delete
+    # if @note.user == current_user
+      # @note.destroy
+      # redir_user_home # Redirect to user home
+    # else
+    #   redirect '/login'
+    # end    
   end
 
 
@@ -134,8 +145,6 @@ class NotesController < ApplicationController
           shop.description = shop_desc if shop_desc
           shop.save
         end
-
-# binding.pry
 
         # HTMLize content  
         params[:note]["content"] = RedCloth.new(params[:note]["content"]).to_html 

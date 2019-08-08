@@ -1,6 +1,6 @@
 class AuthorizationError < PostSiteError
-  @@msg = "You are not authorized to see this page"
-  @@links = {"/" => "Go Home" }
+  @@msg = "You are not authorized to see this page."
+  @@links = {"/" => "Return Home" }
   @@status = 401
 
   def self.msg

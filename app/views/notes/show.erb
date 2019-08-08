@@ -23,10 +23,12 @@
 </section>
 
 <hr>
-<section>
-	<a href="/notes/<%=@note.slug%>/edit">Edit Note</a>
-	<form method="post" action="/notes/<%= @note.slug %>/delete">
-		<input id="hidden" type="hidden" name="_method" value="DELETE">
-		<input type="submit" value="Delete Note">
-	</form>
-</section>
+<% if own_post?(@note) %>
+  <section>
+    <a href="/notes/<%=@note.slug%>/edit">Edit Note</a>
+    <form method="post" action="/notes/<%= @note.slug %>/delete">
+      <input id="hidden" type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Delete Note">
+    </form>
+  </section>
+<% end %>
