@@ -4,14 +4,20 @@ class NotesController < ApplicationController
   #### Create
   # Display form
   get '/notes/new' do
-    redir_login # redirect to login if not authorized to take this action 
+    # Ensure user can take this action
+    authorize
+
+    # redir_login # redirect to login if not authorized to take this action 
     @shops = Shop.all  
     erb :'notes/new'
   end
 
   # Create and save in database
   post '/notes' do
-    redir_login # redirect to login if not authorized to take this action  
+    # Ensure user can take this action
+    authorize
+
+    # redir_login # redirect to login if not authorized to take this action  
 
     if params[:note]["title"].empty? || params[:note]["content"].empty?
       flash[:message] = ["Fields are missing data. Please submit again."]
@@ -28,16 +34,23 @@ class NotesController < ApplicationController
         shop.save
       end
 
+      # Set current_user
+      user = current_user
+
       # HTMLize content  
       params[:note]["content"] = RedCloth.new(params[:note]["content"]).to_html 
       # Build note
-      note = current_user.notes.build(params[:note])
+      note = user.notes.build(params[:note])
+
+      # raise PostSiteError.new if !user.save 
+      # Add shop to note
+      # note.shops << shop if shop
+      # redirect "/notes/#{note.slug}"
 
       # If note can save, add note to shop and redirect to note.slug
       if note.save
         note.shops << shop if shop
-
-        flash[:message] = ["Success! Note created."]
+        flash[:message] = ["Nice work! Note created."]
         flash[:type] = "success"
         redirect to "/notes/#{note.slug}"
       else
@@ -68,21 +81,31 @@ class NotesController < ApplicationController
   #### Edit
   # Show edit form if user has permission
   get '/notes/:slug/edit' do 
-    redir_login # redirect to login if not authorized to take this action  
+    # Ensure user can take this action
+    authorize
+
+    # redir_login # redirect to login if not authorized to take this action  
     @note = Note.find_by_slug(params[:slug]) 
     @shops = Shop.all
 
-    # Ensure only owner can edit
-    if @note.user == current_user
-      erb :'/notes/edit'
-    else 
-      redirect '/login'
-    end      
+   # Ensure only owner can edit
+    authorize_user(@note)
+    erb :'/notes/edit'
+
+    # # Ensure only owner can edit
+    # if @note.user == current_user
+    #   erb :'/notes/edit'
+    # else 
+    #   redirect '/login'
+    # end      
   end
 
   # Update in database
   patch '/notes/:slug' do  
-    redir_login # redirect to login if not authorized to take this action  
+    # Ensure user can take this action
+    authorize
+
+    # redir_login # redirect to login if not authorized to take this action  
 
     if params[:note]["title"].empty? || params[:note]["content"].empty?
       flash[:message] = ["Fields are missing data. Please submit again."]
@@ -92,7 +115,10 @@ class NotesController < ApplicationController
       note = Note.find_by_slug(params[:slug])  
 
       # Ensure only owner can edit
-      if note.user == current_user
+      authorize_user(note)
+
+      # Ensure only owner can edit
+      # if note.user == current_user
 
         # Reset shops array if no checkboxes submitted
         if params[:note]["shop_ids"].empty?
@@ -120,9 +146,9 @@ class NotesController < ApplicationController
         flash[:type] = "success"
         
         redirect "/notes/#{params[:slug]}"
-      else 
-        redirect '/login'
-      end   
+      # else 
+      #   redirect '/login'
+      # end   
     end
   end
 

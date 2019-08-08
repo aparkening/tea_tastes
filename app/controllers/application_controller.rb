@@ -10,6 +10,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     enable :sessions
     set :session_secret, SESSION_SECRET
+    set :show_exceptions, false
   end
   # !! BEFORE PRODUCTION: set environment variable secret
 
