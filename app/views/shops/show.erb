@@ -10,6 +10,17 @@
   <h1><%=@shop.name%></h1>
   <p><a href="<%=@shop.url%>"><%=@shop.url%></a></p>
   <p><%=@shop.description%></p>
+
+  <% if !@shop.notes.empty? %>
+  <h2>This shop has the following notes</h2>
+    <ul>
+    <% @shop.notes.each do |note| %>
+      <li><a href="/notes/<%= note.slug %>"><%= note.title %></a></li>
+    <% end %>
+    </ul>
+  <% end %>
+
+
 </section>
 
 <hr>
