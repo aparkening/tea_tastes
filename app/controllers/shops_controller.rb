@@ -30,6 +30,15 @@ class ShopsController < ApplicationController
   end
 
 
+  #### Delete Shop
+  delete '/shops/:slug/delete' do
+    redir_login # redirect to login if not authorized to take this action  
+    @shop = Shop.find_by_slug(params[:slug])     
+    @shop.destroy
+    redirect '/shops'    
+  end
+
+
   #### Display
   # Index
   get '/shops' do   
@@ -45,7 +54,7 @@ class ShopsController < ApplicationController
   # Specific Shop
   get '/shops/:slug' do
     @shop = Shop.find_by_slug(params[:slug])
-    erb :'shop/show'
+    erb :'shops/show'
   end
 
 end
