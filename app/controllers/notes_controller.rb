@@ -4,20 +4,38 @@ class NotesController < ApplicationController
   #### Create
   # Display form
   get '/notes/new' do
-    redir_login # redirect if not authorized to take this action      
+    redir_login # redirect to login if not authorized to take this action   
+
     erb :'notes/new'
   end
 
   # Create and save in database
   post '/notes' do
+    redir_login # redirect to login if not authorized to take this action  
+
     if params[:title].empty? || params[:content].empty?
       flash[:message] = ["Fields are missing data. Please submit again."]
       flash[:type] = "error"
       redirect '/notes/new'
     else 
-      @content = RedCloth.new(params[:content]).to_html
-      note = current_user.notes.build(title: params[:title], content: @content)
+      
+      # Create Shop if parameters exist
+      if !params[:shop_name].empty?
+        shop = Shop.new(name: params[:shop_name])
+        shop.url = params[:shop_url] if params[:shop_url]
+        
+        shop_desc = RedCloth.new(params[:shop_description]).to_html if params[:shop_description]  # HTMLize description
+        shop.description = shop_desc if shop_desc
+        shop.save
+      end
+      
+      # HTMLize textarea content and build new note
+      note_content = RedCloth.new(params[:content]).to_html   # HTMLize content
+      note = current_user.notes.build(title: params[:title], content: note_content)
+
       if note.save
+        shop.notes << note # Associate note with shop
+        
         flash[:message] = ["Success! Note created."]
         flash[:type] = "success"
         redirect to "/notes/#{note.slug}"
@@ -34,7 +52,7 @@ class NotesController < ApplicationController
 
   #### Delete Note
   delete '/notes/:slug/delete' do
-    redir_login # redirect if not authorized to take this action  
+    redir_login # redirect to login if not authorized to take this action  
     @note = Note.find_by_slug(params[:slug])     
     # Ensure only owner can delete
     if @note.user == current_user
@@ -49,7 +67,7 @@ class NotesController < ApplicationController
   #### Edit
   # Show edit form if user has permission
   get '/notes/:slug/edit' do 
-    redir_login # redirect if not authorized to take this action  
+    redir_login # redirect to login if not authorized to take this action  
     @note = Note.find_by_slug(params[:slug]) 
 
     # Ensure only owner can edit
@@ -62,7 +80,7 @@ class NotesController < ApplicationController
 
   # Update in database
   patch '/notes/:slug' do  
-    redir_login # redirect if not authorized to take this action  
+    redir_login # redirect to login if not authorized to take this action  
 
     if params[:title].empty? || params[:content].empty?
       flash[:message] = ["Fields are missing data. Please submit again."]
@@ -73,7 +91,7 @@ class NotesController < ApplicationController
 
       # Ensure only owner can edit
       if @note.user == current_user
-        @content = RedCloth.new(params[:content]).to_html   
+        @content = RedCloth.new(params[:content]).to_html # HTMLize content  
         @note.update(title: params[:title], content: @content)
 
         flash[:message] = ["Success! Note updated."]
