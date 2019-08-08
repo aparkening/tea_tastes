@@ -8,7 +8,9 @@
   </ul>
 <% end %>
 
+<!-- Remove if don't use -->
 <%= @error %>
+
 <form action='/notes' method="post">
   <p>
     <label for="title">Title:</label>
@@ -18,5 +20,34 @@
     <label for="content">Thoughts:</label>
     <textarea rows="10" cols="50" name="content" id="content" required></textarea>
   </p>
-  <input type="submit" name="submit" id="Submit Note">
+
+
+  <fieldset>
+    <legend>Shops</legend>
+    
+    <% if !@shops.empty? %>
+      <h3>Existing Shops</h3>
+      <ul>
+        <% @shops.each do |shop| %>
+          <li><input type="radio" name="shop[ids][]" value="<%= shop.id %>" id="<%= shop.name %>"> <label for="<%= shop.name %>"><%= shop.name %></label></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <h3>Or create new shop</h3>
+    <p>
+      <label for="shop_name">Shop Name:</label>
+      <input type="text" name="shop[name]" id="shop_name">
+    </p>
+    <p>
+      <label for="shop_url">Shop URL:</label>
+      <input type="text" name="shop[url]" id="shop_url">
+    </p>
+    <p>
+      <label for="shop_description">Shop Description:</label>
+      <textarea rows="10" cols="50" name="shop[description]" id="shop_description"></textarea>
+    </p>
+  </fieldset>
+
+  <input type="submit" name="Save Note">
 </form>

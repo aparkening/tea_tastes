@@ -4,8 +4,8 @@ class NotesController < ApplicationController
   #### Create
   # Display form
   get '/notes/new' do
-    redir_login # redirect to login if not authorized to take this action   
-
+    redir_login # redirect to login if not authorized to take this action 
+    @shops = Shop.all  
     erb :'notes/new'
   end
 
@@ -20,13 +20,15 @@ class NotesController < ApplicationController
     else 
       
       # Create Shop if parameters exist
-      if !params[:shop_name].empty?
-        shop = Shop.new(name: params[:shop_name])
-        shop.url = params[:shop_url] if params[:shop_url]
+      if params[:shop][:ids].first.empty? && !params[:shop][:name].empty?
+        shop = Shop.new(name: params[:shop][:name])
+        shop.url = params[:shop][:url] if params[:shop][:url]
         
-        shop_desc = RedCloth.new(params[:shop_description]).to_html if params[:shop_description]  # HTMLize description
+        shop_desc = RedCloth.new(params[:shop][:description]).to_html if params[:shop][:description]  # HTMLize description
         shop.description = shop_desc if shop_desc
         shop.save
+      else 
+        shop = Shop.find_by_id(params[:shop][:ids].first)
       end
       
       # HTMLize textarea content and build new note
@@ -34,7 +36,7 @@ class NotesController < ApplicationController
       note = current_user.notes.build(title: params[:title], content: note_content)
 
       if note.save
-        shop.notes << note # Associate note with shop
+        shop.notes << note if shop # Associate note with shop
         
         flash[:message] = ["Success! Note created."]
         flash[:type] = "success"
