@@ -67,7 +67,7 @@ class ApplicationController < Sinatra::Base
 
     # Return true if current user owns post
     def own_post?(post)
-        current_user == post.user
+      current_user == post.user
     end
 
     # Redirect to login if not authorized
