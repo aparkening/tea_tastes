@@ -1,4 +1,5 @@
 ENV['SINATRA_ENV'] ||= "development"
+
 require 'bundler/setup'
 Bundler.require(:default, ENV['SINATRA_ENV'])
 
@@ -13,4 +14,5 @@ if ENV['SINATRA_ENV'] == 'development'
 end 
 require './constants.rb'
 
+require_all 'errors'
 require_all 'app'

@@ -14,7 +14,6 @@ gem 'RedCloth'
 
 group :development do
   gem 'pry'
-  gem 'tux'
   gem 'rspec'
   gem 'capybara'
   gem 'rack-test'
