@@ -18,7 +18,6 @@ class NotesController < ApplicationController
       flash[:type] = "error"
       redirect '/notes/new'
     else 
-      
       # Create Shop if parameters exist
       if params[:shop][:ids].first.empty? && !params[:shop][:name].empty?
         shop = Shop.new(name: params[:shop][:name])
@@ -35,6 +34,7 @@ class NotesController < ApplicationController
       note_content = RedCloth.new(params[:content]).to_html   # HTMLize content
       note = current_user.notes.build(title: params[:title], content: note_content)
 
+      # If note can save, add note to shop and recirect to note.slug
       if note.save
         shop.notes << note if shop # Associate note with shop
         
@@ -93,8 +93,24 @@ class NotesController < ApplicationController
 
       # Ensure only owner can edit
       if @note.user == current_user
+
+        # Create Shop if parameters exist
+        if params[:shop][:ids].first.empty? && !params[:shop][:name].empty?
+          shop = Shop.new(name: params[:shop][:name])
+          shop.url = params[:shop][:url] if params[:shop][:url]
+          
+          shop_desc = RedCloth.new(params[:shop][:description]).to_html if params[:shop][:description]  # HTMLize description
+          shop.description = shop_desc if shop_desc
+          shop.save
+        else 
+          shop = Shop.find_by_id(params[:shop][:ids].first)
+        end
+
         @content = RedCloth.new(params[:content]).to_html # HTMLize content  
-        @note.update(title: params[:title], content: @content)
+        @note.title = params[:title]
+        @note.content = @content
+        @note.shops << shop if shop
+        @note.save
 
         flash[:message] = ["Success! Note updated."]
         flash[:type] = "success"
