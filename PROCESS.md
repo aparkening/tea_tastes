@@ -165,38 +165,49 @@ Tea Tastes is a place to record impressions of teas. Features:
 ## 3. Start with application controller interface
 
 - Make configuration (views, sessions, etc.)
-- Create base route(s)
+- Create base route(s) (index)
 - Make helper methods
 
 
-## 4. Stub remaining interface
+## 4. Code remaining routes and adjust models
 
-1. Hardcode to show display details
+1. Sessions 
+2. Users
+3. Notes
+4. Shops
+5. Record code-along screencast
+
+
+## 5. Write data and tests
+
+1. Write seed data.
 2. Create Rspec tests
-3. Replace each section with dynamic code.
-	- Record code-along screencast
 
 
-## 5. Run program and tweak
+## 6. Tweak program for user flow
 
-- Improve styling
+- Clarify navigation, links, and instructions
 - Improve error handling and edge case responses
-- Refactor to consolidate duplicated work and separate concerns
-- Clean up for production
+
+## 7. Improve styling and production quality
+
+- Adjust frontend interface to be clear, responsive, and beautiful.
+- Refactor backend code to consolidate methods and separate concerns
+- Clean code for production
 
 
-## 6. Update Readme and Code of Conduct
+## 8. Update Readme and Code of Conduct
 
 Model Readme on pattern in https://gist.github.com/PurpleBooth/109311bb0361f32d87a2.
 
 
-## 7. Record demonstration w/ narration
+## 9. Record demonstration w/ narration
 
 
-## 9. Write blog post about process
+## 10. Write blog post about process
 
 
-## 10. Submit Flatiron checklist
+## 11. Submit Flatiron checklist
 
 
 ## Stretch goals:
