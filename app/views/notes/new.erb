@@ -29,7 +29,7 @@
       <h3>Existing Shops</h3>
       <ul>
         <% @shops.each do |shop| %>
-          <li><input type="radio" name="note[shop_ids][]" value="<%= shop.id %>" id="<%= shop.name %>"> <label for="<%= shop.name %>"><%= shop.name %></label></li>
+          <li><input type="checkbox" name="note[shop_ids][]" value="<%= shop.id %>" id="<%= shop.name %>"> <label for="<%= shop.name %>"><%= shop.name %></label></li>
         <% end %>
       </ul>
     <% end %>
