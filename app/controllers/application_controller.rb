@@ -58,9 +58,9 @@ class ApplicationController < Sinatra::Base
     end
 
     # Show login error messages
-    def login_error_messages(errors)
+    def form_error_messages(errors)
       if errors
-          erb :'users/_errors', locals: {errors: errors}
+        erb :'_errors', locals: {errors: errors}
       end
     end
 
