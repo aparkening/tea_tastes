@@ -71,6 +71,7 @@ class NotesController < ApplicationController
   get '/notes/:slug/edit' do 
     redir_login # redirect to login if not authorized to take this action  
     @note = Note.find_by_slug(params[:slug]) 
+    @shops = Shop.all
 
     # Ensure only owner can edit
     if @note.user == current_user
@@ -84,33 +85,40 @@ class NotesController < ApplicationController
   patch '/notes/:slug' do  
     redir_login # redirect to login if not authorized to take this action  
 
-    if params[:title].empty? || params[:content].empty?
+    if params[:note]["title"].empty? || params[:note]["content"].empty?
       flash[:message] = ["Fields are missing data. Please submit again."]
       flash[:type] = "error"
       redirect "/notes/#{params[:slug]}/edit"
     else 
-      @note = Note.find_by_slug(params[:slug])  
+      note = Note.find_by_slug(params[:slug])  
 
       # Ensure only owner can edit
-      if @note.user == current_user
+      if note.user == current_user
 
-        # Create Shop if parameters exist
-        if params[:shop][:ids].first.empty? && !params[:shop][:name].empty?
-          shop = Shop.new(name: params[:shop][:name])
-          shop.url = params[:shop][:url] if params[:shop][:url]
-          
-          shop_desc = RedCloth.new(params[:shop][:description]).to_html if params[:shop][:description]  # HTMLize description
-          shop.description = shop_desc if shop_desc
-          shop.save
-        else 
-          shop = Shop.find_by_id(params[:shop][:ids].first)
+        # Notes can have multiple shops. 
+        # If Refactor to check for shop ids and replace the whole section, rather than <<<
+
+        # Set empty shops array if no checkboxes submitted
+        if params[:note]["shop_ids"].empty?
+          params[:note]["shop_ids"] = []
         end
 
-        @content = RedCloth.new(params[:content]).to_html # HTMLize content  
-        @note.title = params[:title]
-        @note.content = @content
-        @note.shops << shop if shop
-        @note.save
+        # Create Shop if parameters exist
+        if !params[:shop_name].empty?
+          shop = Shop.new(name: params[:shop_name])
+          shop.url = params[:shop_url] if params[:shop_url]
+          
+          shop_desc = RedCloth.new(params[:shop_description]).to_html if params[:shop_description]  # HTMLize description
+          shop.description = shop_desc if shop_desc
+          shop.save
+        end
+
+        # HTMLize content  
+        params[:note]["content"] = RedCloth.new(params[:note]["content"]).to_html 
+        # Update note
+        note.update(params[:note])
+        # Add new shop if exists
+        note.shops << shop if shop
 
         flash[:message] = ["Success! Note updated."]
         flash[:type] = "success"
