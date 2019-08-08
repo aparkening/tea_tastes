@@ -13,31 +13,30 @@ class NotesController < ApplicationController
   post '/notes' do
     redir_login # redirect to login if not authorized to take this action  
 
-    if params[:title].empty? || params[:content].empty?
+    if params[:note]["title"].empty? || params[:note]["content"].empty?
       flash[:message] = ["Fields are missing data. Please submit again."]
       flash[:type] = "error"
       redirect '/notes/new'
     else 
       # Create Shop if parameters exist
-      if params[:shop][:ids].first.empty? && !params[:shop][:name].empty?
-        shop = Shop.new(name: params[:shop][:name])
-        shop.url = params[:shop][:url] if params[:shop][:url]
+      if !params[:shop_name].empty?
+        shop = Shop.new(name: params[:shop_name])
+        shop.url = params[:shop_url] if params[:shop_url]
         
-        shop_desc = RedCloth.new(params[:shop][:description]).to_html if params[:shop][:description]  # HTMLize description
+        shop_desc = RedCloth.new(params[:shop_description]).to_html if params[:shop_description]  # HTMLize description
         shop.description = shop_desc if shop_desc
         shop.save
-      else 
-        shop = Shop.find_by_id(params[:shop][:ids].first)
       end
-      
-      # HTMLize textarea content and build new note
-      note_content = RedCloth.new(params[:content]).to_html   # HTMLize content
-      note = current_user.notes.build(title: params[:title], content: note_content)
 
-      # If note can save, add note to shop and recirect to note.slug
+      # HTMLize content  
+      params[:note]["content"] = RedCloth.new(params[:note]["content"]).to_html 
+      # Build note
+      note = current_user.notes.build(params[:note])
+
+      # If note can save, add note to shop and redirect to note.slug
       if note.save
-        shop.notes << note if shop # Associate note with shop
-        
+        note.shops << shop if shop
+
         flash[:message] = ["Success! Note created."]
         flash[:type] = "success"
         redirect to "/notes/#{note.slug}"
@@ -95,10 +94,7 @@ class NotesController < ApplicationController
       # Ensure only owner can edit
       if note.user == current_user
 
-        # Notes can have multiple shops. 
-        # If Refactor to check for shop ids and replace the whole section, rather than <<<
-
-        # Set empty shops array if no checkboxes submitted
+        # Reset shops array if no checkboxes submitted
         if params[:note]["shop_ids"].empty?
           params[:note]["shop_ids"] = []
         end
@@ -134,7 +130,8 @@ class NotesController < ApplicationController
   #### Display
   # Index
   get '/notes' do   
-    @notes = Note.all
+    # Notes by newest first
+    @notes = Note.all.order(created_at: :desc)
     erb :'notes/index'
   end
 
