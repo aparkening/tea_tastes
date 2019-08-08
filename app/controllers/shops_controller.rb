@@ -4,14 +4,21 @@ class ShopsController < ApplicationController
   #### Edit
   # Show edit form if user has permission
   get '/shops/:slug/edit' do 
-    redir_login # redirect to login if not authorized to take this action  
+    # Ensure user can take this action
+    authorize
+    
+    #redir_login # redirect to login if not authorized to take this action  
+    
     @shop = Shop.find_by_slug(params[:slug]) 
     erb :'/shops/edit'
   end
 
   # Update in database
   patch '/shops/:slug' do  
-    redir_login # redirect to login if not authorized to take this action  
+    # Ensure user can take this action
+    authorize
+
+    # redir_login # redirect to login if not authorized to take this action  
 
     if params[:shop]["name"].empty?
       flash[:message] = ["Name is missing. Please fill in Name and re-submit."]
@@ -32,7 +39,11 @@ class ShopsController < ApplicationController
 
   #### Delete Shop
   delete '/shops/:slug/delete' do
-    redir_login # redirect to login if not authorized to take this action  
+    # Ensure user can take this action
+    authorize    
+
+    # redir_login # redirect to login if not authorized to take this action 
+
     @shop = Shop.find_by_slug(params[:slug])     
     @shop.destroy
     redirect '/shops'    

@@ -37,10 +37,10 @@ class ApplicationController < Sinatra::Base
       user
     end
 
-      # Return current user or error
-      def authorize
-        current_user
-      end
+    # Return current user or error
+    def authorize
+      current_user
+    end
 
     # Return user if username and password are authenticated
     def authenticate(username, password)
