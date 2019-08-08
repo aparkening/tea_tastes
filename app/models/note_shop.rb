@@ -1,4 +1,4 @@
-class NoteShop < ActiveRecord::Base
+class NotesShop < ActiveRecord::Base
   extend Slugify::ClassMethods
   include Slugify::InstanceMethods
 

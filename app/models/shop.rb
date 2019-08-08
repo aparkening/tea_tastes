@@ -2,7 +2,8 @@ class Shop < ActiveRecord::Base
   extend Slugify::ClassMethods
   include Slugify::InstanceMethods
 
-  has_and_belongs_to_many :notes
+  has_many :notes_shops
+  has_many :notes, through: :notes_shops
 
   def slug_name
     self.name

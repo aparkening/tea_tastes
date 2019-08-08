@@ -3,7 +3,8 @@ class Note < ActiveRecord::Base
   include Slugify::InstanceMethods
 
   belongs_to :user
-  has_and_belongs_to_many :shops
+  has_many :notes_shops
+  has_many :shops, through: :notes_shops
 
   validates :title, presence: true, uniqueness: true
   validates :content, presence: true
