@@ -8,6 +8,8 @@
 
 <section>
   <h1><%=@note.title%></h1>
+  <p class="post_date">Posted by <a href="/users/<%= @note.user.slug %>"><%= @note.user.username %></a> on <%= @note.created_at.strftime("%B %d, %Y") %></p>
+
   <p><%=@note.content%></p>
 
   <% if !@note.shops.empty? %>

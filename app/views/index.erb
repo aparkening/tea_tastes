@@ -15,6 +15,6 @@
 <h2>Recent notes from the community</h2>
 <ul class="notes">
   <% @notes.each do |note| %>
-  <li><a href="/users/<%=note.slug %>"><%= note.title %></a></li>
+  <li><a href="/notes/<%=note.slug %>"><%= note.title %></a></li>
   <% end %>
 </ul>

@@ -121,7 +121,7 @@ class NotesController < ApplicationController
       # if note.user == current_user
 
         # Reset shops array if no checkboxes submitted
-        if params[:note]["shop_ids"].empty?
+        if params[:note]["shop_ids"].nil?
           params[:note]["shop_ids"] = []
         end
 
@@ -134,6 +134,8 @@ class NotesController < ApplicationController
           shop.description = shop_desc if shop_desc
           shop.save
         end
+
+# binding.pry
 
         # HTMLize content  
         params[:note]["content"] = RedCloth.new(params[:note]["content"]).to_html 
