@@ -37,6 +37,11 @@ class ApplicationController < Sinatra::Base
       user
     end
 
+      # Return current user or error
+      def authorize
+        current_user
+      end
+
     # Return user if username and password are authenticated
     def authenticate(username, password)
       user = User.find_by(username: username)
@@ -63,11 +68,6 @@ class ApplicationController < Sinatra::Base
     def own_post?(post)
         current_user == post.user
     end
-
-    # Return current user
-    # def authorize
-    #   current_user
-    # end
 
     # Redirect to login if not authorized
     def redir_login
@@ -104,6 +104,5 @@ class ApplicationController < Sinatra::Base
       status PostSiteError.status
       erb :error, locals: {msg: PostSiteError.msg , links: PostSiteError.links }, layout: false
   end
-
 
 end
