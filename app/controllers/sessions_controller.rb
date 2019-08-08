@@ -46,15 +46,22 @@ class SessionsController < ApplicationController
 
   # Get user from database
   post '/login' do
-    user = User.find_by(username: params[:username])
-    # If user exists, set session and redirect to user home
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
+    begin 
+      authenticate(params[:username], params[:password])
       redir_user_home
-    else
-#---> Insert message for can't find user
-      redirect '/login'
+    rescue AuthenticationError => e 
+      @errors = ["Improper information entered"]
+      erb :'users/login'
     end
+
+    # user = User.find_by(username: params[:username])
+    # # If user exists, set session and redirect to user home
+    # if user && user.authenticate(params[:password])
+    #   session[:user_id] = user.id
+    #   redir_user_home
+    # else
+    #   redirect '/login'
+    # end
   end
 
 

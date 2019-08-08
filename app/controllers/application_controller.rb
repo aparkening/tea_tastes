@@ -42,7 +42,7 @@ class ApplicationController < Sinatra::Base
       current_user
     end
 
-    # Return user if username and password are authenticated
+    # Return user if username and password are authenticated; set session
     def authenticate(username, password)
       user = User.find_by(username: username)
       raise AuthenticationError.new unless !!user
