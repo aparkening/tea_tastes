@@ -21,7 +21,7 @@ label {
 /* Articles */
 article {
   background: white;
-  padding: 5px 5px 0;
+  padding: 0.5em 0.5em 0.25em;
   margin-bottom: 1em;
 }
 article h1 {
@@ -31,16 +31,3 @@ article .post_date {
   font-size: .75em;
   color: #999;
 }
-
-
-}
-
-<% @user.notes.each_with_index do |note, index| %>
-<article class="note">
-  <h1><%= note.title %></h1>
-  <p>
-    <%= note.content %><br/>>
-    <span class="post_date">Posted <%= note.created_at.strftime("%B %d, %Y") %></span>
-  </p>
-</article>
-<% end %>
