@@ -9,7 +9,8 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     set :public_folder, 'public'
     enable :sessions
-    set :session_secret, SESSION_SECRET
+    # set :session_secret, SESSION_SECRET
+    set :session_secret, ENV['SESSION_SECRET']
     set :show_exceptions, false
   end
   # !! BEFORE PRODUCTION: set environment variable secret
@@ -21,6 +22,11 @@ class ApplicationController < Sinatra::Base
     @notes = Note.all
     erb :index
   end
+
+  # # Error page
+  # get '/error' do
+  #   erb :error
+  # end
 
 
   #### Helper methods
