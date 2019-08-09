@@ -1,7 +1,13 @@
 <h1>Welcome to Tea Tastes</h1>
 <h2>The place to record your tea thoughts</h2>
 <% if logged_in? %>
-  <p>Welcome, <%=current_user.name %> <span class="aside">(<a href="/logout">Log Out</a>)</span></p>
+  <p>Welcome, <%=current_user.name %></p>
+  <p>
+    <form method="post" action="/logout">
+      <input id="hidden" type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Logout">
+    </form>
+  </p>
   <ul>
     <li><a href="/users/<%=current_user.slug %>">Read your posts</a></li>
     <li><a href="/notes/new">Create new note</a></li>
