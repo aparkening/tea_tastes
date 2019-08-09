@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true, on: :create
 
   validates :password, presence: true, on: :create
-  validates :password, length: { minimum: 10 }, confirmation: true
+  validates :password, length: { minimum: 6 }, confirmation: true, unless: ->(u){ u.password.blank? }
   validates :password_confirmation, presence: true
 
   def slug_name
