@@ -172,10 +172,10 @@ class NotesController < ApplicationController
     erb :'notes/index'
   end
 
-  # Lazy Index, just in case
-  get '/notes/' do   
-    redirect '/notes'
-  end
+  # # Lazy Index, just in case
+  # get '/notes/' do   
+  #   redirect '/notes'
+  # end
 
   # Specific Note
   get '/notes/:slug' do
