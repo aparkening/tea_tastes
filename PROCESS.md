@@ -181,12 +181,14 @@ Tea Tastes is a place to record impressions of teas. Features:
 ## 5. Write data and tests
 
 1. Write seed data.
-2. Create Rspec tests
+2. Create Rspec tests.
 
 
 ## 6. Tweak program for user flow
 
+- Update models to include Tea
 - Clarify navigation, links, and instructions
+- Sanitize user input
 - Improve error handling and edge case responses
 
 ## 7. Improve styling and production quality
