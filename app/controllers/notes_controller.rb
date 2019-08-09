@@ -65,18 +65,18 @@ class NotesController < ApplicationController
 
 
   #### Delete Note
-  delete '/notes/:slug/delete' do
+  delete '/notes/:slug' do
     # Ensure user can take this action
     authorize
 
     note = Note.find_by_slug(params[:slug])     
-
+    
     # Ensure only owner can edit
     authorize_user(note)
 
     note.destroy
     redir_user_home # Redirect to user home
-
+    
     # redir_login # redirect to login if not authorized to take this action  
 
     # # Ensure only owner can delete
@@ -86,6 +86,11 @@ class NotesController < ApplicationController
     # else
     #   redirect '/login'
     # end    
+  end
+
+  # If manual delete, redirect to /
+  get '/notes/:slug/delete' do
+    redirect '/'
   end
 
 
