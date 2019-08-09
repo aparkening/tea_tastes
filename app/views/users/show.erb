@@ -1,21 +1,29 @@
+<% if flash.has?(:message) %>
+  <ul class=<%= flash[:type] %>>
+    <% flash[:message].each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h1><%= @user.username %>'s Profile</h1>
 
-<% if logged_in? %>
-  <p>Welcome, <%=current_user.name %>! <a href="/notes/new">Create new note</a> | 
-  <form method="post" action="/logout">
-  <input id="hidden" type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Logout">
-</form></p>
+<% if logged_in? && current_user == @user %>
+  <p>Welcome, <%=@user.username %>!</p>
+  <ul>
+    <li><a href="/notes/new">Create new note</a></li>
+    <li><a href="/users/<%=@user.slug%>/edit">Edit your profile</a></li>
+    <li>
+      <form method="post" action="/logout">
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Logout">
+      </form>
+    </li>
 <%end %>
 
 <% if !@user.notes.empty? %>
   <h2><%= @user.username %>'s Notes</h2>
   <% @user.notes.each do |note| %>
-  <article class="note">
-    <h1><a href="/notes/<%= note.slug %>"><%= note.title %></a></h1>
-    <p>      
-      <span class="post_date">Posted by <a href="/users/<%= note.user.slug %>"><%= note.user.username %></a> on <%= note.created_at.strftime("%B %d, %Y") %></span>
-    </p>
-  </article>
-  <% end %>
+    <%= erb :'/notes/_note', locals: {note: note, format: 'author'} %>
+  <%end %>
 <%end %>

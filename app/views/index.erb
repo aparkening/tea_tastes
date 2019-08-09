@@ -21,6 +21,6 @@
 <h2>Recent notes from the community</h2>
 <ul class="notes">
   <% @notes.each do |note| %>
-  <li><a href="/notes/<%=note.slug %>"><%= note.title %></a></li>
+    <%= erb :'/notes/_note', locals: {note: note, format: 'short'} %>
   <% end %>
 </ul>

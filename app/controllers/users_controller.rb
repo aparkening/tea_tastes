@@ -1,7 +1,7 @@
 # Control user pages
 class UsersController < ApplicationController
 
-#### Edit
+  #### Edit
   # Show edit form if user has permission
   get '/users/:slug/edit' do 
     # Ensure user can take this action
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
       user.update(params[:user])
 
-      flash[:message] = ["Success! Note updated."]
+      flash[:message] = ["Success! Profile updated."]
       flash[:type] = "success"
         
       redirect "/users/#{user.slug}"
