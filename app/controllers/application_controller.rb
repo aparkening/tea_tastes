@@ -61,7 +61,11 @@ class ApplicationController < Sinatra::Base
     # Raise errors if user doesn't have permissions to access post
     def authorize_user(post)
       raise NoResourceError.new if !post
-      raise AuthorizationError.new if post.user != current_user
+      if post.class == User
+        raise AuthorizationError.new if post != current_user
+      else 
+        raise AuthorizationError.new if post.user != current_user
+      end
     end
 
     # Show login error messages
