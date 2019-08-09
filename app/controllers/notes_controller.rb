@@ -166,16 +166,11 @@ class NotesController < ApplicationController
 
   #### Display
   # Index
-  get '/notes' do   
+  get '/notes/?' do   
     # Notes by newest first
     @notes = Note.all.order(created_at: :desc)
     erb :'notes/index'
   end
-
-  # # Lazy Index, just in case
-  # get '/notes/' do   
-  #   redirect '/notes'
-  # end
 
   # Specific Note
   get '/notes/:slug' do

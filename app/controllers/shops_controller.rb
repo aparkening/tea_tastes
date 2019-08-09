@@ -52,14 +52,9 @@ class ShopsController < ApplicationController
 
   #### Display
   # Index
-  get '/shops' do   
+  get '/shops/?' do   
     @shops = Shop.all
     erb :'shops/index'
-  end
-
-  # Lazy Index, just in case
-  get '/shops/' do   
-    redirect '/shops'
   end
 
   # Specific Shop
