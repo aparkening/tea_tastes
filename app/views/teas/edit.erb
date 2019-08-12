@@ -7,8 +7,12 @@
     <input type="text" name="tea[name]" id="name" value="<%= @tea.name %>" required>
   </p>
   <p>
-    <label for="category">Category:</label>
-    <input type="text" name="tea[category]" id="category" value="<%= @tea.category %>"  required>
+    <label for="tea[category]">Category:</label>
+    <select name="tea[category]">
+      <% @categories.each do |category| %>
+        <option value="<%= category.category %>" <%='selected' if @tea.category == category.category %>><%= category.category.capitalize %></option>
+      <% end %>
+    </select>
   </p>
   <p>
     <label for="url">URL:</label>
@@ -29,15 +33,15 @@
 
   <fieldset>
     <legend>Shops</legend>
-    
     <% if !@shops.empty? %>
-      <h3>Existing Shops</h3>
-      <ul>
+      <label for="tea[shop_id]">Shop Name:</label>
+      <select name="tea[shop_id]">
         <% @shops.each do |shop| %>
-          <li><input type="radio" name="tea[shop_ids][]" value="<%= shop.id %>" id="<%= shop.name %>" <%='checked' if @tea.shop == shop %>> <label for="<%= shop.name %>"><%= shop.name %></label></li>
+          <option value="<%= shop.id %>" <%='selected' if @tea.shop == shop %>><%= shop.name %></option>
         <% end %>
-      </ul>
+      </select>
     <% end %>
+
 
     <h3>Or create new shop</h3>
     <p>

@@ -17,16 +17,12 @@
     <input type="text" name="tea[name]" id="name" required>
   </p>
   <p>
-    <label for="category">Category:</label>
-
+    <label for="tea[category]">Category:</label>
     <select name="tea[category]">
-      <option value="green">Green</option>
-      <option value="black">Black</option>
-      <option value="oolong">Oolong</option>
-
+      <% @categories.each do |category| %>
+        <option value="<%= category.category %>"><%= category.category.capitalize %></option>
+      <% end %>
     </select>
-
-
   </p>
   <p>
     <label for="url">URL:</label>
@@ -45,18 +41,14 @@
     <textarea rows="10" cols="50" name="tea[description]" id="descrption" required></textarea>
   </p>
 
-
   <fieldset>
     <legend>Shops</legend>
-    
-    <% if !@shops.empty? %>
-      <h3>Existing Shops</h3>
-      <ul>
-        <% @shops.each do |shop| %>
-          <li><input type="radio" name="tea[shop_ids][]" value="<%= shop.id %>" id="<%= shop.name %>"> <label for="<%= shop.name %>"><%= shop.name %></label></li>
-        <% end %>
-      </ul>
-    <% end %>
+    <label for="tea[shop_id]">Shop Name:</label>
+    <select name="tea[shop_id]">
+      <% @shops.each do |shop| %>
+        <option value="<%= shop.id %>"><%= shop.name %></option>
+      <% end %>
+    </select>
 
     <h3>Or create new shop</h3>
     <p>

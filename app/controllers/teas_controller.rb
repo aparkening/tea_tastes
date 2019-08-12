@@ -4,17 +4,19 @@ class TeasController < ApplicationController
   #### Create
   # Display form
   get '/teas/new' do
-
     # Ensure user can take this action
     authorize
 
-    # redir_login # redirect to login if not authorized to take this action 
     @shops = Shop.all  
+    # @teas = Tea.all
+    @categories = Tea.select(:category).distinct
+    
     erb :'teas/new'
   end
 
   # Create and save in database
   post '/teas' do
+
     # Ensure user can take this action
     authorize
 
@@ -39,7 +41,7 @@ class TeasController < ApplicationController
       # HTMLize content  
       params[:tea]["description"] = RedCloth.new(params[:tea]["description"]).to_html 
       # Build tea
-      tea = Tea.build(params[:tea])
+      tea = Tea.new(params[:tea])
 
       # If tea can save, add tea to shop and redirect
       if tea.save
@@ -86,6 +88,7 @@ class TeasController < ApplicationController
     # redir_login # redirect to login if not authorized to take this action  
     @tea = Tea.find_by_slug(params[:slug]) 
     @shops = Shop.all
+    @categories = Tea.select(:category).distinct
 
     erb :'teas/edit'
   end
@@ -103,9 +106,9 @@ class TeasController < ApplicationController
       tea = Tea.find_by_slug(params[:slug])  
 
       # Reset shops array if no checkboxes submitted
-      if params[:tea]["shop_ids"].nil?
-        params[:tea]["shop_ids"] = []
-      end
+      # if params[:tea]["shop_ids"].nil?
+      #   params[:tea]["shop_ids"] = []
+      # end
 
       # Create Shop if parameters exist
       if !params[:shop_name].empty?
@@ -161,7 +164,6 @@ class TeasController < ApplicationController
 
   # Specific Note
   get '/teas/:slug' do
-    binding.pry
     @tea = Tea.find_by_slug(params[:slug])
     erb :'teas/show'
   end
