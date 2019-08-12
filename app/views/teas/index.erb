@@ -1,0 +1,6 @@
+<h1>All Teas</h1>
+
+<% @teas.each do |tea| %>
+  <%= erb :'/teas/_tea', locals: {tea: tea, format: 'long'} %>
+<% end %>
+

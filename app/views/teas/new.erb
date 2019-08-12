@@ -1,0 +1,69 @@
+<h1>Create New Tea</h1>
+
+<% if flash.has?(:message) %>
+  <ul class=<%= flash[:type] %>>
+    <% flash[:message].each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<!-- Remove if don't use -->
+<%= @error %>
+
+<form action='/teas' method="post">
+  <p>
+    <label for="name">Name:</label>
+    <input type="text" name="tea[name]" id="name" required>
+  </p>
+  <p>
+    <label for="category">Category:</label>
+    <input type="text" name="tea[category]" id="category" required>
+  </p>
+  <p>
+    <label for="url">URL:</label>
+    <input type="text" name="tea[url]" id="url">
+  </p>
+  <p>
+    <label for="country">Region:</label>
+    <input type="text" name="tea[region]" id="region">
+  </p>
+  <p>
+    <label for="country">Country:</label>
+    <input type="text" name="tea[country]" id="country">
+  </p>
+  <p>
+    <label for="description">Description:</label>
+    <textarea rows="10" cols="50" name="tea[description]" id="descrption" required></textarea>
+  </p>
+
+
+  <fieldset>
+    <legend>Shops</legend>
+    
+    <% if !@shops.empty? %>
+      <h3>Existing Shops</h3>
+      <ul>
+        <% @shops.each do |shop| %>
+          <li><input type="radio" name="tea[shop_ids][]" value="<%= shop.id %>" id="<%= shop.name %>"> <label for="<%= shop.name %>"><%= shop.name %></label></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <h3>Or create new shop</h3>
+    <p>
+      <label for="shop_name">Shop Name:</label>
+      <input type="text" name="shop_name" id="shop_name">
+    </p>
+    <p>
+      <label for="shop_url">Shop URL:</label>
+      <input type="text" name="shop_url" id="shop_url">
+    </p>
+    <p>
+      <label for="shop_description">Shop Description:</label>
+      <textarea rows="10" cols="50" name="shop_description" id="shop_description"></textarea>
+    </p>
+  </fieldset>
+
+  <input type="submit" name="Save Tea">
+</form>
