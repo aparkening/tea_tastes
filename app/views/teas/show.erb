@@ -9,12 +9,11 @@
 <%= erb :'/teas/_tea', locals: {tea: @tea, format: 'long'} %>
 
 <hr>
-  <section>
-    <a href="/teas/<%=@tea.slug%>/edit">Edit tea</a>
-    
-    <form method="post" action="/teas/<%= @tea.slug %>">
-      <input id="hidden" type="hidden" name="_method" value="DELETE">
-      <input type="submit" value="Delete tea">
-    </form>
-  </section>
-<% end %>
+<section>
+  <a href="/teas/<%=@tea.slug%>/edit">Edit tea</a>
+
+  <form method="post" action="/teas/<%= @tea.slug %>">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete tea">
+  </form>
+</section>
