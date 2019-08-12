@@ -7,6 +7,7 @@ class CreateTeas < ActiveRecord::Migration[5.2]
       t.string :region
       t.string :country
       t.string :description
+      t.integer :shop_id
       t.timestamps
     end
   end

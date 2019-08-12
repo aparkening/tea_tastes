@@ -61,11 +61,10 @@ dw_tea.notes << dw_note
 paris_tea.notes << paris_note
 
 
-#### Add Shops to Notes
-dj_note.shops << dobra_shop
-pu_note.shops << dobra_shop
-ab_note.shops << song_shop
-ph_note.shops << smith_shop
-ph_note.shops << song_shop
-dw_note.shops << song_shop
-paris_note.shops << harney_shop
+#### Add Teas to Shops
+dobra_shop.teas << dj_tea 
+dobra_shop.teas << pu_tea
+song_shop.teas << ab_tea
+smith_shop.teas << ph_tea
+song_shop.teas << dw_tea
+harney_shop.teas << paris_tea
