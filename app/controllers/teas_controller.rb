@@ -141,6 +141,25 @@ class TeasController < ApplicationController
     erb :'teas/index'
   end
 
+  # Category Index
+  get '/teas/category/:slug' do
+    @teas = Tea.where("category = ?", params[:slug])
+
+    erb :'teas/index'
+  end
+
+  # Region Index
+  get '/teas/region/:slug' do
+    @teas = Tea.where("region = ?", params[:slug])
+    erb :'teas/index'
+  end
+
+  # Country Index
+  get '/teas/country/:slug' do
+    @teas = Tea.where("country = ?", params[:slug])
+    erb :'teas/index'
+  end 
+
   # Specific Note
   get '/teas/:slug' do
     @tea = Tea.find_by_slug(params[:slug])

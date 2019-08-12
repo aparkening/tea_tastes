@@ -1,23 +1,26 @@
 <article class="tea">
   <% if format == 'short' %>
-    <p><a href="/teas/<%= tea.slug %>"><%= tea.name %></a> <span class="details"><a href="/teas/<%= tea.category %>"><%= tea.category %></a> from <a href="/teas/<%= tea.country %>"><%= tea.country %></p>
+    <p><a href="/teas/<%= tea.slug %>"><%= tea.name %></a> <span class="details"><a href="/teas/category/<%= tea.category %>"><%= tea.category %></a> from <a href="/teas/country/<%= tea.country %>"><%= tea.country %></p>
   <% else %>
     <h1><a href="/teas/<%= tea.slug %>"><%= tea.name %></a> </h1>
-    <% if tea.url %>
-      <a href="<%= tea.url %>"><%= tea.url %></a>
-    <% end %>
     <% if tea.description.length > 200 %>
       <%= tea.description[0..200] + "..." %>
     <% else %>
       <%= tea.description %>
     <% end %>
     <p class="details">
-      <a href="/teas/<%= tea.category %>"><%= tea.category %></a> from <% if tea.region %>
-        <a href="/teas/<%= tea.region %>"><%= tea.region %></a>,
+      <a href="/teas/category/<%= tea.category %>"><%= tea.category %></a> from <% if tea.region %>
+        <a href="/teas/region/<%= tea.region %>"><%= tea.region %></a>,
       <% end %>
       <% if tea.country %>
-        <a href="/teas/<%= tea.country %>"><%= tea.country %></a>
-      <% end %>  
-      on <%= tea.created_at.strftime("%B %d, %Y") %></p>
+        <a href="/teas/country/<%= tea.country %>"><%= tea.country %></a>
+      <% end %>
+      <% if tea.shop %>
+        <a href="/shops/<%= tea.shop.slug %>"><%= tea.shop.name %></a>
+      <% end %>
+      <% if tea.url %>
+      (<a href="<%= tea.url %>"><%= tea.url %></a>)
+      <% end %>
+    </p>
   <% end %>
 </article>
