@@ -10,7 +10,7 @@ class ShopsController < ApplicationController
     #redir_login # redirect to login if not authorized to take this action  
     
     @shop = Shop.find_by_slug(params[:slug]) 
-    erb :'/shops/edit'
+    erb :'shops/edit'
   end
 
   # Update in database

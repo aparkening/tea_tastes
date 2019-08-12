@@ -12,7 +12,7 @@ class UsersController < ApplicationController
    # Ensure only owner can edit
     authorize_user(@user)
 
-    erb :'/users/edit'  
+    erb :'users/edit'  
   end
 
   # Update in database

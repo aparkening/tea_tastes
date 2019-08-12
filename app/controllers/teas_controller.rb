@@ -86,7 +86,7 @@ class TeasController < ApplicationController
     @tea = Tea.find_by_slug(params[:slug]) 
     @shops = Shop.all
 
-    erb :'/teas/edit'
+    erb :'teas/edit'
   end
 
   # Update in database
@@ -134,7 +134,9 @@ class TeasController < ApplicationController
 
   #### Display
   # Index
-  get '/teas/?' do   
+  get '/teas/?' do 
+    binding.pry
+    
     # teas by newest first
     @teas = Tea.all.order(created_at: :desc)
     erb :'teas/index'
@@ -145,6 +147,5 @@ class TeasController < ApplicationController
     @tea = Tea.find_by_slug(params[:slug])
     erb :'teas/show'
   end
-
 
 end

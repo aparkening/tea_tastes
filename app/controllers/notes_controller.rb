@@ -106,7 +106,7 @@ class NotesController < ApplicationController
 
    # Ensure only owner can edit
     authorize_user(@note)
-    erb :'/notes/edit'
+    erb :'notes/edit'
 
     # # Ensure only owner can edit
     # if @note.user == current_user
