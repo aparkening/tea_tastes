@@ -1,8 +1,20 @@
 <article class="tea">
   <% if format == 'short' %>
-    <p><a href="/teas/<%= tea.slug %>"><%= tea.name %></a> <span class="details"><a href="/teas/category/<%= tea.category %>"><%= tea.category %></a> from <a href="/teas/country/<%= tea.country %>"><%= tea.country %></p>
+    <p><a href="/teas/<%= tea.slug %>"><%= tea.name %></a> in 
+    <span class="details"><a href="/teas/category/<%= clean(tea.category) %>"><%= tea.category %></a>
+    <% if tea.region %>
+      | Region: <a href="/teas/region/<%= clean(tea.region) %>"><%= tea.region %></a>
+    <% end %>
+    <% if tea.country %>
+      | Country: <a href="/teas/country/<%= clean(tea.country) %>"><%= tea.country %></a>
+    <% end %>
+    <% if tea.shop %>
+      | <a href="/shops/<%= tea.shop.slug %>"><%= tea.shop.name %></a></li>
+    <% end %>
+    </span></p>
   <% else %>
     <h1><a href="/teas/<%= tea.slug %>"><%= tea.name %></a></h1>
+    <p><a href="/teas/category/<%= clean(tea.category) %>"><%= tea.category %></a></p>
     <% if tea.description.length > 200 %>
       <%= tea.description[0..200] + "..." %>
     <% else %>
