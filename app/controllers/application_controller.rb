@@ -92,6 +92,29 @@ class ApplicationController < Sinatra::Base
       redirect "/users/#{current_user.slug}"
     end
 
+    # Lightly sanitize input
+    def clean(input)
+      input.downcase.gsub(' ', '-').gsub(/[^-0-9A-Za-z]/, '')
+    end
+
+    # Lightly open up input
+    def add_space(input)
+      input.downcase.gsub('-', ' ')
+    end
+
+    # Reclean input, then find objects in database by input type
+    def url_find(find)
+      # First, clean again
+      type = clean(params[:"#{find}"])
+    
+      # Second, add spaces
+      type = add_space(type) 
+    
+      # Find in database
+      @teas = Tea.where("lower(#{find}) = ?", type)
+    end
+
+
   end
 
 
