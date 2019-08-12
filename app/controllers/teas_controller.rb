@@ -142,26 +142,26 @@ class TeasController < ApplicationController
   end
 
   # Category Index
-  get '/teas/category/:slug' do
-    @teas = Tea.where("category = ?", params[:slug])
-
+  get '/teas/category/:category' do
+    url_find("category")
     erb :'teas/index'
   end
 
   # Region Index
-  get '/teas/region/:slug' do
-    @teas = Tea.where("region = ?", params[:slug])
+  get '/teas/region/:region' do
+    url_find("region")
     erb :'teas/index'
   end
 
   # Country Index
-  get '/teas/country/:slug' do
-    @teas = Tea.where("country = ?", params[:slug])
+  get '/teas/country/:country' do
+    url_find("country")
     erb :'teas/index'
   end 
 
   # Specific Note
   get '/teas/:slug' do
+    binding.pry
     @tea = Tea.find_by_slug(params[:slug])
     erb :'teas/show'
   end
