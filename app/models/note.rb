@@ -5,8 +5,8 @@ class Note < ActiveRecord::Base
   belongs_to :user
   belongs_to :tea
   # has_many :shops, through: :tea
-  has_many :notes_shops
-  has_many :shops, through: :notes_shops
+  # has_many :notes_shops
+  # has_many :shops, through: :notes_shops
 
   validates :title, presence: true, uniqueness: true
   validates :content, presence: true
