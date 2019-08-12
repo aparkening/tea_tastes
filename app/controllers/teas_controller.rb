@@ -4,6 +4,7 @@ class TeasController < ApplicationController
   #### Create
   # Display form
   get '/teas/new' do
+
     # Ensure user can take this action
     authorize
 
@@ -135,8 +136,6 @@ class TeasController < ApplicationController
   #### Display
   # Index
   get '/teas/?' do 
-    binding.pry
-    
     # teas by newest first
     @teas = Tea.all.order(created_at: :desc)
     erb :'teas/index'
