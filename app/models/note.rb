@@ -3,6 +3,8 @@ class Note < ActiveRecord::Base
   include Slugify::InstanceMethods
 
   belongs_to :user
+  belongs_to :tea
+  # has_many :shops, through: :tea
   has_many :notes_shops
   has_many :shops, through: :notes_shops
 
