@@ -180,6 +180,9 @@ class NotesController < ApplicationController
   # Specific Note
   get '/notes/:slug' do
     @note = Note.find_by_slug(params[:slug])
+
+    # binding.pry
+
     erb :'notes/show'
   end
 
