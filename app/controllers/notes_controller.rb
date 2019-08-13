@@ -17,8 +17,6 @@ class NotesController < ApplicationController
     # Ensure user can take this action
     authorize
 
-    # redir_login # redirect to login if not authorized to take this action  
-
     if params[:note]["title"].empty? || params[:note]["content"].empty?
       flash[:message] = ["Fields are missing data. Please submit again."]
       flash[:type] = "error"
@@ -49,7 +47,6 @@ class NotesController < ApplicationController
 
       # If note can save, add note to shop and redirect to note.slug
       if note.save
-        note.shops << shop if shop
         flash[:message] = ["Nice work! Note created."]
         flash[:type] = "success"
         redirect to "/notes/#{note.slug}"
@@ -76,16 +73,6 @@ class NotesController < ApplicationController
 
     note.destroy
     redir_user_home # Redirect to user home
-    
-    # redir_login # redirect to login if not authorized to take this action  
-
-    # # Ensure only owner can delete
-    # if @note.user == current_user
-      # @note.destroy
-      # redir_user_home # Redirect to user home
-    # else
-    #   redirect '/login'
-    # end    
   end
 
   # If manual delete, redirect to /
@@ -99,21 +86,16 @@ class NotesController < ApplicationController
   get '/notes/:slug/edit' do 
     # Ensure user can take this action
     authorize
+    
+binding.pry
 
-    # redir_login # redirect to login if not authorized to take this action  
+    # Find note
     @note = Note.find_by_slug(params[:slug]) 
-    @shops = Shop.all
-
-   # Ensure only owner can edit
+   
+    # Ensure only owner can edit
     authorize_user(@note)
-    erb :'notes/edit'
 
-    # # Ensure only owner can edit
-    # if @note.user == current_user
-    #   erb :'/notes/edit'
-    # else 
-    #   redirect '/login'
-    # end      
+    erb :'notes/edit'    
   end
 
   # Update in database
@@ -121,50 +103,32 @@ class NotesController < ApplicationController
     # Ensure user can take this action
     authorize
 
-    # redir_login # redirect to login if not authorized to take this action  
-
     if params[:note]["title"].empty? || params[:note]["content"].empty?
       flash[:message] = ["Fields are missing data. Please submit again."]
       flash[:type] = "error"
+
       redirect "/notes/#{params[:slug]}/edit"
     else 
-      note = Note.find_by_slug(params[:slug])  
+      note = Note.find_by_slug(params[:slug])
 
       # Ensure only owner can edit
       authorize_user(note)
 
-      # Ensure only owner can edit
-      # if note.user == current_user
+      # Turn rating into integer
+      # params[:note]["rating"] = params[:note]["rating"].to_i if params[:note]["rating"]
+      if rating = params[:note]["rating"]
+        params[:note]["rating"] = rating.to_i
+      end
 
-        # Reset shops array if no checkboxes submitted
-        if params[:note]["shop_ids"].nil?
-          params[:note]["shop_ids"] = []
-        end
+      # HTMLize content  
+      params[:note]["content"] = RedCloth.new(params[:note]["content"]).to_html 
+      # Update note
+      note.update(params[:note])
 
-        # Create Shop if parameters exist
-        if !params[:shop_name].empty?
-          shop = Shop.new(name: params[:shop_name])
-          shop.url = params[:shop_url] if params[:shop_url]
-          
-          shop_desc = RedCloth.new(params[:shop_description]).to_html if params[:shop_description]  # HTMLize description
-          shop.description = shop_desc if shop_desc
-          shop.save
-        end
-
-        # HTMLize content  
-        params[:note]["content"] = RedCloth.new(params[:note]["content"]).to_html 
-        # Update note
-        note.update(params[:note])
-        # Add new shop if exists
-        note.shops << shop if shop
-
-        flash[:message] = ["Success! Note updated."]
-        flash[:type] = "success"
-        
-        redirect "/notes/#{params[:slug]}"
-      # else 
-      #   redirect '/login'
-      # end   
+      flash[:message] = ["Success! Note updated."]
+      flash[:type] = "success"
+      
+      redirect "/notes/#{params[:slug]}"
     end
   end
 
@@ -180,9 +144,6 @@ class NotesController < ApplicationController
   # Specific Note
   get '/notes/:slug' do
     @note = Note.find_by_slug(params[:slug])
-
-    # binding.pry
-
     erb :'notes/show'
   end
 

@@ -1,42 +1,35 @@
 <h1>Edit Note</h1>
 
+<% if flash.has?(:message) %>
+Hi, this is a message
+  <ul class=<%= flash[:type] %>>
+    <% flash[:message].each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
 <form action="/notes/<%= @note.slug %>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <p>
     <label for="title">Title:</label>
-    <input type="text" name="note[title]" id="title" value="<%= @note.title %>" required>
+    <input type="text" name="note[title]" id="title" value="<%= @note.title %>">
+  </p>
+  <p>
+      <label for="note[rating]">Rating:</label>
+      <select name="note[rating]">
+        <option value="5" <%='selected' if @note.rating == 5 %>>Perfect</option>
+        <option value="4" <%='selected' if @note.rating == 4 %>>Pretty Good</option>
+        <option value="3" <%='selected' if @note.rating == 3 %>>Okay</option>
+        <option value="2" <%='selected' if @note.rating == 2 %>>Meh</option>
+        <option value="1" <%='selected' if @note.rating == 1 %>>Nope</option>
+      </select>
   </p>
   <p>
     <label for="content">Thoughts:</label>
     <textarea rows="10" cols="50" name="note[content]" id="content" required><%= @note.content %></textarea>
   </p>
-
-  <fieldset>
-    <legend>Shops</legend>
-    
-    <% if !@shops.empty? %>
-      <h3>Existing Shops</h3>
-      <ul>
-        <% @shops.each do |shop| %>
-          <li><input type="checkbox" name="note[shop_ids][]" value="<%= shop.id %>" id="<%= shop.name %>" <%='checked' if @note.shops.include?(shop) %>> <label for="<%= shop.name %>"><%= shop.name %></label></li>
-        <% end %>
-      </ul>
-    <% end %>
-
-    <h3>Or create new shop</h3>
-    <p>
-      <label for="shop_name">Shop Name:</label>
-      <input type="text" name="shop_name" id="shop_name">
-    </p>
-    <p>
-      <label for="shop_url">Shop URL:</label>
-      <input type="text" name="shop_url" id="shop_url">
-    </p>
-    <p>
-      <label for="shop_description">Shop Description:</label>
-      <textarea rows="10" cols="50" name="shop_description" id="shop_description"></textarea>
-    </p>
-  </fieldset>
 
   <input type="submit" name="Update Note">
 </form>
