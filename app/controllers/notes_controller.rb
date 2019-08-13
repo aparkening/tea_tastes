@@ -7,8 +7,7 @@ class NotesController < ApplicationController
     # Ensure user can take this action
     authorize
 
-    # redir_login # redirect to login if not authorized to take this action 
-    @shops = Shop.all  
+    @teas = Tea.all.order(name: :asc)
     erb :'notes/new'
   end
 
@@ -22,21 +21,17 @@ class NotesController < ApplicationController
       flash[:type] = "error"
       redirect '/notes/new'
     else 
-      # Create Shop if parameters exist
-      if !params[:shop_name].empty?
-        shop = Shop.new(name: params[:shop_name])
-        shop.url = params[:shop_url] if params[:shop_url]
-        
-        shop_desc = RedCloth.new(params[:shop_description]).to_html if params[:shop_description]  # HTMLize description
-        shop.description = shop_desc if shop_desc
-        shop.save
-      end
-
       # Set current_user
       user = current_user
 
       # HTMLize content  
       params[:note]["content"] = RedCloth.new(params[:note]["content"]).to_html 
+
+      # Turn rating into integer
+      if rating = params[:note]["rating"]
+        params[:note]["rating"] = rating.to_i
+      end
+
       # Build note
       note = user.notes.build(params[:note])
 
@@ -86,11 +81,10 @@ class NotesController < ApplicationController
   get '/notes/:slug/edit' do 
     # Ensure user can take this action
     authorize
-    
-binding.pry
 
     # Find note
-    @note = Note.find_by_slug(params[:slug]) 
+    @note = Note.find_by_slug(params[:slug])
+    @teas = Tea.all.order(name: :asc)
    
     # Ensure only owner can edit
     authorize_user(@note)
