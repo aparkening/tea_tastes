@@ -15,6 +15,7 @@ class NotesController < ApplicationController
     # Ensure user can take this action
     authorize
 
+    # Give error message if title or content are empty
     if params[:note]["title"].empty? || params[:note]["content"].empty?
       flash[:message] = ["Fields are missing data. Please submit again."]
       flash[:type] = "error"
@@ -43,7 +44,7 @@ class NotesController < ApplicationController
       # note.shops << shop if shop
       # redirect "/notes/#{note.slug}"
 
-      # If note can save, add note to shop and redirect to note.slug
+      # If note can save, add note to shop and redirect.
       if note.save
         flash[:message] = ["Nice work! Note created."]
         flash[:type] = "success"
@@ -69,8 +70,9 @@ class NotesController < ApplicationController
     # Ensure only owner can edit
     authorize_user(note)
 
+    # Delete object and redirect
     note.destroy
-    redir_user_home # Redirect to user home
+    redir_user_home
   end
 
   # If manual delete, redirect to /
