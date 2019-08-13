@@ -23,27 +23,30 @@ class TeasController < ApplicationController
       redirect '/teas/new'
     else 
       # Create Shop if parameters exist
-      if !params[:shop_name].empty?
+      if !params[:shop]["name"].empty?
         
-        # Sanitize text inputs
-        params[:shop_name] = Sanitize.fragment(params[:shop_name])
-        if url = params[:shop_url]
-          params[:shop_url] = Sanitize.fragment(url)
-        end
-        if description = params[:shop_description]
-          params[:shop_description] = Sanitize.fragment(description)
-        end      
+        # Sanitize input
+        params[:shop].map { |input| Sanitize.fragment(input) }
+
+        # # Sanitize text inputs
+        # params[:shop_name] = Sanitize.fragment(params[:shop_name])
+        # if url = params[:shop_url]
+        #   params[:shop_url] = Sanitize.fragment(url)
+        # end
+        # if description = params[:shop_description]
+        #   params[:shop_description] = Sanitize.fragment(description)
+        # end      
         
         # HTMLize description
-        if description = params[:shop_description]
-          params[:shop_description] = RedCloth.new(description).to_html
+        if description = params[:shop]["description"]
+          params[:shop]["description"] = RedCloth.new(description).to_html
         end   
 
         # Create shop
-        shop = Shop.new(name: params[:shop_name])
-        shop.url = params[:shop_url] if params[:shop_url]
-        shop.description = params[:shop_description] if params[:shop_description]
-        shop.save
+        shop = Shop.create(params[:shop])
+        # shop.url = params[:shop_url] if params[:shop_url]
+        # shop.description = params[:shop_description] if params[:shop_description]
+        # shop.save
       end
 
       # Set current_user
@@ -123,27 +126,38 @@ class TeasController < ApplicationController
       tea = Tea.find_by_slug(params[:slug])  
 
       # Create Shop if parameters exist
-      if !params[:shop_name].empty?
-        
-        # Sanitize text inputs
-        params[:shop_name] = Sanitize.fragment(params[:shop_name])
-        if url = params[:shop_url]
-          params[:shop_url] = Sanitize.fragment(url)
-        end
-        if description = params[:shop_description]
-          params[:shop_description] = Sanitize.fragment(description)
-        end      
-        
+      if !params[:shop]["name"].empty?
+
+        # Sanitize input
+        params[:shop].map { |input| Sanitize.fragment(input) }
+
         # HTMLize description
-        if description = params[:shop_description]
-          params[:shop_description] = RedCloth.new(description).to_html
+        if description = params[:shop]["description"]
+          params[:shop]["description"] = RedCloth.new(description).to_html
         end   
 
         # Create shop
-        shop = Shop.new(name: params[:shop_name])
-        shop.url = params[:shop_url] if params[:shop_url]
-        shop.description = params[:shop_description] if params[:shop_description]
-        shop.save
+        shop = Shop.create(params[:shop])
+
+        # # Sanitize text inputs
+        # params[:shop_name] = Sanitize.fragment(params[:shop_name])
+        # if url = params[:shop_url]
+        #   params[:shop_url] = Sanitize.fragment(url)
+        # end
+        # if description = params[:shop_description]
+        #   params[:shop_description] = Sanitize.fragment(description)
+        # end      
+        
+        # # HTMLize description
+        # if description = params[:shop_description]
+        #   params[:shop_description] = RedCloth.new(description).to_html
+        # end   
+
+        # # Create shop
+        # shop = Shop.new(name: params[:shop_name])
+        # shop.url = params[:shop_url] if params[:shop_url]
+        # shop.description = params[:shop_description] if params[:shop_description]
+        # shop.save
       end
 
       # Sanitize input
