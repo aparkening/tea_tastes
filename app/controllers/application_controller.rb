@@ -1,5 +1,6 @@
 require './config/environment'
 require 'rack-flash'
+require 'sanitize'
 class ApplicationController < Sinatra::Base
   register Sinatra::ActiveRecordExtension
   use Rack::Flash
