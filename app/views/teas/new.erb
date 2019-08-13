@@ -45,6 +45,7 @@
     <legend>Shops</legend>
     <label for="tea[shop_id]">Shop Name:</label>
     <select name="tea[shop_id]">
+      <option value="none">_New</option>
       <% @shops.each do |shop| %>
         <option value="<%= shop.id %>"><%= shop.name %></option>
       <% end %>
