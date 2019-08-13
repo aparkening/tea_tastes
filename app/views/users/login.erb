@@ -2,10 +2,10 @@
 <%= form_error_messages(@errors) %>
 <form action="/login" method="POST">
   <p>
-    <label for="username">Username:</label>
-    <input type="text" name="username" id="username" required><br/>
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password" required>
+    <label for="user[username]">Username:</label>
+    <input type="text" name="user[username]" id="user[username]" required><br/>
+    <label for="user[password]">Password:</label>
+    <input type="password" name="user[password]" id="user[password]" required>
   </p>
   <input type="submit" value="Log In">
 </form>

@@ -13,11 +13,17 @@ class SessionsController < ApplicationController
 
   # Create user
   post '/signup' do
-    # Give error message if username is empty
+    # Give error message if username or password are empty
     if params[:username].empty? || params[:password].empty?
+      flash[:message] = ["Fields are missing data. Please submit again."]
+      flash[:type] = "error"
       redirect "/signup"
     else 
-      user = User.new(params)
+      # Sanitize input
+      params[:user].map { |input| Sanitize.fragment(input) }
+
+      # Create user
+      user = User.new(params[:user])
     end
 
     # If no errors on save, set session id and go to user home
@@ -47,7 +53,7 @@ class SessionsController < ApplicationController
   # Get user from database
   post '/login' do
     begin 
-      authenticate(params[:username], params[:password])
+      authenticate(params[:user]["username"], params[:user]["password"])
       redir_user_home
     rescue AuthenticationError => e 
       @errors = ["Improper information entered"]
