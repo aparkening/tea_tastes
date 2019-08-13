@@ -3,7 +3,7 @@
 <form action="/teas/<%= @tea.slug %>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <p>
-    <label for="name">Name:</label>
+    <label for="name">Name:*</label>
     <input type="text" name="tea[name]" id="name" value="<%= @tea.name %>" required>
   </p>
   <p>
@@ -27,7 +27,7 @@
     <input type="text" name="tea[country]" id="country" value="<%= @tea.country %>">
   </p> 
   <p>
-    <label for="description">Description:</label>
+    <label for="description">Description:*</label>
     <textarea rows="10" cols="50" name="tea[description]" id="description" required><%= @tea.description %></textarea>
   </p>
 
@@ -45,7 +45,7 @@
 
     <h3>Or create new shop</h3>
     <p>
-      <label for="shop_name">Shop Name:</label>
+      <label for="shop_name">Shop Name:*</label>
       <input type="text" name="shop_name" id="shop_name">
     </p>
     <p>
