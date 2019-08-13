@@ -23,6 +23,8 @@
     <% if tea.url %>
       <p>Buy now: <a href="<%= tea.url %>"><%= tea.url %></a></p>
     <% end %>
+  </article>
+  <article class="tea">
     <h2>Find more teas by:</h2>
     <ul class="details">
       <% if tea.region %>
@@ -35,5 +37,13 @@
         <li>Shop: <a href="/shops/<%= tea.shop.slug %>"><%= tea.shop.name %></a></li>
       <% end %>
     </ul>
+
+    <% if tea.notes %>
+    </article>
+    <h2>Notes for this tea</h2>
+      <% tea.notes.each do |note| %>
+        <%= erb :'/notes/_note', locals: {note: note, format: 'short'} %>
+      <% end %>
+    <% end %>
   <% end %>
 </article>
