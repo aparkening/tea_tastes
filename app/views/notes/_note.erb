@@ -1,6 +1,6 @@
 <article class="note">
   <% if format == 'short' %>
-    <p><a href="/notes/<%= note.slug %>"><%= note.title %></a> <span class="post_date">by <a href="/users/<%= note.user.slug %>"><%= note.user.username %></a> on <%= note.created_at.strftime("%B %d, %Y") %></span></p>
+    <p><a href="/notes/<%= note.slug %>"><%= note.title %></a> <span class="post_date">by <a href="/users/<%= note.user.slug %>"><%= note.user.username %></a> on <%= note.created_at.strftime("%B %d, %Y") %>  | <a href="/teas/<%= note.tea.slug %>"><%= note.tea.name %></a> tea</span></p>
   <% else %>
     <h1><a href="/notes/<%= note.slug %>"><%= note.title %></a></h1>
     <% if note.content.length > 200 %>
