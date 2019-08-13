@@ -114,7 +114,6 @@ class ApplicationController < Sinatra::Base
       @teas = Tea.where("lower(#{find}) = ?", type)
     end
 
-
   end
 
 
