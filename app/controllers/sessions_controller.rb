@@ -13,8 +13,9 @@ class SessionsController < ApplicationController
 
   # Create user
   post '/signup' do
-    # Give error message if username or password are empty
-    if params[:username].empty? || params[:password].empty?
+
+    # Give error message if username or password are empty or if password doesn't match confirmation
+    if params[:user]["username"].empty? || params[:user]["password"].empty? || (params[:user]["password"] != params[:user]["password_confirmation"])
       flash[:message] = ["Fields are missing data. Please submit again."]
       flash[:type] = "error"
       redirect "/signup"
