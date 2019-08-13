@@ -11,8 +11,17 @@
   <p><a href="<%=@shop.url%>"><%=@shop.url%></a></p>
   <p><%=@shop.description%></p>
 
+  <% if !@shop.teas.empty? %>
+  <h2>Teas in this shop:</h2>
+    <ul>
+    <% @shop.teas.each do |tea| %>
+      <li><a href="/teas/<%= tea.slug %>"><%= tea.name %></a></li>
+    <% end %>
+    </ul>
+  <% end %>
+
   <% if !@shop.notes.empty? %>
-  <h2>This shop has the following notes</h2>
+  <h2>Recent notes for teas in this shop:</h2>
     <ul>
     <% @shop.notes.each do |note| %>
       <li><a href="/notes/<%= note.slug %>"><%= note.title %></a></li>
