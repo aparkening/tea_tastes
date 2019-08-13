@@ -35,7 +35,7 @@ Hi, this is a message
   </p>
   <p>
     <label for="content">Thoughts:</label>
-    <textarea rows="10" cols="50" name="note[content]" id="content" required><%= @note.content %></textarea>
+    <textarea rows="10" cols="50" name="note[content]" id="content" required><%= Sanitize.fragment(@note.content) %></textarea>
   </p>
 
   <input type="submit" name="Update Note">

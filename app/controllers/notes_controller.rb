@@ -114,6 +114,12 @@ class NotesController < ApplicationController
         params[:note]["rating"] = rating.to_i
       end
 
+      # binding.pry
+
+      # Sanitize text inputs
+      params[:note]["title"] = Sanitize.fragment(params[:note]["title"])
+      params[:note]["content"] = Sanitize.fragment(params[:note]["content"])
+
       # HTMLize content  
       params[:note]["content"] = RedCloth.new(params[:note]["content"]).to_html 
       # Update note
