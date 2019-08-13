@@ -121,7 +121,7 @@ class NotesController < ApplicationController
 
       flash[:message] = ["Success! Note updated."]
       flash[:type] = "success"
-      
+
       redirect "/notes/#{params[:slug]}"
     end
   end
@@ -140,6 +140,5 @@ class NotesController < ApplicationController
     @note = Note.find_by_slug(params[:slug])
     erb :'notes/show'
   end
-
 
 end

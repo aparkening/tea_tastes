@@ -2,6 +2,7 @@
 <p class="post_date">Posted by <a href="/users/<%= @note.user.slug %>"><%= @note.user.username %></a> on <%= @note.created_at.strftime("%B %d, %Y") %></p>
 
 <% if flash.has?(:message) %>
+this is a message
   <ul class=<%= flash[:type] %>>
     <% flash[:message].each do |message| %>
       <li><%= message %></li>
