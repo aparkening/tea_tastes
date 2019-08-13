@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 
   # Create user
   post '/signup' do
-    # If required fields empty, redirect back to signup
+    # Give error message if username is empty
     if params[:username].empty? || params[:password].empty?
       redirect "/signup"
     else 

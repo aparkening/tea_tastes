@@ -3,21 +3,21 @@
 <form action="/users/<%= @user.slug %>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <p>
-    <label for="name">Your Name:</label>
-    <input type="text" name="user[name]" id="name" value="<%= @user.name %>">
+    <label for="user[name]">Your Name:</label>
+    <input type="text" name="user[name]" id="user[name]" value="<%= @user.name %>">
   </p>
   <p>
-    <label for="username">Username:*</label>
-    <input type="text" name="user[username]" id="username" value="<%= @user.username %>" required>
+    <label for="user[username]">Username:*</label>
+    <input type="text" name="user[username]" id="user[username]" value="<%= @user.username %>" required>
   </p>
 
   <h2>Update Password (Optional)</h2>
   <p>
     Password must be more than 6 characters<br/>
-    <label for="password">Password:</label>
-    <input type="password" name="user[password]" id="password"><br/>
-    <label for="password_confirmation">Confirm Password:</label>
-    <input type="password" name="user[password_confirmation]" id="password_confirmation">
+    <label for="user[password]">Password:</label>
+    <input type="password" name="user[password]" id="user[password]"><br/>
+    <label for="user[password_confirmation]">Confirm Password:</label>
+    <input type="password" name="user[password_confirmation]" id="user[password_confirmation]">
   </p>
 
   <input type="submit" name="Update User">

@@ -10,19 +10,19 @@
 
 <form action="/signup" method="POST">
   <p>
-    <label for="name">Your Name:</label>
-    <input type="text" name="name" id="name">
+    <label for="user[name]">Your Name:</label>
+    <input type="text" name="user[name]" id="user[name]">
   </p>
   <p>
-    <label for="username">Prefered Username:*</label>
-    <input type="text" name="username" id="username" required>
+    <label for="user[username]">Prefered Username:*</label>
+    <input type="text" name="user[username]" id="user[username]" required>
   </p>
   <p>
     Password must be more than 6 characters<br/>
-    <label for="password">Password:*</label>
-    <input type="password" name="password" id="password" required><br/>
+    <label for="user[password]">Password:*</label>
+    <input type="password" name="user[password]" id="user[password]" required><br/>
     <label for="password_confirmation">Confirm Password:*</label>
-    <input type="password" name="password_confirmation" id="password_confirmation" required>
+    <input type="password" name="user[password_confirmation]" id="user[password_confirmation]" required>
   </p>
   <input type="submit" value="Sign Up">
 </form>
