@@ -3,7 +3,7 @@
 <form action="/shops/<%= @shop.slug %>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <p>
-    <label for="shop_name">Name:</label>
+    <label for="shop_name">Name:*</label>
     <input type="text" name="shop[name]" id="shop_name" value="<%= @shop.name %>" required>
   </p>
     <p>
@@ -12,7 +12,7 @@
   </p>
   <p>
     <label for="shop_description">Shop Description:</label>
-    <textarea rows="10" cols="50" name="shop[description]" id="shop_description" required><%= @shop.description %></textarea>
+    <textarea rows="10" cols="50" name="shop[description]" id="shop_description"><%= Sanitize.fragment(@shop.description) if @shop.description %></textarea>
   </p>
 
   <input type="submit" name="Update Shop">

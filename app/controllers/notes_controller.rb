@@ -6,7 +6,6 @@ class NotesController < ApplicationController
   get '/notes/new' do
     # Ensure user can take this action
     authorize
-
     @teas = Tea.all.order(name: :asc)
     erb :'notes/new'
   end
@@ -124,12 +123,13 @@ class NotesController < ApplicationController
 
       # HTMLize content  
       params[:note]["content"] = RedCloth.new(params[:note]["content"]).to_html 
+
       # Update note
       note.update(params[:note])
 
+      # Set message and redirect
       flash[:message] = ["Success! Note updated."]
       flash[:type] = "success"
-
       redirect "/notes/#{note.slug}"
     end
   end
