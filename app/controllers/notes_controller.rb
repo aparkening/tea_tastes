@@ -24,6 +24,10 @@ class NotesController < ApplicationController
       # Set current_user
       user = current_user
 
+      # Sanitize text inputs
+      params[:note]["title"] = Sanitize.fragment(params[:note]["title"])
+      params[:note]["content"] = Sanitize.fragment(params[:note]["content"])
+
       # HTMLize content  
       params[:note]["content"] = RedCloth.new(params[:note]["content"]).to_html 
 
@@ -97,10 +101,10 @@ class NotesController < ApplicationController
     # Ensure user can take this action
     authorize
 
+    # Give error message if title or content are empty
     if params[:note]["title"].empty? || params[:note]["content"].empty?
       flash[:message] = ["Fields are missing data. Please submit again."]
       flash[:type] = "error"
-
       redirect "/notes/#{params[:slug]}/edit"
     else 
       note = Note.find_by_slug(params[:slug])
@@ -114,8 +118,6 @@ class NotesController < ApplicationController
         params[:note]["rating"] = rating.to_i
       end
 
-      # binding.pry
-
       # Sanitize text inputs
       params[:note]["title"] = Sanitize.fragment(params[:note]["title"])
       params[:note]["content"] = Sanitize.fragment(params[:note]["content"])
@@ -128,7 +130,7 @@ class NotesController < ApplicationController
       flash[:message] = ["Success! Note updated."]
       flash[:type] = "success"
 
-      redirect "/notes/#{params[:slug]}"
+      redirect "/notes/#{note.slug}"
     end
   end
 
