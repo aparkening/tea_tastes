@@ -6,7 +6,6 @@ class NotesController < ApplicationController
   get '/notes/new' do
     # Ensure user can take this action
     authorize
-
     @teas = Tea.all.order(name: :asc)
     erb :'notes/new'
   end
@@ -16,6 +15,7 @@ class NotesController < ApplicationController
     # Ensure user can take this action
     authorize
 
+    # Give error message if title or content are empty
     if params[:note]["title"].empty? || params[:note]["content"].empty?
       flash[:message] = ["Fields are missing data. Please submit again."]
       flash[:type] = "error"
@@ -23,6 +23,10 @@ class NotesController < ApplicationController
     else 
       # Set current_user
       user = current_user
+
+      # Sanitize text inputs
+      params[:note]["title"] = Sanitize.fragment(params[:note]["title"])
+      params[:note]["content"] = Sanitize.fragment(params[:note]["content"])
 
       # HTMLize content  
       params[:note]["content"] = RedCloth.new(params[:note]["content"]).to_html 
@@ -40,7 +44,7 @@ class NotesController < ApplicationController
       # note.shops << shop if shop
       # redirect "/notes/#{note.slug}"
 
-      # If note can save, add note to shop and redirect to note.slug
+      # If note can save, add note to shop and redirect.
       if note.save
         flash[:message] = ["Nice work! Note created."]
         flash[:type] = "success"
@@ -66,8 +70,9 @@ class NotesController < ApplicationController
     # Ensure only owner can edit
     authorize_user(note)
 
+    # Delete object and redirect
     note.destroy
-    redir_user_home # Redirect to user home
+    redir_user_home
   end
 
   # If manual delete, redirect to /
@@ -97,10 +102,10 @@ class NotesController < ApplicationController
     # Ensure user can take this action
     authorize
 
+    # Give error message if title or content are empty
     if params[:note]["title"].empty? || params[:note]["content"].empty?
       flash[:message] = ["Fields are missing data. Please submit again."]
       flash[:type] = "error"
-
       redirect "/notes/#{params[:slug]}/edit"
     else 
       note = Note.find_by_slug(params[:slug])
@@ -114,15 +119,20 @@ class NotesController < ApplicationController
         params[:note]["rating"] = rating.to_i
       end
 
+      # Sanitize text inputs
+      params[:note]["title"] = Sanitize.fragment(params[:note]["title"])
+      params[:note]["content"] = Sanitize.fragment(params[:note]["content"])
+
       # HTMLize content  
       params[:note]["content"] = RedCloth.new(params[:note]["content"]).to_html 
+
       # Update note
       note.update(params[:note])
 
+      # Set message and redirect
       flash[:message] = ["Success! Note updated."]
       flash[:type] = "success"
-
-      redirect "/notes/#{params[:slug]}"
+      redirect "/notes/#{note.slug}"
     end
   end
 

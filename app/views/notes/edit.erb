@@ -20,7 +20,7 @@ Hi, this is a message
     </select>
   </p>
   <p>
-    <label for="title">Title:</label>
+    <label for="title">Title:*</label>
     <input type="text" name="note[title]" id="title" value="<%= @note.title %>" required>
   </p>
   <p>
@@ -34,8 +34,8 @@ Hi, this is a message
     </select>
   </p>
   <p>
-    <label for="content">Thoughts:</label>
-    <textarea rows="10" cols="50" name="note[content]" id="content" required><%= @note.content %></textarea>
+    <label for="content">Thoughts:*</label>
+    <textarea rows="10" cols="50" name="note[content]" id="content" required><%= Sanitize.fragment(@note.content) %></textarea>
   </p>
 
   <input type="submit" name="Update Note">

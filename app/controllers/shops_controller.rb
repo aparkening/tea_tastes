@@ -6,9 +6,6 @@ class ShopsController < ApplicationController
   get '/shops/:slug/edit' do 
     # Ensure user can take this action
     authorize
-    
-    #redir_login # redirect to login if not authorized to take this action  
-    
     @shop = Shop.find_by_slug(params[:slug]) 
     erb :'shops/edit'
   end
@@ -18,21 +15,35 @@ class ShopsController < ApplicationController
     # Ensure user can take this action
     authorize
 
-    # redir_login # redirect to login if not authorized to take this action  
-
+    # Give error message if name is empty
     if params[:shop]["name"].empty?
       flash[:message] = ["Name is missing. Please fill in Name and re-submit."]
       flash[:type] = "error"
       redirect "/shops/#{params[:slug]}/edit"
     else 
       shop = Shop.find_by_slug(params[:slug]) 
-      params[:shop]["description"] = RedCloth.new(params[:shop]["description"]).to_html if params[:shop]["description"]
+      
+      # Sanitize text inputs
+      params[:shop]["name"] = Sanitize.fragment(params[:shop]["name"])
+      if url = params[:shop]["url"]
+        params[:shop]["url"] = Sanitize.fragment(url)
+      end
+      if description = params[:shop]["description"]
+        params[:shop]["description"] = Sanitize.fragment(description)
+      end      
+      
+      # HTMLize description
+      if description = params[:shop]["description"]
+        params[:shop]["description"] = RedCloth.new(description).to_html
+      end     
+      
+      # Update shop
       shop.update(params[:shop])
 
+      # Set message and redirect
       flash[:message] = ["Success! Shop updated."]
       flash[:type] = "success"
-        
-      redirect "/shops/#{params[:slug]}" 
+      redirect "/shops/#{shop.slug}" 
     end
   end
 
@@ -42,9 +53,7 @@ class ShopsController < ApplicationController
     # Ensure user can take this action
     authorize    
 
-    # redir_login # redirect to login if not authorized to take this action 
-
-    @shop = Shop.find_by_slug(params[:slug])     
+    @shop = Shop.find_by_slug(params[:slug])    
     @shop.destroy
     redirect '/shops'    
   end

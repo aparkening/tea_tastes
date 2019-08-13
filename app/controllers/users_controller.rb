@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     # Ensure user can take this action
     authorize
 
+   # Find user
     @user = User.find_by_slug(params[:slug]) 
 
    # Ensure only owner can edit
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
     # Ensure user can take this action
     authorize
 
+    # Give error message if username is empty
     if params[:user]["username"].empty?
       flash[:message] = ["Fields are missing data. Please submit again."]
       flash[:type] = "error"
@@ -30,11 +32,15 @@ class UsersController < ApplicationController
       # Ensure only owner can edit
       authorize_user(user)
 
+      # Sanitize input
+      params[:user].map { |input| Sanitize.fragment(input) }
+
+      # Update user
       user.update(params[:user])
 
+      # Set message and redirect      
       flash[:message] = ["Success! Profile updated."]
       flash[:type] = "success"
-        
       redirect "/users/#{user.slug}"
     end
   end
