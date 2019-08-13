@@ -50,9 +50,7 @@ class TeasController < ApplicationController
       user = current_user
 
       # Sanitize input
-      params[:tea].map do |input|
-        Sanitize.fragment(input)
-      end
+      params[:tea].map { |input| Sanitize.fragment(input) }
 
       # HTMLize content  
       params[:tea]["description"] = RedCloth.new(params[:tea]["description"]).to_html 
@@ -149,9 +147,7 @@ class TeasController < ApplicationController
       end
 
       # Sanitize input
-      params[:tea].map do |input|
-        Sanitize.fragment(input)
-      end
+      params[:tea].map { |input| Sanitize.fragment(input) }
 
       # HTMLize content  
       params[:tea]["description"] = RedCloth.new(params[:tea]["description"]).to_html 
@@ -165,7 +161,7 @@ class TeasController < ApplicationController
       # Set message and redirect
       flash[:message] = ["Success! Note updated."]
       flash[:type] = "success"
-      redirect "/teas/#{tea.slug]}"
+      redirect "/teas/#{tea.slug}"
     end
   end
 
