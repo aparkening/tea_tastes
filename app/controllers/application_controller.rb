@@ -111,7 +111,7 @@ class ApplicationController < Sinatra::Base
       type = add_space(type) 
     
       # Find in database
-      @teas = Tea.where("lower(#{find}) = ?", type)
+      @teas = Tea.where("lower(#{find}) = ?", type).order(name: :asc)
     end
 
   end
