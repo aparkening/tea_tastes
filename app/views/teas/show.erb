@@ -1,6 +1,12 @@
+<% if logged_in? %>
+  <%= erb :'/users/_user_links', locals: {current_user: current_user} %>
+<% end %>
+
 <%= erb :'/_messages', locals: {flash: flash} %>
 
-<%= erb :'/teas/_tea', locals: {tea: @tea, format: 'detail'} %>
+<section>
+  <%= erb :'/teas/_tea', locals: {tea: @tea, format: 'detail'} %>
+</section>
 
 <section class="edit-entry col nav">
   <a href="/teas/<%=@tea.slug%>/edit" class="btn btn-secondary">Edit tea</a>

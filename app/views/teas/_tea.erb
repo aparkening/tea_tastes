@@ -1,5 +1,5 @@
-<article class="tea">
-  <% if format == 'short' %>
+<% if format == 'short' %>
+  <article class="tea">
     <p><a href="/teas/<%= tea.slug %>"><%= tea.name %></a> in 
     <span class="details"><a href="/teas/category/<%= clean(tea.category) %>"><%= tea.category %></a>
     <% if tea.region %>
@@ -12,40 +12,37 @@
       | <a href="/shops/<%= tea.shop.slug %>"><%= tea.shop.name %></a></li>
     <% end %>
     </span></p>
-  <% else %>
-    <h1><a href="/teas/<%= tea.slug %>"><%= tea.name %></a></h1>
-    <p><a href="/teas/category/<%= clean(tea.category) %>"><%= tea.category %></a></p>
-    
-    <% if format != 'detail' && tea.description.length > 200 %>
-      <%= tea.description[0..200] + "..." %>
-    <% else %>    
-      <%= tea.description %>
-    <% end %>
-    
-    <% if tea.url %>
-      <p>Buy now: <a href="<%= tea.url %>"><%= tea.url %></a></p>
-    <% end %>
   </article>
-  <article class="tea">
-    <h2>Find more teas by:</h2>
-    <ul class="details">
-      <% if tea.region %>
-        <li>Region: <a href="/teas/region/<%= clean(tea.region) %>"><%= tea.region %></a></li>
-      <% end %>
-      <% if tea.country %>
-        <li>Country: <a href="/teas/country/<%= clean(tea.country) %>"><%= tea.country %></a></li>
-      <% end %>
-      <% if tea.shop %>
-        <li>Shop: <a href="/shops/<%= tea.shop.slug %>"><%= tea.shop.name %></a></li>
-      <% end %>
-    </ul>
+<% else %>
+  <h1>Tea: <a href="/teas/<%= tea.slug %>"><%= tea.name %></a></h1>
+  
+  <% if format != 'detail' && tea.description.length > 200 %>
+    <%= tea.description[0..200] + "..." %>
+  <% else %>    
+    <%= tea.description %>
+  <% end %>
+  
+  <h2>Tea Attributes</h2>
+  <ul class="details">
+    <li>Category: <a href="/teas/category/<%= clean(tea.category) %>"><%= tea.category %></a></li>
+    <% if tea.region %>
+      <li>Region: <a href="/teas/region/<%= clean(tea.region) %>"><%= tea.region %></a></li>
+    <% end %>
+    <% if tea.country %>
+      <li>Country: <a href="/teas/country/<%= clean(tea.country) %>"><%= tea.country %></a></li>
+    <% end %>
+    <% if tea.shop %>
+      <li>Shop: <a href="/shops/<%= tea.shop.slug %>"><%= tea.shop.name %></a></li>
+    <% end %>
+    <% if tea.url %>
+      <li>URL: <a href="<%= tea.url %>"><%= tea.url %></a></li></li>
+  <% end %>
+  </ul>
 
-    <% if tea.notes %>
-    </article>
-    <h2>Notes for this tea</h2>
-      <% tea.notes.each do |note| %>
-        <%= erb :'/notes/_note', locals: {note: note, format: 'short'} %>
-      <% end %>
+  <% if tea.notes %>
+  <h2>Tasting Notes for this Tea</h2>
+    <% tea.notes.each do |note| %>
+      <%= erb :'/notes/_note', locals: {note: note, format: 'short'} %>
     <% end %>
   <% end %>
-</article>
+<% end %>
