@@ -1,7 +1,42 @@
 body {
-  background-color: #efefef;
   padding: 5px;
 }
+/* a {
+  color: #17a2b8;
+}
+a:hover, a:focus {
+  color: #0f6674;
+} */
+
+/* Logo */
+hgroup h1 {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif
+}
+hgroup h2 {
+  margin-top: -0.5em;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: 1em;
+}
+
+#content h1 {
+  font-size: 1.5rem;
+  margin: .5em 0 1em;
+}
+
+/* Containers */
+#content {
+    margin: 1em auto;
+    background-color: #efefef;
+    border: 1px solid #ccc;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+section {
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
 
 /* Forms */
 label {
@@ -12,12 +47,9 @@ label {
   background: pink;
   border: 1px solid red;
 }
-.error li,
-.success li {
+ul.alert li {
   list-style-type: none;
 }
-
-
 .success {
   padding: 5px;
   background: rgb(141, 240, 141);
@@ -27,8 +59,14 @@ label {
 /* Articles */
 article {
   background: white;
-  padding: 0.5em 0.5em 0.25em;
-  margin-bottom: 1em;
+  padding: 0.75rem 0.5rem 0rem;
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+
 }
 article h1 {
   font-size: 1.5em;
@@ -39,9 +77,35 @@ article .post_date {
 }
 
 /* Navigation */
-.nav {
+/* .nav {
   margin: auto;
 }
 .nav a {
   text-align: center;
+} */
+.nav-link {
+  font-weight: bold;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif
+}
+.nav-link:hover, .nav-link:focus {
+  text-decoration: underline;
+}
+
+/* User Links */
+.user-links {
+  border-bottom: 1px solid #ccc;
+}
+.user-links .nav {
+  margin-bottom: .5em;
+}
+.user-links .btn {
+  font-size: .75em;
+}
+
+
+/* Footer */
+.colophon {
+  text-align: center;
+  font-size: 0.75em;
+  margin-top: 2em;
 }
