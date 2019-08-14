@@ -17,7 +17,7 @@
       <option value="Herbal" <%='selected' if @tea.category == "Herbal" %>>Herbal</option>
       <option value="Oolong" <%='selected' if @tea.category == "Oolong" %>>Oolong</option>
       <option value="Pu-er" <%='selected' if @tea.category == "Pu-er" %>>Pu-er</option>  
-      <option value="Rooibos" <%='selected' if @tea.category == "Rooibos" %>>Rooibos</option>            
+      <option value="Rooibos" <%='selected' if @tea.category == "Rooibos" %>>Rooibos</option>   
       <option value="White" <%='selected' if @tea.category == "White" %>>White</option>
       <option value="Yellow" <%='selected' if @tea.category == "Yellow" %>>Yellow</option>
     </select>
@@ -36,7 +36,7 @@
   </p> 
   <p>
     <label for="description">Description:*</label>
-    <textarea rows="10" cols="50" name="tea[description]" id="description" required><%= @tea.description %></textarea>
+    <textarea rows="10" cols="50" name="tea[description]" id="description" required><%= Sanitize.fragment(@tea.description) %></textarea>
   </p>
 
   <fieldset>
