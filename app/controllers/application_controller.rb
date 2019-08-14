@@ -10,12 +10,9 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     set :public_folder, 'public'
     enable :sessions
-    # set :session_secret, SESSION_SECRET
     set :session_secret, ENV['SESSION_SECRET']
     set :show_exceptions, false
   end
-  # !! BEFORE PRODUCTION: set environment variable secret
-
 
   #### Routes
   # Base page

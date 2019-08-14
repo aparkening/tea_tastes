@@ -1,3 +1,7 @@
+<% if logged_in? %>
+  <%= erb :'/users/_user_links', locals: {current_user: current_user} %>
+<% end %>
+
 <h1>All Teas</h1>
 
 <%= erb :'/_messages', locals: {flash: flash} %>
