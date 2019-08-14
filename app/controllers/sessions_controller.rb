@@ -30,6 +30,8 @@ class SessionsController < ApplicationController
     # If no errors on save, set session id and go to user home
     if user.save
       session[:user_id] = user.id
+      flash[:message] = ["Welcome, #{user.username}!"]
+      flash[:type] = "success"
       redir_user_home
     else
       if user.errors.any?
