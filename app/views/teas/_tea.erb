@@ -14,7 +14,7 @@
     </span></p>
   </article>
 <% else %>
-  <h1>Tea: <a href="/teas/<%= tea.slug %>"><%= tea.name %></a></h1>
+  <h1>Tea: <%= tea.name %></h1>
   
   <% if format != 'detail' && tea.description.length > 200 %>
     <%= tea.description[0..200] + "..." %>
