@@ -1,19 +1,17 @@
 
 <% if logged_in? %>
   <%= erb :'/users/_user_links', locals: {current_user: current_user} %>
+<% else %>
+  <section>
+    <p>Remember that amazing tea you had 2 years ago? Or where to get it again? What about that tea that just didn't pan out? Want to avoid that one again, right?</p>
+    <p>Tea Tastes helps you to record those thoughts, link to specific teas and tea shops, and learn about other teas from the community.</p>
+    <p><a href="/signup">Sign up</a> or <a href="/login">log in</a> to get started.</p>
+  </section>
 <% end %>
 
 <section>
-  <p>Remember that amazing tea you had 2 years ago? Or where to get it again? What about that tea that just didn't pan out? Want to avoid that one again, right?</p>
-  <p>Tea Tastes helps you to record those thoughts, link to specific teas and tea shops, and learn about other teas from the community.</p>
-  <p><a href="/signup">Sign up</a> or <a href="/login">log in</a> to get started.</p>
-</section>
-
-<section>
   <h2>Recent notes from the community</h2>
-  <ul class="notes">
-    <% @notes.each do |note| %>
-      <%= erb :'/notes/_note', locals: {note: note, format: 'short'} %>
-    <% end %>
-  </ul>
+  <% @notes.each do |note| %>
+    <%= erb :'/notes/_note', locals: {note: note, format: 'short'} %>
+  <% end %>
 </section>

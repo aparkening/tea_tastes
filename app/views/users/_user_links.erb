@@ -1,14 +1,16 @@
-<section class="row justify-content-between user-links">
+<section>
+  <div class="row justify-content-between user-links">
     <div class="user col-4">Welcome, <%=current_user.name %></div>
     <nav class="col nav">
-      <li class="col"><a href="/users/<%=current_user.slug %>">Your posts</a>
-      <li class="col"><a href="/notes/new">New note</a></li>
-      <li class="col"><a href="/tea/new">New tea</a></li>
+      <li class="col"><a href="/users/<%=current_user.slug %>" class="btn btn-secondary">Your posts</a>
+      <li class="col"><a href="/notes/new" class="btn btn-secondary">New note</a></li>
+      <li class="col"><a href="/tea/new" class="btn btn-secondary">New tea</a></li>
       <li class="col logout">
         <form method="post" action="/logout">
           <input id="hidden" type="hidden" name="_method" value="delete">
-          <input type="submit" value="Logout">
+          <input type="submit" value="Logout" class="btn btn-secondary">
         </form>
       </li>
     </nav>
+  </div>
 </section>

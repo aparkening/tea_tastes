@@ -1,5 +1,12 @@
 <% if flash.has?(:message) %>
-  <ul class=<%= flash[:type] %>>
+
+  <% if flash[:type] == "success" %>
+    <% @class = "class='alert alert-success'" %>
+  <% else %>
+    <% @class = "class='alert alert-danger'" %>
+  <% end %>
+
+  <ul <%= @class %>>
     <% flash[:message].each do |message| %>
       <li><%= message %></li>
     <% end %>

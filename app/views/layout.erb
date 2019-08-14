@@ -7,7 +7,6 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="/stylesheets/bootstrap-reboot.min.css" type="text/css">
     
     <!-- Local CSS -->
     <link rel="stylesheet" href="/stylesheets/styles.css" type="text/css">
@@ -18,13 +17,13 @@
     <header class="container-fluid">
       <div class="row">
         <hgroup class="col-4">
-          <h1><a href="/">Tea Tastes</a></h1>
-          <h2>The Place to Think Tea</h2>
+          <h1><a href="/" class="text-info">Tea Tastes</a></h1>
+          <h2 class="text-muted">The Place to Think Tea</h2>
         </hgroup>
-        <nav class="col nav">
-          <a href="/notes" class="col">Tasting Notes</a>
-          <a href="/teas" class="col">Teas</a>
-          <a href="/shops" class="col">Shops</a>
+        <nav class="col nav nav-pills nav-fill">
+          <a href="/notes" class="nav-item nav-link text-muted">Tasting Notes</a></li>
+          <a href="/teas" class="nav-item nav-link text-muted">Teas</a>
+          <a href="/shops" class="nav-item nav-link text-muted">Shops</a>
         </nav>
     </header>
 
@@ -32,8 +31,8 @@
       <%= yield %>
     </section>
 
-    <footer class="container-fluid">
-      Teas are great
+    <footer class="container-fluid colophon">
+      <p class="text-muted">@2019 me, you, and everyone.<br /> Teas are great!</p>
     </footer>
   </body>
 </html>
