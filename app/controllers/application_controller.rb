@@ -118,25 +118,29 @@ class ApplicationController < Sinatra::Base
   end
 
 
-  #### Error classes
+  #### Error Helpers
+  not_found do
+    raise NoResourceError.new
+  end
+
   error AuthenticationError do
     status AuthenticationError.status
-    erb :error, locals: {msg: AuthenticationError.msg, links: AuthenticationError.links }, layout: false
+    erb :error, locals: {msg: AuthenticationError.msg, links: AuthenticationError.links }
   end
 
   error AuthorizationError do 
       status AuthorizationError.status
-      erb :error, locals: {msg: AuthorizationError.msg, links: AuthorizationError.links }, layout: false
+      erb :error, locals: {msg: AuthorizationError.msg, links: AuthorizationError.links }
   end
 
   error NoResourceError do
       status NoResourceError.status
-      erb :error, locals: {msg: NoResourceError.msg , links: NoResourceError.links }, layout: false
+      erb :error, locals: {msg: NoResourceError.msg , links: NoResourceError.links }
   end
 
   error PostSiteError do
       status PostSiteError.status
-      erb :error, locals: {msg: PostSiteError.msg , links: PostSiteError.links }, layout: false
+      erb :error, locals: {msg: PostSiteError.msg , links: PostSiteError.links }
   end
 
 end
