@@ -79,6 +79,8 @@ class SessionsController < ApplicationController
   # end
   delete '/logout' do
     session.clear if logged_in?
+    flash[:message] = ["Successfully logged out."]
+    flash[:type] = "success"
     redirect '/login'
   end
 

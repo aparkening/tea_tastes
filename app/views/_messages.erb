@@ -1,0 +1,7 @@
+<% if flash.has?(:message) %>
+  <ul class=<%= flash[:type] %>>
+    <% flash[:message].each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>

@@ -38,10 +38,16 @@ class UsersController < ApplicationController
       # Update user
       user.update(params[:user])
 
-      # Set message and redirect      
-      flash[:message] = ["Success! Profile updated."]
-      flash[:type] = "success"
-      redirect "/users/#{user.slug}"
+      if user.errors.any?
+        flash[:message] = user.errors.full_messages
+        flash[:type] = "error"  
+        redirect "/users/#{params[:slug]}/edit"
+      else
+        # Set message and redirect      
+        flash[:message] = ["Success! Profile updated."]
+        flash[:type] = "success"
+        redirect "/users/#{user.slug}"        
+      end
     end
   end
 
