@@ -25,9 +25,6 @@ Tea Tastes is a place to record impressions of teas. Features:
 
 ## Usage
 
-<img src="/assets/Tea_Tastes-welcome.png" alt="Tea Tastes overview screen" />
-
-
 Add your own data to get started. Or run the seed below to interact with a fully-populated app.
 ```
     $ rake db:seed
