@@ -14,7 +14,26 @@
 
     <title>Tea Tastes</title>
   </head>
-  <body>
-    <%= yield %>
+  <body> 
+    <header class="container-fluid">
+      <div class="row">
+        <hgroup class="col-4">
+          <h1><a href="/">Tea Tastes</a></h1>
+          <h2>The Place to Think Tea</h2>
+        </hgroup>
+        <nav class="col nav">
+          <a href="/notes" class="col">Tasting Notes</a>
+          <a href="/teas" class="col">Teas</a>
+          <a href="/shops" class="col">Shops</a>
+        </nav>
+    </header>
+
+    <section id="content" class="container-fluid">
+      <%= yield %>
+    </section>
+
+    <footer class="container-fluid">
+      Teas are great
+    </footer>
   </body>
 </html>

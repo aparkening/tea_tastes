@@ -1,26 +1,19 @@
-<h1>Welcome to Tea Tastes</h1>
-<h2>The place to record your tea thoughts</h2>
+
 <% if logged_in? %>
-  <p>Welcome, <%=current_user.name %></p>
-  <p>
-    <form method="post" action="/logout">
-      <input id="hidden" type="hidden" name="_method" value="DELETE">
-      <input type="submit" value="Logout">
-    </form>
-  </p>
-  <ul>
-    <li><a href="/users/<%=current_user.slug %>">Read your posts</a></li>
-    <li><a href="/notes/new">Create new note</a></li>
-  </ul>
-<% else %>
+  <%= erb :'/users/_user_links', locals: {current_user: current_user} %>
+<% end %>
+
+<section>
   <p>Remember that amazing tea you had 2 years ago? Or where to get it again? What about that tea that just didn't pan out? Want to avoid that one again, right?</p>
   <p>Tea Tastes helps you to record those thoughts, link to specific teas and tea shops, and learn about other teas from the community.</p>
   <p><a href="/signup">Sign up</a> or <a href="/login">log in</a> to get started.</p>
-<%end %>
+</section>
 
-<h2>Recent notes from the community</h2>
-<ul class="notes">
-  <% @notes.each do |note| %>
-    <%= erb :'/notes/_note', locals: {note: note, format: 'short'} %>
-  <% end %>
-</ul>
+<section>
+  <h2>Recent notes from the community</h2>
+  <ul class="notes">
+    <% @notes.each do |note| %>
+      <%= erb :'/notes/_note', locals: {note: note, format: 'short'} %>
+    <% end %>
+  </ul>
+</section>
