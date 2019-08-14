@@ -3,39 +3,39 @@
 ## 1. Plan project, imagine interface
 
 Tea Tastes is a place to record impressions of teas. Features:
-- Authenticated users can log in to create, edit, and delete tea notes.
-- Notes can be linked to tea shops for another way to browse notes and for easy reordering.
-- Unauthenticated users can view tea notes by tea, user, and tea shop.
+- Authenticated users can log in to create, edit, and delete teas, notes, and shops.
+- Notes are be linked to teas and shops for easy browsing.
+- Unauthenticated users can view teas, notes, and shops.
 
 ### Page Structure
 
-- All pages: user login and logout
-- Main page
+- Home
 - Sign up
-- Authenticated user home (user-specific list of notes)
-- Create new note
-	- Create new shop (included in post form)
-- Display note
-- Display user
-- Display shop
-- Edit note
-- Edit user profile
-- Edit shop
-- Delete note
-- Delete shop
+- Log in
+- User home (user-specific list of notes)
+	- Edit user
+- Display all notes
+	- Create new note
+	- Display note
+	- Edit note
+- Display all teas
+	- Create new tea
+		- Create tea shop
+	- Display tea
+	- Edit tea
+- Display all shops
+	- Edit shop
+	- All shops
 
 #### Main page (index.html)
 
 - Summarize product: words and image(s) for what project is and why you'd use it
-- Display login form or logout link
-- Display signup link
+- Display login and signup links
 
-#### Sign Up
+#### Sign Up and Log In
 
-- Summarize signup benefits
 - Form 
 	- Required username and password
-	- Optional additional fields
 
 #### Authenticated User Home
 
@@ -94,12 +94,17 @@ Tea Tastes is a place to record impressions of teas. Features:
 
 ## 2. Outline project structure
 
-### Object Structure
+### Model Structure
 
 - User has many notes
-- Shop has and belongs to many notes
+- User has many teas through notes
+- Tea belongs to shop
+- Tea has many notes
+- Tea has many users through notes
+- Shop has many teas
+- Shop has many notes through teas
 - Note belongs to user
-- Note has and belongs to many shops
+- Note belongs to tea
 
 ### File Structure
 
@@ -176,19 +181,20 @@ Tea Tastes is a place to record impressions of teas. Features:
 3. Notes
 4. Shops
 5. Record code-along screencast
+6. [New] Add Tea model and adjust relationships
 
 
 ## 5. Write data and tests
 
 1. Write seed data.
-2. Create Rspec tests.
+2. [Removed] Create Rspec tests.
 
 
 ## 6. Tweak program for user flow
 
 - Update models to include Tea
-- Clarify navigation, links, and instructions
 - Sanitize user input
+- Clarify navigation, links, and instructions
 - Improve error handling and edge case responses
 
 ## 7. Improve styling and production quality
