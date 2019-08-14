@@ -59,18 +59,10 @@ class SessionsController < ApplicationController
       authenticate(params[:user]["username"], params[:user]["password"])
       redir_user_home
     rescue AuthenticationError => e 
-      @errors = ["Improper information entered"]
+      flash[:message] = ["Improper information entered"]
+      flash[:type] = "error"
       erb :'users/login'
     end
-
-    # user = User.find_by(username: params[:username])
-    # # If user exists, set session and redirect to user home
-    # if user && user.authenticate(params[:password])
-    #   session[:user_id] = user.id
-    #   redir_user_home
-    # else
-    #   redirect '/login'
-    # end
   end
 
 

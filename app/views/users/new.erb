@@ -2,8 +2,6 @@
 
 <%= erb :'/_messages', locals: {flash: flash} %>
 
-<%= form_error_messages(@errors) %>
-
 <form action="/signup" method="POST">
   <p>
     <label for="user[name]">Your Name:</label>
