@@ -28,25 +28,21 @@ class TeasController < ApplicationController
         # Sanitize input
         params[:shop].map { |input| Sanitize.fragment(input) }
 
-        # # Sanitize text inputs
-        # params[:shop_name] = Sanitize.fragment(params[:shop_name])
-        # if url = params[:shop_url]
-        #   params[:shop_url] = Sanitize.fragment(url)
-        # end
-        # if description = params[:shop_description]
-        #   params[:shop_description] = Sanitize.fragment(description)
-        # end      
-        
         # HTMLize description
         if description = params[:shop]["description"]
           params[:shop]["description"] = RedCloth.new(description).to_html
         end   
 
         # Create shop
-        shop = Shop.create(params[:shop])
-        # shop.url = params[:shop_url] if params[:shop_url]
-        # shop.description = params[:shop_description] if params[:shop_description]
-        # shop.save
+        shop = Shop.new(params[:shop])
+        shop.save
+
+        # If errors, set message and redirect
+        if shop.errors.any?
+          flash[:message] = shop.errors.full_messages
+          flash[:type] = "error"  
+          redirect to "/teas/new"
+        end
       end
 
       # Set current_user
@@ -71,7 +67,7 @@ class TeasController < ApplicationController
         redirect to "/teas/#{tea.slug}"
       else
         if tea.errors.any?
-          flash[:message] = note.errors.full_messages
+          flash[:message] = tea.errors.full_messages
           flash[:type] = "error"
         end
         redirect to "/teas/new"

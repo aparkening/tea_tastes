@@ -36,7 +36,7 @@ class ShopsController < ApplicationController
 
       # Set message and redirect
       if shop.errors.any?
-        flash[:message] = note.errors.full_messages
+        flash[:message] = shop.errors.full_messages
         flash[:type] = "error"  
         redirect "/shops/#{params[:slug]}/edit"
       else
