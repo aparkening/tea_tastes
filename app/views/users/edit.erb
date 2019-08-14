@@ -2,25 +2,25 @@
 
 <%= erb :'/_messages', locals: {flash: flash} %>
 
-<form action="/users/<%= @user.slug %>" method="POST">
+<form action="/users/<%= @user.slug %>" method="POST" class="form-group">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <p>
     <label for="user[name]">Your Name:</label>
-    <input type="text" name="user[name]" id="user[name]" value="<%= @user.name %>">
+    <input type="text" name="user[name]" id="user[name]" value="<%= @user.name %>" class="form-control">
   </p>
   <p>
     <label for="user[username]">Username:*</label>
-    <input type="text" name="user[username]" id="user[username]" value="<%= @user.username %>" required>
+    <input type="text" name="user[username]" id="user[username]" value="<%= @user.username %>" class="form-control" required>
   </p>
 
   <h2>Update Password (Optional)</h2>
   <p>
-    Password must be more than 6 characters<br/>
+    <strong>Password must be more than 6 characters</strong><br/>
     <label for="user[password]">Password:</label>
-    <input type="password" name="user[password]" id="user[password]"><br/>
+    <input type="password" name="user[password]" id="user[password]" class="form-control"><br/>
     <label for="user[password_confirmation]">Confirm Password:</label>
-    <input type="password" name="user[password_confirmation]" id="user[password_confirmation]">
+    <input type="password" name="user[password_confirmation]" id="user[password_confirmation]" class="form-control">
   </p>
 
-  <input type="submit" name="Update User">
+  <input type="submit" name="Update User" class="btn btn-info">
 </form>

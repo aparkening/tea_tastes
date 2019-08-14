@@ -4,7 +4,8 @@
     <nav class="col nav">
       <li class="col"><a href="/users/<%=current_user.slug %>" class="btn btn-secondary">Your posts</a>
       <li class="col"><a href="/notes/new" class="btn btn-secondary">New note</a></li>
-      <li class="col"><a href="/tea/new" class="btn btn-secondary">New tea</a></li>
+      <li class="col"><a href="/teas/new" class="btn btn-secondary">New tea</a></li>
+      <li class="col"><a href="/users/<%=current_user.slug %>/edit" class="btn btn-secondary">Edit Profile</a></li>
       <li class="col logout">
         <form method="post" action="/logout">
           <input id="hidden" type="hidden" name="_method" value="delete">
