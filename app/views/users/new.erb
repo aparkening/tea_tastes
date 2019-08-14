@@ -2,21 +2,21 @@
 
 <%= erb :'/_messages', locals: {flash: flash} %>
 
-<form action="/signup" method="POST">
+<form action="/signup" method="POST" class="form-group">
   <p>
     <label for="user[name]">Your Name:</label>
-    <input type="text" name="user[name]" id="user[name]">
+    <input type="text" name="user[name]" id="user[name]" class="form-control">
   </p>
   <p>
     <label for="user[username]">Prefered Username:*</label>
-    <input type="text" name="user[username]" id="user[username]" required>
+    <input type="text" name="user[username]" id="user[username]" class="form-control" required>
   </p>
   <p>
-    Password must be more than 6 characters<br/>
+    <strong>Password must be more than 6 characters</strong><br/>
     <label for="user[password]">Password:*</label>
-    <input type="password" name="user[password]" id="user[password]" required><br/>
+    <input type="password" name="user[password]" id="user[password]" class="form-control" required><br/>
     <label for="password_confirmation">Confirm Password:*</label>
-    <input type="password" name="user[password_confirmation]" id="user[password_confirmation]" required>
+    <input type="password" class="form-control" name="user[password_confirmation]" id="user[password_confirmation]" required>
   </p>
-  <input type="submit" value="Sign Up">
+  <input type="submit" value="Sign Up" class="btn btn-info">
 </form>
