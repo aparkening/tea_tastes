@@ -200,6 +200,7 @@ class TeasController < ApplicationController
   # Specific Note
   get '/teas/:slug' do
     @tea = Tea.find_by_slug(params[:slug])
+    raise NoResourceError.new if !@tea
     erb :'teas/show'
   end
 

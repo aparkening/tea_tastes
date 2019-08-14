@@ -61,7 +61,6 @@ class NotesController < ApplicationController
     authorize
 
     note = Note.find_by_slug(params[:slug])     
-    
     # Ensure only owner can edit
     authorize_user(note)
 
@@ -152,6 +151,7 @@ class NotesController < ApplicationController
   # Specific Note
   get '/notes/:slug' do
     @note = Note.find_by_slug(params[:slug])
+    raise NoResourceError.new if !@note
     erb :'notes/show'
   end
 

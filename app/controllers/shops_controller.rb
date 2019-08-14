@@ -78,6 +78,7 @@ class ShopsController < ApplicationController
   # Specific Shop
   get '/shops/:slug' do
     @shop = Shop.find_by_slug(params[:slug])
+    raise NoResourceError.new if !@shop
     erb :'shops/show'
   end
 
