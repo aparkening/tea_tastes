@@ -2,12 +2,11 @@
 
 <%= erb :'/teas/_tea', locals: {tea: @tea, format: 'detail'} %>
 
-<hr>
-<section>
-  <a href="/teas/<%=@tea.slug%>/edit">Edit tea</a>
+<section class="edit-entry col nav">
+  <a href="/teas/<%=@tea.slug%>/edit" class="btn btn-secondary">Edit tea</a>
 
   <form method="post" action="/teas/<%= @tea.slug %>">
     <input id="hidden" type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete tea">
+    <input type="submit" value="Delete tea" class="btn btn-secondary">
   </form>
 </section>

@@ -95,6 +95,7 @@ article .tea-name {
   text-decoration: underline;
 }
 
+
 /* User Links */
 .user-links {
   border-bottom: 1px solid #ccc;
@@ -105,6 +106,13 @@ article .tea-name {
 .user-links .btn {
   font-size: .75em;
 }
+
+
+/* Edit Links */
+.edit-entry .btn {
+  margin-right: 1em;
+}
+
 
 
 /* Footer */

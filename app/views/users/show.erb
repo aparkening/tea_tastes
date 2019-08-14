@@ -3,9 +3,9 @@
 <% end %>
 
 <section>
-<!-- <h1><%= @user.username %>'s Profile</h1> -->
+  <!-- <h1><%= @user.username %>'s Profile</h1> -->
 
-<%= erb :'/_messages', locals: {flash: flash} %>
+  <%= erb :'/_messages', locals: {flash: flash} %>
 
   <% if !@user.notes.empty? %>
     <h2><%= @user.username %>'s Tasting Notes</h2>

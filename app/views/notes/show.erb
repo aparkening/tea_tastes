@@ -11,8 +11,7 @@
 
   <% if own_post?(@note) %>
     <section class="edit-entry col nav">
-      <a href="/notes/<%=@note.slug%>/edit"  class="btn btn-secondary">Edit Note</a>
-      
+      <a href="/notes/<%=@note.slug%>/edit"  class="btn btn-secondary">Edit Note</a></li>
       <form method="post" action="/notes/<%= @note.slug %>">
         <input id="hidden" type="hidden" name="_method" value="DELETE">
         <input type="submit" value="Delete Note"  class="btn btn-secondary">
