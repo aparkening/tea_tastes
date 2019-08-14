@@ -1,32 +1,35 @@
-<h1><%=@shop.name%></h1>
+<% if logged_in? %>
+  <%= erb :'/users/_user_links', locals: {current_user: current_user} %>
+<% end %>
 
 <%= erb :'/_messages', locals: {flash: flash} %>
 
-<p><a href="<%=@shop.url%>"><%=@shop.url%></a></p>
-<p><%=@shop.description%></p>
+<section>
+  <h1>Shop: <%=@shop.name%> <small class="text-muted"> | <a href="<%=@shop.url%>"><%=@shop.url%></a></small></h1>
+  <p><%=@shop.description%></p>
+</section>
 
-<% if !@shop.teas.empty? %>
-<h2>Teas in this shop:</h2>
-  <ul>
-  <% @shop.teas.each do |tea| %>
-    <li><a href="/teas/<%= tea.slug %>"><%= tea.name %></a></li>
+<section>
+  <% if !@shop.teas.empty? %>
+    <h2>Teas in this shop:</h2>
+    <% @shop.teas.each do |tea| %>
+      <%= erb :'/teas/_tea', locals: {tea: tea, format: 'short'} %>
+    <% end %>
   <% end %>
-  </ul>
-<% end %>
 
-<% if !@shop.notes.empty? %>
-<h2>Tasting Notes in this Shop:</h2>
-  <ul>
-  <% @shop.notes.each do |note| %>
-    <li><a href="/notes/<%= note.slug %>"><%= note.title %></a></li>
+  <% if !@shop.notes.empty? %>
+    <h2>Tasting Notes in this Shop:</h2>
+    <% @shop.notes.each do |note| %>
+      <%= erb :'/notes/_note', locals: {note: note, format: 'short'} %>
+    <% end %>
   <% end %>
-  </ul>
-<% end %>
 
-<section class="edit-entry col nav">
-	<a href="/shops/<%=@shop.slug%>/edit" class="btn btn-secondary">Edit shop</a>
-	<form method="post" action="/shops/<%= @shop.slug %>/delete">
-		<input id="hidden" type="hidden" name="_method" value="DELETE">
-		<input type="submit" value="Delete shop" class="btn btn-secondary">
-	</form>
+  <section class="edit-entry col nav">
+    <a href="/shops/<%=@shop.slug%>/edit" class="btn btn-secondary">Edit shop</a>
+    <form method="post" action="/shops/<%= @shop.slug %>/delete">
+      <input id="hidden" type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Delete shop" class="btn btn-secondary">
+    </form>
+  </section>
+
 </section>
