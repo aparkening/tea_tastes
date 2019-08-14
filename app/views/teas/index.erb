@@ -1,5 +1,7 @@
 <h1>All Teas</h1>
 
+<%= erb :'/_messages', locals: {flash: flash} %>
+
 <% @teas.each do |tea| %>
   <%= erb :'/teas/_tea', locals: {tea: tea, format: 'short'} %>
 <% end %>

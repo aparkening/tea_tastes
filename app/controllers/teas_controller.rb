@@ -144,7 +144,7 @@ class TeasController < ApplicationController
         if shop.errors.any?
           flash[:message] = shop.errors.full_messages
           flash[:type] = "error"  
-          redirect to "/teas/new"
+          redirect "/teas/#{params[:slug]}/edit"
         end
       end
 

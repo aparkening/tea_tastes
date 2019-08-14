@@ -1,5 +1,7 @@
 <h1>Edit Tea</h1>
 
+<%= erb :'/_messages', locals: {flash: flash} %>
+
 <form action="/teas/<%= @tea.slug %>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <p>
