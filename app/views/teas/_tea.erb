@@ -15,11 +15,13 @@
   <% else %>
     <h1><a href="/teas/<%= tea.slug %>"><%= tea.name %></a></h1>
     <p><a href="/teas/category/<%= clean(tea.category) %>"><%= tea.category %></a></p>
-    <% if tea.description.length > 200 %>
+    
+    <% if format != 'detail' && tea.description.length > 200 %>
       <%= tea.description[0..200] + "..." %>
-    <% else %>
+    <% else %>    
       <%= tea.description %>
     <% end %>
+    
     <% if tea.url %>
       <p>Buy now: <a href="<%= tea.url %>"><%= tea.url %></a></p>
     <% end %>
