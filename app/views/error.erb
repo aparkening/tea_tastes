@@ -1,4 +1,10 @@
-<%= msg %>
-<% links.each do |link, text| %>
-    <a href="<%= link %>"> <%= text %> </a>
-<% end %>
+<h1>Oh no, an Error!</h1>
+
+<h2><%= msg %></h2>
+
+<h2>Option(s):</h2>
+<ul>
+    <% links.each do |link, text| %>
+        <li><a href="<%= link %>"><%= text %></a></li>
+    <% end %>
+</ul>

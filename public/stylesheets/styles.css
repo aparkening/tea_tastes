@@ -31,3 +31,11 @@ article .post_date {
   font-size: .75em;
   color: #999;
 }
+
+/* Navigation */
+.nav {
+  margin: auto;
+}
+.nav a {
+  text-align: center;
+}
