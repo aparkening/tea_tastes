@@ -13,9 +13,14 @@
   <p>
     <label for="tea[category]">Category:</label>
     <select name="tea[category]">
-      <% @categories.each do |category| %>
-        <option value="<%= category.category %>"><%= category.category.capitalize %></option>
-      <% end %>
+      <option value="Black">Black</option>
+      <option value="Green">Green</option>
+      <option value="Herbal">Herbal</option>
+      <option value="Oolong">Oolong</option>
+      <option value="Pu-er">Pu-er</option>  
+      <option value="Rooibos">Rooibos</option>            
+      <option value="White">White</option>
+      <option value="Yellow">Yellow</option>
     </select>
   </p>
   <p>

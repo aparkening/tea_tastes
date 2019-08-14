@@ -11,9 +11,14 @@
   <p>
     <label for="tea[category]">Category:</label>
     <select name="tea[category]">
-      <% @categories.each do |category| %>
-        <option value="<%= category.category %>" <%='selected' if @tea.category == category.category %>><%= category.category.capitalize %></option>
-      <% end %>
+      <option value="Black" <%='selected' if @tea.category == category.category %>>Black</option>
+      <option value="Green" <%='selected' if @tea.category == category.category %>>Green</option>
+      <option value="Herbal" <%='selected' if @tea.category == category.category %>>Herbal</option>
+      <option value="Oolong" <%='selected' if @tea.category == category.category %>>Oolong</option>
+      <option value="Pu-er" <%='selected' if @tea.category == category.category %>>Pu-er</option>  
+      <option value="Rooibos" <%='selected' if @tea.category == category.category %>>Rooibos</option>            
+      <option value="White" <%='selected' if @tea.category == category.category %>>White</option>
+      <option value="Yellow" <%='selected' if @tea.category == category.category %>>Yellow</option>
     </select>
   </p>
   <p>
