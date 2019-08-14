@@ -123,19 +123,26 @@ class ApplicationController < Sinatra::Base
     raise NoResourceError.new
   end
 
+  error 500 do
+    erb :error, locals: {
+      msg: "Internal Server Error", 
+      links: {'/' => 'Go to the home page'} 
+    }
+  end  
+
   error AuthenticationError do
     status AuthenticationError.status
     erb :error, locals: {msg: AuthenticationError.msg, links: AuthenticationError.links }
   end
 
   error AuthorizationError do 
-      status AuthorizationError.status
-      erb :error, locals: {msg: AuthorizationError.msg, links: AuthorizationError.links }
+    status AuthorizationError.status
+    erb :error, locals: {msg: AuthorizationError.msg, links: AuthorizationError.links }
   end
 
   error NoResourceError do
-      status NoResourceError.status
-      erb :error, locals: {msg: NoResourceError.msg , links: NoResourceError.links }
+    status NoResourceError.status
+    erb :error, locals: {msg: NoResourceError.msg , links: NoResourceError.links }
   end
 
   error PostSiteError do
