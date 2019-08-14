@@ -15,7 +15,7 @@
 <% end %>
 
 <% if !@shop.notes.empty? %>
-<h2>Recent notes for teas in this shop:</h2>
+<h2>Tasting Notes in this Shop:</h2>
   <ul>
   <% @shop.notes.each do |note| %>
     <li><a href="/notes/<%= note.slug %>"><%= note.title %></a></li>
@@ -23,12 +23,10 @@
   </ul>
 <% end %>
 
-
-<hr>
-<section>
-	<a href="/shops/<%=@shop.slug%>/edit">Edit shop</a>
+<section class="edit-entry col nav">
+	<a href="/shops/<%=@shop.slug%>/edit" class="btn btn-secondary">Edit shop</a>
 	<form method="post" action="/shops/<%= @shop.slug %>/delete">
 		<input id="hidden" type="hidden" name="_method" value="DELETE">
-		<input type="submit" value="Delete shop">
+		<input type="submit" value="Delete shop" class="btn btn-secondary">
 	</form>
 </section>
