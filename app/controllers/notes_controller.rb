@@ -40,9 +40,6 @@ class NotesController < ApplicationController
       note = user.notes.build(params[:note])
 
       # raise PostSiteError.new if !user.save 
-      # Add shop to note
-      # note.shops << shop if shop
-      # redirect "/notes/#{note.slug}"
 
       # If note can save, add note to shop and redirect.
       if note.save
@@ -118,7 +115,6 @@ class NotesController < ApplicationController
       authorize_user(note)
 
       # Turn rating into integer
-      # params[:note]["rating"] = params[:note]["rating"].to_i if params[:note]["rating"]
       if rating = params[:note]["rating"]
         params[:note]["rating"] = rating.to_i
       end
@@ -133,12 +129,12 @@ class NotesController < ApplicationController
       # Update note
       note.update(params[:note])
 
+      # Set message and redirect
       if note.errors.any?
         flash[:message] = note.errors.full_messages
         flash[:type] = "error"  
         redirect "/notes/#{params[:slug]}/edit"
       else
-        # Set message and redirect
         flash[:message] = ["Success! Note updated."]
         flash[:type] = "success"
         redirect "/notes/#{note.slug}"
