@@ -25,18 +25,16 @@
   <h2>Tea Attributes</h2>
   <ul class="details">
     <li>Category: <a href="/teas/category/<%= clean(tea.category) %>"><%= tea.category %></a></li>
-    <% if !tea.region.empty? %>
+    <% if tea.region %>
       <li>Region: <a href="/teas/region/<%= clean(tea.region) %>"><%= tea.region %></a></li>
     <% end %>
-    <% if !tea.country.empty? %>
+    <% if tea.country %>
       <li>Country: <a href="/teas/country/<%= clean(tea.country) %>"><%= tea.country %></a></li>
     <% end %>
-    <% if !tea.shop.name.empty? %>
+    <% if tea.shop.name %>
       <li>Shop: <a href="/shops/<%= tea.shop.slug %>"><%= tea.shop.name %></a></li>
     <% end %>
-    <% if !tea.url.empty? %>
-      <li>URL: <a href="<%= tea.url %>"><%= tea.url %></a></li>
-    <% end %>
+
   </ul>
 
   <% if !tea.notes.empty? %>

@@ -1,6 +1,6 @@
 class NoResourceError < PostSiteError
   @@msg = "Resource Not Found"
-  @@links = {"/" => "Go Home" }
+  @@links = {"/" => "Go to the home page" }
   @@status = 404
 
   def self.msg
