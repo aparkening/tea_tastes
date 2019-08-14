@@ -1,13 +1,6 @@
 <h1>Edit Note</h1>
 
-<% if flash.has?(:message) %>
-Hi, this is a message
-  <ul class=<%= flash[:type] %>>
-    <% flash[:message].each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= erb :'/_messages', locals: {flash: flash} %>
 
 <form action="/notes/<%= @note.slug %>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
