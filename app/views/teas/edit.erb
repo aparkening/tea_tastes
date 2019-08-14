@@ -39,9 +39,8 @@
     <textarea rows="10" cols="50" name="tea[description]" id="description" class="form-control" required><%= Sanitize.fragment(@tea.description) %></textarea>
   </p>
   <p>
-    <label for="tea[shop_id]">Shop Name:</label>
+    <label for="tea[shop_id]">Select Shop:</label>
     <select name="tea[shop_id]" class="form-control">
-      <option value="none">_New</option>
       <% @shops.each do |shop| %>
         <option value="<%= shop.id %>" <%='selected' if @tea.shop == shop %>><%= shop.name %></option>
       <% end %>

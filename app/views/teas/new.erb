@@ -40,7 +40,6 @@
   <p>
     <label for="tea[shop_id]">Select Shop:</label>
     <select name="tea[shop_id]" class="form-control">
-      <option value="none">Choose Shop</option>
       <% @shops.each do |shop| %>
         <option value="<%= shop.id %>"><%= shop.name %></option>
       <% end %>

@@ -11,7 +11,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     enable :sessions
     set :session_secret, ENV['SESSION_SECRET']
-    set :show_exceptions, false
+    # set :show_exceptions, false
   end
 
   #### Routes
