@@ -72,6 +72,10 @@ class NotesController < ApplicationController
 
     # Delete object and redirect
     note.destroy
+
+    # Set message and redirect
+    flash[:message] = ["'#{note.title}' note deleted"]
+    flash[:type] = "success"
     redir_user_home
   end
 
@@ -129,10 +133,16 @@ class NotesController < ApplicationController
       # Update note
       note.update(params[:note])
 
-      # Set message and redirect
-      flash[:message] = ["Success! Note updated."]
-      flash[:type] = "success"
-      redirect "/notes/#{note.slug}"
+      if note.errors.any?
+        flash[:message] = note.errors.full_messages
+        flash[:type] = "error"  
+        redirect "/notes/#{params[:slug]}/edit"
+      else
+        # Set message and redirect
+        flash[:message] = ["Success! Note updated."]
+        flash[:type] = "success"
+        redirect "/notes/#{note.slug}"
+      end
     end
   end
 
