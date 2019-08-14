@@ -85,6 +85,10 @@ class TeasController < ApplicationController
 
     # Delete object and redirect
     tea.destroy
+
+    # Set message and redirect
+    flash[:message] = ["'#{tea.name}' tea deleted"]
+    flash[:type] = "success"
     redirect '/teas'
   end
 
@@ -123,7 +127,7 @@ class TeasController < ApplicationController
 
       # Create Shop if parameters exist
       if !params[:shop]["name"].empty?
-
+              
         # Sanitize input
         params[:shop].map { |input| Sanitize.fragment(input) }
 
@@ -133,27 +137,15 @@ class TeasController < ApplicationController
         end   
 
         # Create shop
-        shop = Shop.create(params[:shop])
+        shop = Shop.new(params[:shop])
+        shop.save
 
-        # # Sanitize text inputs
-        # params[:shop_name] = Sanitize.fragment(params[:shop_name])
-        # if url = params[:shop_url]
-        #   params[:shop_url] = Sanitize.fragment(url)
-        # end
-        # if description = params[:shop_description]
-        #   params[:shop_description] = Sanitize.fragment(description)
-        # end      
-        
-        # # HTMLize description
-        # if description = params[:shop_description]
-        #   params[:shop_description] = RedCloth.new(description).to_html
-        # end   
-
-        # # Create shop
-        # shop = Shop.new(name: params[:shop_name])
-        # shop.url = params[:shop_url] if params[:shop_url]
-        # shop.description = params[:shop_description] if params[:shop_description]
-        # shop.save
+        # If errors, set message and redirect
+        if shop.errors.any?
+          flash[:message] = shop.errors.full_messages
+          flash[:type] = "error"  
+          redirect to "/teas/new"
+        end
       end
 
       # Sanitize input
