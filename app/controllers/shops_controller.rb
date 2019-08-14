@@ -41,9 +41,15 @@ class ShopsController < ApplicationController
       shop.update(params[:shop])
 
       # Set message and redirect
-      flash[:message] = ["Success! Shop updated."]
-      flash[:type] = "success"
-      redirect "/shops/#{shop.slug}" 
+      if shop.errors.any?
+        flash[:message] = note.errors.full_messages
+        flash[:type] = "error"  
+        redirect "/shops/#{params[:slug]}/edit"
+      else
+        flash[:message] = ["Success! Shop updated."]
+        flash[:type] = "success"
+        redirect "/shops/#{note.slug}"
+      end
     end
   end
 
@@ -55,7 +61,16 @@ class ShopsController < ApplicationController
 
     @shop = Shop.find_by_slug(params[:slug])    
     @shop.destroy
+
+    # Set message and redirect
+    flash[:message] = ["'#{shop.name}' shop deleted"]
+    flash[:type] = "success"
     redirect '/shops'    
+  end
+
+  # If manual delete, redirect to /
+  get '/shops/:slug/delete' do
+    redirect '/'
   end
 
 
