@@ -11,14 +11,14 @@
   <p>
     <label for="tea[category]">Category:</label>
     <select name="tea[category]">
-      <option value="Black" <%='selected' if @tea.category == category.category %>>Black</option>
-      <option value="Green" <%='selected' if @tea.category == category.category %>>Green</option>
-      <option value="Herbal" <%='selected' if @tea.category == category.category %>>Herbal</option>
-      <option value="Oolong" <%='selected' if @tea.category == category.category %>>Oolong</option>
-      <option value="Pu-er" <%='selected' if @tea.category == category.category %>>Pu-er</option>  
-      <option value="Rooibos" <%='selected' if @tea.category == category.category %>>Rooibos</option>            
-      <option value="White" <%='selected' if @tea.category == category.category %>>White</option>
-      <option value="Yellow" <%='selected' if @tea.category == category.category %>>Yellow</option>
+      <option value="Black" <%='selected' if @tea.category == "Black" %>>Black</option>
+      <option value="Green" <%='selected' if @tea.category == "Green" %>>Green</option>
+      <option value="Herbal" <%='selected' if @tea.category == "Herbal" %>>Herbal</option>
+      <option value="Oolong" <%='selected' if @tea.category == "Oolong" %>>Oolong</option>
+      <option value="Pu-er" <%='selected' if @tea.category == Pu-er %>>Pu-er</option>  
+      <option value="Rooibos" <%='selected' if @tea.category == "Rooibos" %>>Rooibos</option>            
+      <option value="White" <%='selected' if @tea.category == "White" %>>White</option>
+      <option value="Yellow" <%='selected' if @tea.category == "Yellow" %>>Yellow</option>
     </select>
   </p>
   <p>

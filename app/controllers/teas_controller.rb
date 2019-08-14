@@ -7,7 +7,6 @@ class TeasController < ApplicationController
     # Ensure user can take this action
     authorize
     @shops = Shop.all  
-    @categories = Tea.select(:category).distinct
     erb :'teas/new'
   end
 
