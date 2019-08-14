@@ -55,6 +55,7 @@ class UsersController < ApplicationController
   # Display user show page
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
+    raise NoResourceError.new if !@user
     erb :'users/show'
   end
 
