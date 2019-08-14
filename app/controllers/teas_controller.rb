@@ -62,7 +62,7 @@ class TeasController < ApplicationController
         # Add tea to shop if exists
         shop.teas << tea if shop
 
-        flash[:message] = ["Nice work! Note created."]
+        flash[:message] = ["Nice work! Tea created."]
         flash[:type] = "success"
         redirect to "/teas/#{tea.slug}"
       else
@@ -157,13 +157,19 @@ class TeasController < ApplicationController
       # Update note
       tea.update(params[:tea])
 
-      # Add tea to shop if exists
-      shop.teas << tea if shop
-      
       # Set message and redirect
-      flash[:message] = ["Success! Note updated."]
-      flash[:type] = "success"
-      redirect "/teas/#{tea.slug}"
+      if tea.errors.any?
+        flash[:message] = tea.errors.full_messages
+        flash[:type] = "error"  
+        redirect "/teas/#{params[:slug]}/edit"
+      else
+        # Add tea to shop if exists
+        shop.teas << tea if shop
+      
+        flash[:message] = ["Success! Tea updated."]
+        flash[:type] = "success"
+        redirect "/teas/#{tea.slug}"
+      end
     end
   end
 
