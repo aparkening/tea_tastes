@@ -106,8 +106,7 @@ class TeasController < ApplicationController
     # Find tea, shops, and tea categories
     @tea = Tea.find_by_slug(params[:slug]) 
     @shops = Shop.all
-    @categories = Tea.select(:category).distinct
-
+    
     erb :'teas/edit'
   end
 
@@ -123,7 +122,6 @@ class TeasController < ApplicationController
       redirect "/teas/#{params[:slug]}/edit"
     else 
       tea = Tea.find_by_slug(params[:slug])  
-
       # Create Shop if parameters exist
       if !params[:shop]["name"].empty?
               

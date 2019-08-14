@@ -11,11 +11,12 @@
   <p>
     <label for="tea[category]">Category:</label>
     <select name="tea[category]">
+      <option value="Aged" <%='selected' if @tea.category == "Aged" %>>Aged</option>
       <option value="Black" <%='selected' if @tea.category == "Black" %>>Black</option>
       <option value="Green" <%='selected' if @tea.category == "Green" %>>Green</option>
       <option value="Herbal" <%='selected' if @tea.category == "Herbal" %>>Herbal</option>
       <option value="Oolong" <%='selected' if @tea.category == "Oolong" %>>Oolong</option>
-      <option value="Pu-er" <%='selected' if @tea.category == Pu-er %>>Pu-er</option>  
+      <option value="Pu-er" <%='selected' if @tea.category == "Pu-er" %>>Pu-er</option>  
       <option value="Rooibos" <%='selected' if @tea.category == "Rooibos" %>>Rooibos</option>            
       <option value="White" <%='selected' if @tea.category == "White" %>>White</option>
       <option value="Yellow" <%='selected' if @tea.category == "Yellow" %>>Yellow</option>
