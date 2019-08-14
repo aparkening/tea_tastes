@@ -77,7 +77,7 @@ class SessionsController < ApplicationController
     session.clear if logged_in?
     flash[:message] = ["Successfully logged out."]
     flash[:type] = "success"
-    redirect '/login'
+    redirect '/'
   end
 
 end
