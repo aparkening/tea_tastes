@@ -1,5 +1,7 @@
 <h1>All Shops</h1>
 
+<%= erb :'/_messages', locals: {flash: flash} %>
+
 <% @shops.each do |shop| %>
 <article class="shop">
   <h1><a href="/shops/<%= shop.slug %>"><%= shop.name %></a></h1>

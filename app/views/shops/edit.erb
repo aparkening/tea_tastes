@@ -1,5 +1,7 @@
 <h1>Edit Shop</h1>
 
+<%= erb :'/_messages', locals: {flash: flash} %>
+
 <form action="/shops/<%= @shop.slug %>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <p>
