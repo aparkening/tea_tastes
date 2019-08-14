@@ -5,16 +5,16 @@
 <form action="/shops/<%= @shop.slug %>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <p>
-    <label for="shop_name">Name:*</label>
-    <input type="text" name="shop[name]" id="shop_name" value="<%= @shop.name %>" required>
+    <label for="shop[name]">Name:*</label>
+    <input type="text" name="shop[name]" id="shop[name]" value="<%= @shop.name %>" required>
   </p>
     <p>
-    <label for="shop_url">Shop URL:</label>
-    <input type="text" name="shop[url]" id="shop_url" value="<%= @shop.url %>">
+    <label for="shop[url]">Shop URL:</label>
+    <input type="text" name="shop[url]" id="shop[url]" value="<%= @shop.url %>">
   </p>
   <p>
-    <label for="shop_description">Shop Description:</label>
-    <textarea rows="10" cols="50" name="shop[description]" id="shop_description"><%= Sanitize.fragment(@shop.description) if @shop.description %></textarea>
+    <label for="shop[description]">Shop Description:</label>
+    <textarea rows="10" cols="50" name="shop[description]" id="shop[description]"><%= Sanitize.fragment(@shop.description) if @shop.description %></textarea>
   </p>
 
   <input type="submit" name="Update Shop">

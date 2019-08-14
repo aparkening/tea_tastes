@@ -17,26 +17,20 @@ class ShopsController < ApplicationController
 
     # Give error message if name is empty
     if params[:shop]["name"].empty?
-      flash[:message] = ["Name is missing. Please fill in Name and re-submit."]
+      flash[:message] = ["Fields are missing data. Please submit again."]
       flash[:type] = "error"
       redirect "/shops/#{params[:slug]}/edit"
     else 
       shop = Shop.find_by_slug(params[:slug]) 
       
-      # Sanitize text inputs
-      params[:shop]["name"] = Sanitize.fragment(params[:shop]["name"])
-      if url = params[:shop]["url"]
-        params[:shop]["url"] = Sanitize.fragment(url)
-      end
-      if description = params[:shop]["description"]
-        params[:shop]["description"] = Sanitize.fragment(description)
-      end      
-      
+      # Sanitize text inputs  
+      params[:shop].map { |input| Sanitize.fragment(input) }
+
       # HTMLize description
       if description = params[:shop]["description"]
         params[:shop]["description"] = RedCloth.new(description).to_html
       end     
-      
+
       # Update shop
       shop.update(params[:shop])
 
@@ -48,7 +42,7 @@ class ShopsController < ApplicationController
       else
         flash[:message] = ["Success! Shop updated."]
         flash[:type] = "success"
-        redirect "/shops/#{note.slug}"
+        redirect "/shops/#{shop.slug}"
       end
     end
   end
