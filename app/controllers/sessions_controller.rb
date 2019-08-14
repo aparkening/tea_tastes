@@ -57,6 +57,8 @@ class SessionsController < ApplicationController
   post '/login' do
     begin 
       authenticate(params[:user]["username"], params[:user]["password"])
+      flash[:message] = ["Welcome back!"]
+      flash[:type] = "success"
       redir_user_home
     rescue AuthenticationError => e 
       flash[:message] = ["Improper information entered"]

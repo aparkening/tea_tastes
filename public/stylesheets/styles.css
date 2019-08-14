@@ -12,6 +12,12 @@ label {
   background: pink;
   border: 1px solid red;
 }
+.error li,
+.success li {
+  list-style-type: none;
+}
+
+
 .success {
   padding: 5px;
   background: rgb(141, 240, 141);
