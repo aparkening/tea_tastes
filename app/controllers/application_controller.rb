@@ -126,7 +126,7 @@ class ApplicationController < Sinatra::Base
   error 500 do
     erb :error, locals: {
       msg: "Internal Server Error", 
-      links: {'/' => 'Go to the home page'} 
+      links: {'/' => 'Go to the home page'}
     }
   end  
 
