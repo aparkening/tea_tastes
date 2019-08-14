@@ -39,7 +39,7 @@
   <% end %>
   </ul>
 
-  <% if tea.notes %>
+  <% if !tea.notes.empty? %>
   <h2>Tasting Notes for this Tea</h2>
     <% tea.notes.each do |note| %>
       <%= erb :'/notes/_note', locals: {note: note, format: 'short'} %>
