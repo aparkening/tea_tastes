@@ -1,28 +1,22 @@
-<h1><%=@note.title%></h1>
+<% if logged_in? %>
+  <%= erb :'/users/_user_links', locals: {current_user: current_user} %>
+<% end %>
 
 <%= erb :'/_messages', locals: {flash: flash} %>
 
-<p class="post_date">Posted by <a href="/users/<%= @note.user.slug %>"><%= @note.user.username %></a> on <%= @note.created_at.strftime("%B %d, %Y") %></p>
+<section>
+  <h1>Tasting Notes</h1>
 
-<p>
-  Tea: <a href="/teas/<%= @note.tea.slug %>"><%= @note.tea.name %></a>
-  <% if @note.tea.shop %>
-    (Sold by: <a href="/shops/<%= @note.tea.shop.slug %>"><%= @note.tea.shop.name %></a>)
+  <%= erb :'/notes/_note', locals: {note: @note, format: 'detail'} %>
+
+  <% if own_post?(@note) %>
+    <section class="edit-entry col nav">
+      <a href="/notes/<%=@note.slug%>/edit"  class="btn btn-secondary">Edit Note</a>
+      
+      <form method="post" action="/notes/<%= @note.slug %>">
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete Note"  class="btn btn-secondary">
+      </form>
+    </section>
   <% end %>
-</p>
-
-<% if @note.rating %><p>Rating: <%=@note.rating%> / 5</p><% end %>
-
-<p><%=@note.content%></p>
-
-<hr>
-<% if own_post?(@note) %>
-  <section>
-    <a href="/notes/<%=@note.slug%>/edit">Edit Note</a>
-    
-    <form method="post" action="/notes/<%= @note.slug %>">
-      <input id="hidden" type="hidden" name="_method" value="DELETE">
-      <input type="submit" value="Delete Note">
-    </form>
-  </section>
-<% end %>
+</section>

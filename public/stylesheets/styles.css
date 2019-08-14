@@ -22,6 +22,9 @@ hgroup h2 {
   font-size: 1.5rem;
   margin: .5em 0 1em;
 }
+#content h2 {
+  font-size: 1.5rem;
+}
 
 /* Containers */
 #content {
@@ -65,15 +68,16 @@ article {
   border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-
-
-}
 article h1 {
   font-size: 1.5em;
 }
-article .post_date {
+article .post-date {
   font-size: .75em;
-  color: #999;
+  /* color: #999; */
+}
+article .tea-name {
+  margin-top: -1.5em;
+  font-size: 0.85em;
 }
 
 /* Navigation */
