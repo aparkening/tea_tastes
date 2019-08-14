@@ -39,8 +39,6 @@ class NotesController < ApplicationController
       # Build note
       note = user.notes.build(params[:note])
 
-      # raise PostSiteError.new if !user.save 
-
       # If note can save, add note to shop and redirect.
       if note.save
         flash[:message] = ["Nice work! Note created."]
