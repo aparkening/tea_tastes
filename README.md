@@ -23,6 +23,8 @@ Tea Tastes is a place to record impressions of teas. Features:
 ```
 5. Navigate to `localhost:9393` in your browser.
 
+<img src="/public/assets/tea-tastes-screenshot.png" alt="Tea Tastes welcome screen" />
+
 ## Usage
 
 Add your own data to get started. Or run the seed below to interact with a fully-populated app.
