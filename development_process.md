@@ -2,10 +2,11 @@
 
 ## 1. Plan project, imagine interface
 
-Tea Tastes is a place to record impressions of teas. Features:
-- Authenticated users can log in to create, edit, and delete teas, notes, and shops.
-- Notes are be linked to teas and shops for easy browsing.
-- Unauthenticated users can view teas, notes, and shops.
+Tea Tastes is a place write down and share thoughts about teas. Features:
+- Anyone can view tea tasting notes, teas, tea shops, and users.
+- Authenticated users can create, edit, and delete their own tea notes, as well as any teas and shops.
+- Notes are related to users and teas, and teas are related to shops, so it's easy to view all teas in a shop, all notes in a shop, all teas from a specific user, etc.
+- Teas are browse-able by additional attributes, such as category, region, and country.
 
 ### Page Structure
 
