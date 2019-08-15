@@ -1,3 +1,4 @@
+/* Page */
 body {
   padding: 5px;
 }
@@ -28,6 +29,28 @@ hgroup h2 {
 }
 
 
+/* Navigation */
+.nav-link {
+  font-weight: bold;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif
+}
+.nav-link:hover, .nav-link:focus {
+  text-decoration: underline;
+}
+
+
+/* User Links */
+.user-links {
+  border-bottom: 1px solid #ccc;
+}
+.user-links .nav {
+  margin-bottom: .5em;
+}
+.user-links .btn {
+  font-size: .75em;
+}
+
+
 /* Containers */
 #content {
     margin: 1em auto;
@@ -48,14 +71,14 @@ section {
 
 
 /* Forms */
-label {
+/* label {
   min-width: 10rem;
 }
 .error {
   padding: 5px;
   background: pink;
   border: 1px solid red;
-}
+} */
 ul.alert li {
   list-style-type: none;
 }
@@ -71,7 +94,6 @@ form fieldset {
 }
 fieldset legend {
   font-size: 1.25rem;
-
 }
 
 
@@ -89,7 +111,6 @@ article h1 {
 }
 article .post-date {
   font-size: .75em;
-  /* color: #999; */
 }
 article .tea-name {
   margin-top: -1.5em;
@@ -98,28 +119,6 @@ article .tea-name {
 article .tea-name {
   margin-top: -1.5em;
   font-size: 0.85em;
-}
-
-
-/* Navigation */
-.nav-link {
-  font-weight: bold;
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif
-}
-.nav-link:hover, .nav-link:focus {
-  text-decoration: underline;
-}
-
-
-/* User Links */
-.user-links {
-  border-bottom: 1px solid #ccc;
-}
-.user-links .nav {
-  margin-bottom: .5em;
-}
-.user-links .btn {
-  font-size: .75em;
 }
 
 
