@@ -9,13 +9,15 @@
         <small class="text-muted"> | Rating: <%=note.rating%> / 5</small>
       <% end %>
     </h1>
-    <p class="tea-name text-muted">
-      Tea: <a href="/teas/<%= note.tea.slug %>"><%= note.tea.name %></a>
-      <% if note.tea.shop %>
-        &nbsp;|&nbsp; Shop: 
-        <a href="/shops/<%= note.tea.shop.slug %>"><%= note.tea.shop.name %></a>
-      <% end %>
-    </p>
+    <% if note.tea %>
+      <p class="tea-name text-muted">
+        Tea: <a href="/teas/<%= note.tea.slug %>"><%= note.tea.name %></a>
+        <% if note.tea.shop %>
+          &nbsp;|&nbsp; Shop: 
+          <a href="/shops/<%= note.tea.shop.slug %>"><%= note.tea.shop.name %></a>
+        <% end %>
+      </p>
+    <% end %>
     <% if format != 'detail' && note.content.length > 200 %>
       <%= note.content[0..200] + "..." %>
     <% else %>    

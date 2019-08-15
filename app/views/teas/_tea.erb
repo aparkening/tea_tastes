@@ -31,10 +31,12 @@
     <% if tea.country %>
       <li>Country: <a href="/teas/country/<%= clean(tea.country) %>"><%= tea.country %></a></li>
     <% end %>
-    <% if tea.shop.name %>
+    <% if tea.shop %>
       <li>Shop: <a href="/shops/<%= tea.shop.slug %>"><%= tea.shop.name %></a></li>
     <% end %>
-
+    <% if tea.url %>
+      <li>URL: <a href="<%= tea.url %>"><%= tea.url %></a></li>
+    <% end %>
   </ul>
 
   <% if !tea.notes.empty? %>
