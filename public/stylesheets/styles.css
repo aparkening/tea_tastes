@@ -25,7 +25,6 @@ hgroup h2 {
 #content h1.display-4 {
   font-size: 3.5rem;
   margin: 0 0 0.25rem;
-
 }
 
 
@@ -41,6 +40,10 @@ hgroup h2 {
 section {
   margin: 0.5em;
   padding: 0.5em;
+}
+.jumbotron {
+  border: 1px solid #17a2b8;
+  margin: 1rem;
 }
 
 
