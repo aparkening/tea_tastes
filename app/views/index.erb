@@ -1,11 +1,14 @@
 <% if logged_in? %>
   <%= erb :'/users/_user_links', locals: {current_user: current_user} %>
 <% else %>
-  <section>
-    <p>Remember that amazing tea you had 2 years ago? Or where to get it again? What about that tea that just didn't pan out? Want to avoid that one again, right?</p>
-    <p>Tea Tastes helps you to record those thoughts, link to specific teas and tea shops, and learn about other teas from the community.</p>
-    <p><a href="/signup">Sign up</a> or <a href="/login">log in</a> to get started.</p>
-  </section>
+  <div class="jumbotron">
+    <h1 class="display-4">Record those tasty teas!</h1>
+    <p class="lead">Tea Tastes helps you to record your thoughts about specific teas, save links to teas and tea shops, and learn about other teas from the community.</p>
+    <hr class="my-4">
+    <p>Join us to remember all those tasty teas, and to find new favorites!</p>
+    <a class="btn btn-primary btn-lg" href="/login" role="button">Log In</a> or <a class="btn btn-primary btn-lg" href="/signup" role="button">Sign Up</a>
+  </div>
+
 <% end %>
 
 <section>
