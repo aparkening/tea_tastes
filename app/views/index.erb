@@ -1,6 +1,8 @@
 <% if logged_in? %>
   <%= erb :'/users/_user_links', locals: {current_user: current_user} %>
 <% else %>
+  <%= erb :'/_messages', locals: {flash: flash} %>
+
   <div class="jumbotron bg-white">
     <h1 class="display-4">Record those tasty teas!</h1>
     <p class="lead">Tea Tastes helps you to record your thoughts about specific teas, save links to teas and tea shops, and learn about other teas from the community.</p>
