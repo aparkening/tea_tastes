@@ -57,7 +57,7 @@ class ShopsController < ApplicationController
     @shop.destroy
 
     # Set message and redirect
-    flash[:message] = ["'#{shop.name}' shop deleted"]
+    flash[:message] = ["Shop deleted"]
     flash[:type] = "success"
     redirect '/shops'    
   end

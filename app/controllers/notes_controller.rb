@@ -68,7 +68,7 @@ class NotesController < ApplicationController
     note.destroy
 
     # Set message and redirect
-    flash[:message] = ["'#{note.title}' note deleted"]
+    flash[:message] = ["Note deleted"]
     flash[:type] = "success"
     redir_user_home
   end

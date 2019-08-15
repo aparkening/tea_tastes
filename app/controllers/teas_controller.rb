@@ -86,7 +86,7 @@ class TeasController < ApplicationController
     tea.destroy
 
     # Set message and redirect
-    flash[:message] = ["'#{tea.name}' tea deleted"]
+    flash[:message] = ["Tea deleted"]
     flash[:type] = "success"
     redirect '/teas'
   end
