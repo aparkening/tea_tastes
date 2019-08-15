@@ -5,7 +5,7 @@ Tea Tastes is a place to record impressions of teas. Features:
 - Anyone can view tea tasting notes, teas, tea shops, and users.
 - Authenticated users can create, edit, and delete their own tea notes, as well as any teas and shops.
 - Notes are related to users and teas, and teas are related to shops, so it's easy to view all teas in a shop, all notes in a shop, all teas from a specific user, etc.
-- Teas are also browseable by additional attributes, such as category, region, and country.
+- Teas are browseable by additional attributes, such as category, region, and country.
 
 <img src="/public/assets/tea-tastes-screenshot.png" alt="Tea Tastes welcome screen" />
 
