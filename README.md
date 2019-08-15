@@ -6,6 +6,8 @@ Tea Tastes is a place to record impressions of teas. Features:
 - Notes can be linked to tea shops for another way to browse notes and for easy reordering.
 - Unauthenticated users can view tea notes by tea, user, and tea shop.
 
+<img src="/public/assets/tea-tastes-screenshot.png" alt="Tea Tastes welcome screen" />
+
 ## Installation
 
 1. Clone this repo.
@@ -22,8 +24,6 @@ Tea Tastes is a place to record impressions of teas. Features:
     $ shotgun
 ```
 5. Navigate to `localhost:9393` in your browser.
-
-<img src="/public/assets/tea-tastes-screenshot.png" alt="Tea Tastes welcome screen" />
 
 ## Usage
 
