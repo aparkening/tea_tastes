@@ -9,7 +9,7 @@
 
   <% if !@user.notes.empty? %>
     <h2><%= @user.username %>'s Tasting Notes</h2>
-    <% @user.notes.each do |note| %>
+    <% @user.notes.order(created_at: :desc).each do |note| %>
       <%= erb :'/notes/_note', locals: {note: note, format: 'short'} %>
     <%end %>
   <%end %>
