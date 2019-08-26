@@ -1,10 +1,9 @@
 require './config/environment'
-require 'rack-flash'
-require 'sanitize'
 class ApplicationController < Sinatra::Base
   register Sinatra::ActiveRecordExtension
   use Rack::Flash
 
+  
   #### Configuration
   configure do 
     set :views, 'app/views'
@@ -14,17 +13,13 @@ class ApplicationController < Sinatra::Base
     set :show_exceptions, false
   end
 
+
   #### Routes
   # Base page
   get '/' do
     @notes = Note.all
     erb :index
   end
-
-  # # Error page
-  # get '/error' do
-  #   erb :error
-  # end
 
 
   #### Helper methods

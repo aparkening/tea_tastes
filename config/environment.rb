@@ -13,6 +13,8 @@ if ENV['SINATRA_ENV'] == 'development'
   require './secrets.rb'
 end 
 
+require 'rack-flash'
+require 'sanitize'
 require './constants.rb'
 require './errors/post_site_error'
 require_all 'errors'
