@@ -1,4 +1,4 @@
-<h1>Create New Note</h1>
+<h1>Create New Tasting Note</h1>
 
 <%= erb :'/_messages', locals: {flash: flash} %>
 
@@ -22,7 +22,6 @@
     <textarea rows="10" cols="50" name="note[content]" id="note[content]" class="form-control" required></textarea>
   </p>
 
-
   <p>
     <label for="note[tea_id]">Tea:</label>
     <select name="note[tea_id]" class="form-control">
@@ -36,7 +35,7 @@
     <legend>Or Create New Tea</legend>
     <p>
       <label for="name">Name:*</label>
-      <input type="text" name="tea[name]" id="name" class="form-control" required>
+      <input type="text" name="tea[name]" id="name" class="form-control">
     </p>
     <p>
       <label for="tea[category]">Category:</label>
@@ -66,7 +65,7 @@
     </p>
     <p>
       <label for="description">Description:*</label>
-      <textarea rows="10" cols="50" name="tea[description]" id="descrption" class="form-control" required></textarea>
+      <textarea rows="10" cols="50" name="tea[description]" id="descrption" class="form-control"></textarea>
     </p>
     <p>
       <label for="tea[shop_id]">Select Shop:</label>
