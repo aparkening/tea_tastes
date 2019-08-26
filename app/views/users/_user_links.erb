@@ -5,11 +5,11 @@
       <li class="col note"><a href="/notes/new" class="btn btn-info">New note</a></li>
       <li class="col"><a href="/users/<%=current_user.slug %>" class="btn btn-secondary">Your posts</a>
       <!-- <li class="col"><a href="/teas/new" class="btn btn-secondary">New tea</a></li> -->
-      <li class="col"><a href="/users/<%=current_user.slug %>/edit" class="btn btn-secondary">Edit Profile</a></li>
+      <li class="col"><a href="/users/<%=current_user.slug %>/edit" class="btn btn-secondary">Edit profile</a></li>
       <li class="col logout">
         <form method="post" action="/logout">
           <input id="hidden" type="hidden" name="_method" value="delete">
-          <input type="submit" value="Logout" class="btn btn-secondary">
+          <input type="submit" value="Log out" class="btn btn-secondary">
         </form>
       </li>
     </nav>
