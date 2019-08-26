@@ -1,78 +1,78 @@
 # Control teas pages
 class TeasController < ApplicationController
 
-  #### Create
-  # Display form
-  get '/teas/new' do
-    # Ensure user can take this action
-    authorize
-    @shops = Shop.all  
-    erb :'teas/new'
-  end
+  # #### Create
+  # # Display form
+  # get '/teas/new' do
+  #   # Ensure user can take this action
+  #   authorize
+  #   @shops = Shop.all  
+  #   erb :'teas/new'
+  # end
 
-  # Create and save in database
-  post '/teas' do
-    # Ensure user can take this action
-    authorize
+  # # Create and save in database
+  # post '/teas' do
+  #   # Ensure user can take this action
+  #   authorize
 
-    # Give error message if name, category, or description are empty
-    if params[:tea]["name"].empty? || params[:tea]["category"].empty? || params[:tea]["description"].empty?
-      flash[:message] = ["Fields are missing data. Please submit again."]
-      flash[:type] = "error"
-      redirect '/teas/new'
-    else 
-      # Create Shop if parameters exist
-      if !params[:shop]["name"].empty?
+  #   # Give error message if name, category, or description are empty
+  #   if params[:tea]["name"].empty? || params[:tea]["category"].empty? || params[:tea]["description"].empty?
+  #     flash[:message] = ["Fields are missing data. Please submit again."]
+  #     flash[:type] = "error"
+  #     redirect '/teas/new'
+  #   else 
+  #     # Create Shop if parameters exist
+  #     if !params[:shop]["name"].empty?
         
-        # Sanitize input
-        params[:shop].map { |input| Sanitize.fragment(input) }
+  #       # Sanitize input
+  #       params[:shop].map { |input| Sanitize.fragment(input) }
 
-        # HTMLize description
-        if description = params[:shop]["description"]
-          params[:shop]["description"] = RedCloth.new(description).to_html
-        end   
+  #       # HTMLize description
+  #       if description = params[:shop]["description"]
+  #         params[:shop]["description"] = RedCloth.new(description).to_html
+  #       end   
 
-        # Create shop
-        shop = Shop.new(params[:shop])
-        shop.save
+  #       # Create shop
+  #       shop = Shop.new(params[:shop])
+  #       shop.save
 
-        # If errors, set message and redirect
-        if shop.errors.any?
-          flash[:message] = shop.errors.full_messages
-          flash[:type] = "error"  
-          redirect to "/teas/new"
-        end
-      end
+  #       # If errors, set message and redirect
+  #       if shop.errors.any?
+  #         flash[:message] = shop.errors.full_messages
+  #         flash[:type] = "error"  
+  #         redirect to "/teas/new"
+  #       end
+  #     end
 
-      # Set current_user
-      user = current_user
+  #     # Set current_user
+  #     user = current_user
 
-      # Sanitize input
-      params[:tea].map { |input| Sanitize.fragment(input) }
+  #     # Sanitize input
+  #     params[:tea].map { |input| Sanitize.fragment(input) }
 
-      # HTMLize content  
-      params[:tea]["description"] = RedCloth.new(params[:tea]["description"]).to_html 
+  #     # HTMLize content  
+  #     params[:tea]["description"] = RedCloth.new(params[:tea]["description"]).to_html 
       
-      # Build tea
-      tea = Tea.new(params[:tea])
+  #     # Build tea
+  #     tea = Tea.new(params[:tea])
 
-      # If tea can save, add tea to shop and redirect.
-      if tea.save
-        # Add tea to shop if exists
-        shop.teas << tea if shop
+  #     # If tea can save, add tea to shop and redirect.
+  #     if tea.save
+  #       # Add tea to shop if exists
+  #       shop.teas << tea if shop
 
-        flash[:message] = ["Nice work! Tea created."]
-        flash[:type] = "success"
-        redirect to "/teas/#{tea.slug}"
-      else
-        if tea.errors.any?
-          flash[:message] = tea.errors.full_messages
-          flash[:type] = "error"
-        end
-        redirect to "/teas/new"
-      end      
-    end
-  end
+  #       flash[:message] = ["Nice work! Tea created."]
+  #       flash[:type] = "success"
+  #       redirect to "/teas/#{tea.slug}"
+  #     else
+  #       if tea.errors.any?
+  #         flash[:message] = tea.errors.full_messages
+  #         flash[:type] = "error"
+  #       end
+  #       redirect to "/teas/new"
+  #     end      
+  #   end
+  # end
 
 
   #### Delete Note
@@ -86,7 +86,7 @@ class TeasController < ApplicationController
     tea.destroy
 
     # Set message and redirect
-    flash[:message] = ["Tea deleted"]
+    flash[:message] = ["Tea deleted."]
     flash[:type] = "success"
     redirect '/teas'
   end
