@@ -174,8 +174,9 @@ class TeasController < ApplicationController
   #### Display
   # Index
   get '/teas/?' do 
-    # teas by newest first
-    @teas = Tea.all.order(created_at: :desc)
+    # teas by name
+    # @teas = Tea.all.order(created_at: :desc)
+    @teas = Tea.all.order(name: :asc)
     erb :'teas/index'
   end
 

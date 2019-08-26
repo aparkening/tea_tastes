@@ -71,7 +71,7 @@ class ShopsController < ApplicationController
   #### Display
   # Index
   get '/shops/?' do   
-    @shops = Shop.all
+    @shops = Shop.all.order(name: :asc)
     erb :'shops/index'
   end
 
