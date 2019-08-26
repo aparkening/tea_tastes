@@ -1,17 +1,9 @@
-<h1>Edit Note</h1>
+<h1>Edit Tasting Note</h1>
 
 <%= erb :'/_messages', locals: {flash: flash} %>
 
-<form action="/notes/<%= @note.slug %>" method="POST" class="form-group">
+<form action="/notes/<%= @note.slug %>" method="post" class="form-group">
   <input id="hidden" type="hidden" name="_method" value="patch">
-  <p>
-    <label for="note[tea_id]">Tea:</label>
-    <select name="note[tea_id]" class="form-control">
-      <% @teas.each do |tea| %>
-        <option value="<%= tea.id %>" <%='selected' if @note.tea == tea %>><%= tea.name %></option>
-      <% end %>
-    </select>
-  </p>
   <p>
     <label for="title">Title:*</label>
     <input type="text" name="note[title]" id="title" value="<%= @note.title %>" class="form-control" required>
@@ -30,6 +22,75 @@
     <label for="note[content]">Thoughts:*</label>
     <textarea rows="10" cols="50" name="note[content]" id="note[content]" class="form-control" required><%= Sanitize.fragment(@note.content) %></textarea>
   </p>
+  <p>
+    <label for="note[tea_id]">Tea:</label>
+    <select name="note[tea_id]" class="form-control">
+      <% @teas.each do |tea| %>
+        <option value="<%= tea.id %>" <%='selected' if @note.tea == tea %>><%= tea.name %></option>
+      <% end %>
+    </select>
+  </p>
+
+  <fieldset>
+    <legend>Or Create New Tea</legend>
+    <p>
+      <label for="name">Name:*</label>
+      <input type="text" name="tea[name]" id="name" class="form-control">
+    </p>
+    <p>
+      <label for="tea[category]">Category:</label>
+      <select name="tea[category]" class="form-control">
+        <option value="Aged">Aged</option>
+        <option value="Black">Black</option>
+        <option value="Green">Green</option>
+        <option value="Herbal">Herbal</option>
+        <option value="Oolong">Oolong</option>
+        <option value="Pu-er">Pu-er</option>
+        <option value="Rooibos">Rooibos</option>            
+        <option value="White">White</option>
+        <option value="Yellow">Yellow</option>
+      </select>
+    </p>
+    <p>
+      <label for="url">URL:</label>
+      <input type="text" name="tea[url]" id="url" class="form-control">
+    </p>
+    <p>
+      <label for="country">Region:</label>
+      <input type="text" name="tea[region]" id="region" class="form-control">
+    </p>
+    <p>
+      <label for="country">Country:</label>
+      <input type="text" name="tea[country]" id="country" class="form-control">
+    </p>
+    <p>
+      <label for="description">Description:*</label>
+      <textarea rows="10" cols="50" name="tea[description]" id="descrption" class="form-control"></textarea>
+    </p>
+    <p>
+      <label for="tea[shop_id]">Select Shop:</label>
+      <select name="tea[shop_id]" class="form-control">
+        <% @shops.each do |shop| %>
+          <option value="<%= shop.id %>"><%= shop.name %></option>
+        <% end %>
+      </select>
+    </p>
+    <fieldset>
+      <legend>Or Create New Shop</legend>
+      <p>
+        <label for="shop[name]">Shop Name:*</label>
+        <input type="text" name="shop[name]" id="shop[name]" class="form-control">
+      </p>
+      <p>
+        <label for="shop[url]">Shop URL:</label>
+        <input type="text" name="shop[url]" id="shop[url]" class="form-control">
+      </p>
+      <p>
+        <label for="shop[description]">Shop Description:</label>
+        <textarea rows="10" cols="50" name="shop[description]" id="shop[description]" class="form-control"></textarea>
+      </p>
+    </fieldset>   
+  </fieldset>
 
   <input type="submit" name="Update Note" class="btn btn-info">
 </form>
