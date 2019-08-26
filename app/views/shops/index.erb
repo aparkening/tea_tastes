@@ -8,8 +8,11 @@
 
 <% @shops.each do |shop| %>
 <article class="shop">
-  <h1><a href="/shops/<%= shop.slug %>"><%= shop.name %></a></h1>
-  <p><a href="<%=shop.url%>"><%=shop.url%></a></p>
+  <h1><a href="/shops/<%= shop.slug %>"><%= shop.name %></a>
+  <% if shop.url && !shop.url.empty? %>
+    <small class="text-muted"> | <a href="<%=shop.url%>"><%=shop.url%></a></small>
+  <% end %>
+  </h1>
   <%= shop.description %>
 </article>
 <% end %>
