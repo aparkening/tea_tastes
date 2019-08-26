@@ -12,9 +12,12 @@
     <input type="text" name="user[username]" id="user[username]" class="form-control" required>
   </p>
   <p>
-    <strong>Password must be more than 6 characters</strong><br/>
     <label for="user[password]">Password:*</label>
-    <input type="password" name="user[password]" id="user[password]" class="form-control" required><br/>
+    <input type="password" name="user[password]" id="user[password]" class="form-control" aria-describedby="passwordHelpBlock" required>
+    <small id="passwordHelpBlock" class="form-text text-muted">
+      Your password must be more than 6 characters long.
+    </small>
+    <br/>
     <label for="password_confirmation">Confirm Password:*</label>
     <input type="password" class="form-control" name="user[password_confirmation]" id="user[password_confirmation]" required>
   </p>

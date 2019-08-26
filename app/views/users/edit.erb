@@ -15,9 +15,12 @@
 
   <h2>Update Password (Optional)</h2>
   <p>
-    <strong>Password must be more than 6 characters</strong><br/>
     <label for="user[password]">Password:</label>
-    <input type="password" name="user[password]" id="user[password]" class="form-control"><br/>
+    <input type="password" name="user[password]" id="user[password]" class="form-control" aria-describedby="passwordHelpBlock">
+    <small id="passwordHelpBlock" class="form-text text-muted">
+      Your password must be more than 6 characters long.
+    </small>
+    <br/>
     <label for="user[password_confirmation]">Confirm Password:</label>
     <input type="password" name="user[password_confirmation]" id="user[password_confirmation]" class="form-control">
   </p>
