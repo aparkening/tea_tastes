@@ -5,7 +5,7 @@
 Tea Tastes is a place write down and share thoughts about teas. Features:
 - Anyone can view tea tasting notes, teas, tea shops, and users.
 - Authenticated users can create, edit, and delete their own tea notes, as well as any teas and shops.
-- Notes are related to users and teas, and teas are related to shops, so it's easy to view all teas in a shop, all notes in a shop, all teas from a specific user, etc.
+- Notes are related to users and teas, and teas are related to shops, so it's easy to view all teas in a shop, all notes in a shop, all notes from a specific user, etc.
 - Teas are browse-able by additional attributes, such as category, region, and country.
 
 ### Page Structure
@@ -13,73 +13,53 @@ Tea Tastes is a place write down and share thoughts about teas. Features:
 - Home
 - Sign up
 - Log in
-- User home (user-specific list of notes)
+- User home
 	- Edit user
 - Display all notes
 	- Create new note
+		- Create new tea
+			- Create new shop
 	- Display note
 	- Edit note
 - Display all teas
-	- Create new tea
-		- Create tea shop
 	- Display tea
 	- Edit tea
 - Display all shops
+	- Display shop
 	- Edit shop
-	- All shops
 
 #### Main page (index.html)
 
 - Summarize product: words and image(s) for what project is and why you'd use it
 - Display login and signup links
+- List of notes (latest first)
 
 #### Sign Up and Log In
 
 - Form 
 	- Required username and password
 
-#### Authenticated User Home
+#### User Home
 
-- Link to add note
-- List of user-specific notes
-	- Can sort by date and tea name
-- Short list of notes from others
+- List of user-specific notes (latest first)
+
+#### Edit User
+
+- Pre-filled form
+- Error and success messages
 
 #### Create New Note
 
 - Form with error messages
-- Form includes fields for tea shop name and URL
+- New tea and new shop creation fields
 
 #### Display Note
 
 - Note content
-- Edit and delete links
 - Success message upon creation
-- Delete link
-
-#### Display User
-
-- Profile information
-- List of user notes
-
-#### Display Shop
-
-- Profile information, including URL
-- List of notes for teas from shop
-- Delete link if authenticated user and no related notes
+- Edit and delete links if note author
 
 #### Edit Note
-
-- Pre-filled form
-- Delete link
-- Error and success messages
-
-#### Edit User Profile
-
-- Pre-filled form
-- Error and success messages
-
-#### Edit Shop
 
 - Pre-filled form
 - Error and success messages
@@ -88,9 +68,27 @@ Tea Tastes is a place write down and share thoughts about teas. Features:
 
 - Only if note author
 
-#### Delete Shop
+#### Display Tea
 
-- Only if authenticated user and no related notes
+- Tea information, including description and attributes
+- List of notes for tea
+- Edit and delete links if authenticated user
+
+#### Edit Tea
+
+- Pre-filled form
+- Error and success messages
+
+#### Display Shop
+
+- Profile information, including URL
+- List of notes for teas from shop
+- Edit and delete links if authenticated user
+
+#### Edit Shop
+
+- Pre-filled form
+- Error and success messages
 
 
 ## 2. Outline project structure
@@ -116,30 +114,42 @@ Tea Tastes is a place write down and share thoughts about teas. Features:
 │   │   └── notes_controller.rb
 │   │   └── sessions_controller.rb
 │   │   └── shops_controller.rb
+│   │   └── teas_controller.rb
 │   │   └── users_controller.rb
 │   └── models:
 │   │   └── note.rb
-│   │   └── note_shop.rb
 │   │   └── shop.rb
+│   │   └── tea.rb
 │   │   └── user.rb
 │   │   └── concerns:
 │   │   │   └── slugify.rb
 │   └── views:
+│   │   └── _errors.erb
+│   │   └── _messages.erb
+│   │   └── error.erb
 │   │   └── index.erb
 │   │   └── layout.erb
-│   │   └── helpers:
-│   │   │   └── index.erb
 │   │   └── notes:
-│   │   │   └── new.erb
+│   │   │   └── _note.erb
+│   │   │   └── _teas_shops.erb
 │   │   │   └── edit.erb
+│   │   │   └── index.erb
+│   │   │   └── new.erb
 │   │   │   └── show.erb
 │   │   └── shops:     
 │   │   │   └── edit.erb
+│   │   │   └── index.erb
+│   │   │   └── show.erb
+│   │   └── teas:    
+│   │   │   └── _tea.erb 
+│   │   │   └── edit.erb
+│   │   │   └── index.erb
 │   │   │   └── show.erb
 │   │   └── users:
-│   │   │   └── index.erb
-│   │   │   └── new.erb
+│   │   │   └── _user_links.erb
 │   │   │   └── edit.erb
+│   │   │   └── login.erb
+│   │   │   └── new.erb
 │   │   │   └── show.erb
 - config:
 │   └── environment.rb
@@ -149,22 +159,19 @@ Tea Tastes is a place write down and share thoughts about teas. Features:
 │   │   └── create_users
 │   │   └── create_notes
 │   │   └── create_shops
-│   │   └── create_notes_shops
-│   └── seeds.rb
+│   │   └── create_teas
 │   └── schema.rb
+│   └── seeds.rb
 - public:
 │   └── stylesheets:
+│   │   └── bootstrap.min.css
 │   │   └── styles.css
 - spec:
-│   └── model_spec.rb
-│   └── note_spec.rb
-│   └── shop_spec.rb
-│   └── user_spec.rb
 - config.ru
 - Gemfile
 - Rakefile
 - README.md
-- PROCESS.md
+- development_process.md
 ```
 
 
@@ -221,7 +228,7 @@ Model Readme on pattern in https://gist.github.com/PurpleBooth/109311bb0361f32d8
 
 ## Stretch goals:
 
-1. Make Responsive interface
+1. [Mostly Done] Make Responsive interface
 
 2. Suggest new teas based on preferences. Scrape tea websites for suggestions table.
    #### Dobra
