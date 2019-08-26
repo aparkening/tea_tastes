@@ -2,10 +2,10 @@
   <article class="tea">
     <p><a href="/teas/<%= tea.slug %>"><%= tea.name %></a> in 
     <span class="details"><a href="/teas/category/<%= clean(tea.category) %>"><%= tea.category %></a>
-    <% if tea.region %>
+    <% if tea.region && !tea.region.empty? %>
       | Region: <a href="/teas/region/<%= clean(tea.region) %>"><%= tea.region %></a>
     <% end %>
-    <% if tea.country %>
+    <% if tea.country && !tea.country.empty? %>
       | Country: <a href="/teas/country/<%= clean(tea.country) %>"><%= tea.country %></a>
     <% end %>
     <% if tea.shop %>
@@ -25,16 +25,16 @@
   <h2>Tea Attributes</h2>
   <ul class="details">
     <li>Category: <a href="/teas/category/<%= clean(tea.category) %>"><%= tea.category %></a></li>
-    <% if tea.region %>
+    <% if tea.region && !tea.region.empty? %>
       <li>Region: <a href="/teas/region/<%= clean(tea.region) %>"><%= tea.region %></a></li>
     <% end %>
-    <% if tea.country %>
+    <% if tea.country && !tea.country.empty? %>
       <li>Country: <a href="/teas/country/<%= clean(tea.country) %>"><%= tea.country %></a></li>
     <% end %>
     <% if tea.shop %>
       <li>Shop: <a href="/shops/<%= tea.shop.slug %>"><%= tea.shop.name %></a></li>
     <% end %>
-    <% if tea.url %>
+    <% if tea.url && !tea.url.empty? %>
       <li>URL: <a href="<%= tea.url %>"><%= tea.url %></a></li>
     <% end %>
   </ul>
