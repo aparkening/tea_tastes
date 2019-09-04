@@ -6,13 +6,10 @@ class User < ActiveRecord::Base
   has_many :notes
   has_many :teas, through: :notes
 
-  # validates :name, presence: true, on: :create
   validates :username, presence: true, uniqueness: true
-
   validates :password, presence: true, on: :create
   validates :password, length: { minimum: 6 }, confirmation: true, unless: ->(u){ u.password.blank? }
   validates :password_confirmation, presence: true, on: :create
-  # validates :password_confirmation, unless: ->(u){ u.password.blank? }
 
   def slug_name
     self.username
