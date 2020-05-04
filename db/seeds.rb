@@ -7,9 +7,9 @@ Shop.delete_all
 
 #### Users
 users = [
-  {name: "Jack Johnson", username: "c-george", password: "testing123", password_confirmation: "testing123"},
+  {name: "Phil Beeman", username: "pbman", password: "testing123", password_confirmation: "testing123"},
   {name: "Georgia Feather", username: "gfeather", password: "testing123", password_confirmation: "testing123"},
-  {name: "Steven Bordle", username: "stebie", password: "testing123", password_confirmation: "testing123"}
+  {name: "Wanda Bordle", username: "wanda", password: "testing123", password_confirmation: "testing123"}
 ]
 user_objects = users.map { |item| User.create(item) }
 
