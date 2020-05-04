@@ -8,7 +8,13 @@
   <%= erb :'/_messages', locals: {flash: flash} %>
 
   <% if !@user.notes.empty? %>
-    <h2><%= @user.username %>'s Tasting Notes</h2>
+    <h2>
+      <% if @user == current_user %>
+        Your
+      <% else %>
+        <%= @user.username %>'s
+      <%end %>
+      Tasting Notes</h2>
     <% @user.notes.order(created_at: :desc).each do |note| %>
       <%= erb :'/notes/_note', locals: {note: note, format: 'short'} %>
     <%end %>
