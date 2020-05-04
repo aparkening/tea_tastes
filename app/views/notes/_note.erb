@@ -24,9 +24,7 @@
       <%= note.content %>
     <% end %>
     <p class="post-date text-muted">Posted 
-      <% if format != 'detail' %>
-        by <a href="/users/<%= note.user.slug %>"><%= note.user.username %></a>
-      <% end %>
+      by <a href="/users/<%= note.user.slug %>"><%= note.user.username %></a>
       on <%= note.created_at.strftime("%B %d, %Y") %>
       </p>
   <% end %>
