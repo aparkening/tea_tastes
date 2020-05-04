@@ -13,7 +13,7 @@
         Your
       <% else %>
         <%= @user.username %>'s
-      <%end %>
+      <% end %>
       Tasting Notes</h2>
     <% @user.notes.order(created_at: :desc).each do |note| %>
       <%= erb :'/notes/_note', locals: {note: note, format: 'short'} %>
