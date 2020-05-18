@@ -16,11 +16,11 @@ Tea Tastes is a place to record impressions of teas. Features:
 ```
     $ bundle install
 ```
-3. Install PostgreSQL. Using [Homebrew on macOS](https://brew.sh/) this looks like :
+3. Install PostgreSQL. Using [Homebrew on macOS](https://brew.sh/) this looks like:
 ```
     $ brew install postgresql
 ```
-4. Start and log into Postgresql database:
+4. Start and log in to Postgresql database:
 ```
     $ brew services start postgresql
     $ psql postgres
@@ -38,7 +38,7 @@ Tea Tastes is a place to record impressions of teas. Features:
 
 ## Usage
 
-Add your own data to get started. Or run the seed below to interact with sample data.
+Use your browser to add users, notes, teas, and shops. Or add seed data via command line to interact with sample entries.
 ```
     $ rake db:seed
 ```
