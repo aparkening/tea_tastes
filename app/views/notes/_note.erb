@@ -1,19 +1,23 @@
 <article class="note">
   <% if format == 'short' %>
-    <p><a href="/notes/<%= note.slug %>"><%= note.title %></a><br />
-    <span class="post-date text-muted">by <a href="/users/<%= note.user.slug %>"><%= note.user.name || note.user.username %></a> on <%= note.created_at.strftime("%B %d, %Y") %> &nbsp;|&nbsp; Tea: <a href="/teas/<%= note.tea.slug %>"><%= note.tea.name %></a></span></p>
+    <p>
+      <a href="/notes/<%= note.slug %>"><%= note.title %></a>
+      <span class="post-date text-muted">
+      <% if note.rating %> &nbsp;|&nbsp; Rating: <%=note.rating%> / 5<% end %><br />
+      by <a href="/users/<%= note.user.slug %>"><%= note.user.name || note.user.username %></a> on <%= note.created_at.strftime("%B %d, %Y") %> &nbsp;|&nbsp; Tea: <a href="/teas/<%= note.tea.slug %>"><%= note.tea.name %></a></span>
+    </p>
     <% if note.content.length > 100 %>
       <%= note.content[0..100] + "...</p>" %>
     <% else %>
       <%= note.content %>
     <% end %>
   <% else %>
-      <p class="post-date text-muted">Posted by <a href="/users/<%= note.user.slug %>"><%= note.user.name || note.user.username %></a> on <%= note.created_at.strftime("%B %d, %Y") %></p>
+    <p class="post-date text-muted">Posted by <a href="/users/<%= note.user.slug %>"><%= note.user.name || note.user.username %></a> on <%= note.created_at.strftime("%B %d, %Y") %></p>
 
-      <% if note.tea %>
-        <h3>Tea: <a href="/teas/<%= note.tea.slug %>"><%= note.tea.name %></a> <% if note.tea.shop %> (<a href="/shops/<%= note.tea.shop.slug %>"><%= note.tea.shop.name %></a>)<% end %>
-        </h3>
-      <% end %>
+    <% if note.tea %>
+      <h3>Tea: <a href="/teas/<%= note.tea.slug %>"><%= note.tea.name %></a> <% if note.tea.shop %> (<a href="/shops/<%= note.tea.shop.slug %>"><%= note.tea.shop.name %></a>)<% end %>
+      </h3>
+    <% end %>
 
     <% if note.rating %>
       <h3> Rating: <%=note.rating%> / 5</h3>
@@ -25,5 +29,4 @@
       <%= note.content %>
     <% end %>
   <% end %>
-
 </article>

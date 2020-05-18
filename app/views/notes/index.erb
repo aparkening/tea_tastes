@@ -8,7 +8,7 @@
   <%= erb :'/_messages', locals: {flash: flash} %>
 
   <% @notes.each do |note| %>
-    <%= erb :'/notes/_note', locals: {note: note, format: 'long'} %>
+    <%= erb :'/notes/_note', locals: {note: note, format: 'short'} %>
   <% end %>
 </section>
 
