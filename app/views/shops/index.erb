@@ -12,7 +12,7 @@
     <h1><a href="/shops/<%= shop.slug %>"><%= shop.name %></a></h1>
     <%= shop.description %>
     <% if shop.url && !shop.url.empty? %>
-      <p>Shop URL: <a class="text-muted"href="<%=shop.url%>"><%=shop.url%></a></p>
+      <p>URL: <a class="text-muted"href="<%=shop.url%>"><%=shop.url%></a></p>
     <% end %>
   </article>
   <% end %>
