@@ -12,23 +12,33 @@ Tea Tastes is a place to record impressions of teas. Features:
 ## Installation
 
 1. Clone this repo.
-2. Install dependences:
+2. Install gem dependencies:
 ```
     $ bundle install
 ```
-3. Create database structure:
+3. Install PostgreSQL. Using [Homebrew on macOS], this looks like (https://brew.sh/):
 ```
+    $ brew install postgresql
+```
+4. Start and log into Postgresql database:
+```
+    $ brew services start postgresql
+    $ psql postgres
+```
+5. Create database structure:
+```
+    $ rake db:create
     $ rake db:migrate
 ```
-4. Run web server:
+6. Run web server:
 ```
     $ shotgun
 ```
-5. Navigate to `localhost:9393` in your browser.
+7. Navigate to `localhost:9393` in your browser.
 
 ## Usage
 
-Add your own data to get started. Or run the seed below to interact with a fully-populated app.
+Add your own data to get started. Or run the seed below to interact with sample data.
 ```
     $ rake db:seed
 ```
