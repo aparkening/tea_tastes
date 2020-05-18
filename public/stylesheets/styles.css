@@ -71,14 +71,6 @@ section {
 
 
 /* Forms */
-/* label {
-  min-width: 10rem;
-}
-.error {
-  padding: 5px;
-  background: pink;
-  border: 1px solid red;
-} */
 ul.alert li {
   list-style-type: none;
 }
@@ -119,6 +111,13 @@ article .tea-name {
 article .tea-name {
   margin-top: -1.5em;
   font-size: 0.85em;
+}
+
+
+/* Shops */
+article.shop .text-muted a,
+article.shop a.text-muted {
+  color: #6c757d;
 }
 
 
