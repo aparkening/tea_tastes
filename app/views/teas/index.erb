@@ -2,11 +2,12 @@
   <%= erb :'/users/_user_links', locals: {current_user: current_user} %>
 <% end %>
 
-<h1>All Teas</h1>
+<section>
+  <h1>All Teas</h1>
 
-<%= erb :'/_messages', locals: {flash: flash} %>
+  <%= erb :'/_messages', locals: {flash: flash} %>
 
-<% @teas.each do |tea| %>
-  <%= erb :'/teas/_tea', locals: {tea: tea, format: 'short'} %>
-<% end %>
-
+  <% @teas.each do |tea| %>
+    <%= erb :'/teas/_tea', locals: {tea: tea, format: 'short'} %>
+  <% end %>
+</section>

@@ -2,16 +2,18 @@
   <%= erb :'/users/_user_links', locals: {current_user: current_user} %>
 <% end %>
 
-<h1>All Shops</h1>
+<section>
+  <h1>All Shops</h1>
 
-<%= erb :'/_messages', locals: {flash: flash} %>
+  <%= erb :'/_messages', locals: {flash: flash} %>
 
-<% @shops.each do |shop| %>
-<article class="shop">
-  <h1><a href="/shops/<%= shop.slug %>"><%= shop.name %></a></h1>
-  <%= shop.description %>
-  <% if shop.url && !shop.url.empty? %>
-    <p>Shop URL: <a class="text-muted"href="<%=shop.url%>"><%=shop.url%></a></p>
+  <% @shops.each do |shop| %>
+  <article class="shop">
+    <h1><a href="/shops/<%= shop.slug %>"><%= shop.name %></a></h1>
+    <%= shop.description %>
+    <% if shop.url && !shop.url.empty? %>
+      <p>Shop URL: <a class="text-muted"href="<%=shop.url%>"><%=shop.url%></a></p>
+    <% end %>
+  </article>
   <% end %>
-</article>
-<% end %>
+</section>
