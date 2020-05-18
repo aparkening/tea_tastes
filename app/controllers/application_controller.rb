@@ -17,7 +17,7 @@ class ApplicationController < Sinatra::Base
   #### Routes
   # Base page
   get '/' do
-    @notes = Note.all
+    @notes = Note.order(created_at: :desc).take(5)
     erb :index
   end
 

@@ -14,8 +14,8 @@
 <% end %>
 
 <section>
-  <h2>Tasting Notes from the Community</h2>
-  <% @notes.order(created_at: :desc).each do |note| %>
+  <h2>Latest Notes from the Community</h2>
+  <% @notes.each do |note| %>
     <%= erb :'/notes/_note', locals: {note: note, format: 'short'} %>
   <% end %>
 </section>
