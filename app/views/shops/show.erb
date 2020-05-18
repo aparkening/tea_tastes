@@ -6,10 +6,12 @@
 
 <section>
   <h1>Shop: <%=@shop.name%></h1>
+  <article class="shop">
   <p><%=@shop.description%></p>
   <% if @shop.url && !@shop.url.empty? %>
   <p>Shop URL: <a class="text-muted" href="<%=@shop.url%>"><%=@shop.url%></a></p>
   <% end %>
+  </article>
 </section>
 
 <section>

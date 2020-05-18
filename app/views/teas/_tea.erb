@@ -15,29 +15,30 @@
   </article>
 <% else %>
   <h1>Tea: <%= tea.name %></h1>
-  
-  <% if format != 'detail' && tea.description.length > 200 %>
-    <%= tea.description[0..200] + "..." %>
-  <% else %>    
-    <%= tea.description %>
-  <% end %>
-  
-  <h2>Tea Attributes</h2>
-  <ul class="details">
-    <li>Category: <a href="/teas/category/<%= clean(tea.category) %>"><%= tea.category %></a></li>
-    <% if tea.region && !tea.region.empty? %>
-      <li>Region: <a href="/teas/region/<%= clean(tea.region) %>"><%= tea.region %></a></li>
+  <article class="tea">
+    <% if format != 'detail' && tea.description.length > 200 %>
+      <%= tea.description[0..200] + "..." %>
+    <% else %>    
+      <%= tea.description %>
     <% end %>
-    <% if tea.country && !tea.country.empty? %>
-      <li>Country: <a href="/teas/country/<%= clean(tea.country) %>"><%= tea.country %></a></li>
-    <% end %>
-    <% if tea.shop %>
-      <li>Shop: <a href="/shops/<%= tea.shop.slug %>"><%= tea.shop.name %></a></li>
-    <% end %>
-    <% if tea.url && !tea.url.empty? %>
-      <li>URL: <a href="<%= tea.url %>"><%= tea.url %></a></li>
-    <% end %>
-  </ul>
+
+  <h3>Tea Attributes</h3>
+    <ul class="details">
+      <li>Category: <a href="/teas/category/<%= clean(tea.category) %>"><%= tea.category %></a></li>
+      <% if tea.region && !tea.region.empty? %>
+        <li>Region: <a href="/teas/region/<%= clean(tea.region) %>"><%= tea.region %></a></li>
+      <% end %>
+      <% if tea.country && !tea.country.empty? %>
+        <li>Country: <a href="/teas/country/<%= clean(tea.country) %>"><%= tea.country %></a></li>
+      <% end %>
+      <% if tea.shop %>
+        <li>Shop: <a href="/shops/<%= tea.shop.slug %>"><%= tea.shop.name %></a></li>
+      <% end %>
+      <% if tea.url && !tea.url.empty? %>
+        <li>URL: <a href="<%= tea.url %>"><%= tea.url %></a></li>
+      <% end %>
+    </ul>
+  </article>
 
   <% if !tea.notes.empty? %>
   <h2>Tasting Notes for this Tea</h2>

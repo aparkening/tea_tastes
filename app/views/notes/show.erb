@@ -5,7 +5,7 @@
 <%= erb :'/_messages', locals: {flash: flash} %>
 
 <section>
-  <h1>Tasting Notes</h1>
+  <h1>Tasting Note: <%=@note.title%></h1>
 
   <%= erb :'/notes/_note', locals: {note: @note, format: 'detail'} %>
 
