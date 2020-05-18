@@ -5,12 +5,11 @@
 <%= erb :'/_messages', locals: {flash: flash} %>
 
 <section>
-  <h1>Shop: <%=@shop.name%>
-  <% if @shop.url && !@shop.url.empty? %>
-    <small class="text-muted"> | <a href="<%=@shop.url%>"><%=@shop.url%></a></small>
-  <% end %>
-  </h1>
+  <h1>Shop: <%=@shop.name%></h1>
   <p><%=@shop.description%></p>
+  <% if @shop.url && !@shop.url.empty? %>
+  <p>Shop URL: <a class="text-muted" href="<%=@shop.url%>"><%=@shop.url%></a></p>
+  <% end %>
 </section>
 
 <section>
