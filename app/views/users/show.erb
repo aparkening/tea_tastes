@@ -7,16 +7,21 @@
 
   <%= erb :'/_messages', locals: {flash: flash} %>
 
+  <!-- Display pronoun or name, or username-->
+  <h2>
+    <% if logged_in? && @user == current_user %>
+      Your
+    <% else %>
+      <%= @user.name || @user.username %>'s
+    <% end %>
+    Tasting Notes
+  </h2>
+
   <% if !@user.notes.empty? %>
-    <h2>
-      <% if @user == current_user %>
-        Your
-      <% else %>
-        <%= @user.username %>'s
-      <% end %>
-      Tasting Notes</h2>
     <% @user.notes.order(created_at: :desc).each do |note| %>
       <%= erb :'/notes/_note', locals: {note: note, format: 'short'} %>
     <%end %>
+  <% else %>
+    <article class="note"><p>No tasting notes (yet)...</p></article>
   <%end %>
 </section>
