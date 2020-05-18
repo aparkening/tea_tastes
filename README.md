@@ -38,7 +38,7 @@ Tea Tastes is a place to record impressions of teas. Features:
 
 ## Usage
 
-Use your browser to add users, notes, teas, and shops. Or add seed data via command line to interact with sample entries.
+Use your browser to add users, notes, teas, and shops. Or interact with sample data by seeding the database in the command line.
 ```
     $ rake db:seed
 ```
