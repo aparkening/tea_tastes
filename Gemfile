@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'sinatra'
-gem 'activerecord', '~> 5.2.3'#, :require => 'active_record'
+gem 'activerecord', '~> 5.2.8'#, :require => 'active_record'
 # gem 'activerecord'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'rack-flash3'
